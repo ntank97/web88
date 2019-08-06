@@ -12,5 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+Route::group(['prefix' => 'page','middleware' => 'CheckAdmin'],function(){
+    Route::get('/','HomeController@index')->name('admin.dashboard');
+    Route::get('/dashboard','HomeController@index');
+
+});
+Route::group(['prefix' => 'page'],function(){
+    /*
+     * Admin đăng nhập
+     */
+    Route::get('sign_in', 'Auth\LoginController@showLoginForm')->name('admin.showLoginForm');
+    Route::post('sign_in', 'Auth\LoginController@postLogin')->name('admin.login_post');
+    /*
+     * Admin đăng xuất
+     */
+    Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
+});
+
