@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('auth.login');
+=======
+    return view('index');
+>>>>>>> d315f39e72ddf6316e0f129b719d9ba136bd4f92
 });
 
 Auth::routes();
