@@ -55,10 +55,10 @@
                     }
                 </style>
 <body>
-        <div id="fb-root"></div>
+        <!-- <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=570055446860048&autoLogAppEvents=1"></script>
             <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=570055446860048&autoLogAppEvents=1"></script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=570055446860048&autoLogAppEvents=1"></script> -->
                
         <header>
             <div class="header">
@@ -607,18 +607,44 @@
             </div>
         </div>
     </a>
-    </body>
-<!-- form dang ki end -->
+</body>
+<script>
+    window.onscroll = function() { scrollFunction(), scrollMenuHide() }; 
+
+function scrollFunction() {
+    if (window.pageYOffset > 450) {
+        document.getElementById("back-to-top").style.display = "block";
+    } else {
+        document.getElementById("back-to-top").style.display = "none";
+    }
+};
+if($('#back-to-top').length) {
+  var scrollTrigger = 100,
+      backToTop = function () {
+          var scrollTop = $(window).scrollTop();
+          if (scrollTop > scrollTrigger) {
+              $('#back-to-top').addClass('show');
+          } else {
+              $('#back-to-top').removeClass('show');
+          }
+      };
+  backToTop();
+  $(window).on('scroll', function () {
+      backToTop();
+  });
+  $('#back-to-top').on('click', function (e) {
+      e.preventDefault();
+      $('html,body').animate({
+          scrollTop: 0
+      }, 700);
+  });
+}
+
+</script>
 <!-- bootstrap -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- Font-awesome -->
 <script src="https://kit.fontawesome.com/df8fdd30a5.js"></script>
 <!-- jQuery -->
@@ -638,6 +664,7 @@
 </script>
 <!-- Slider.js -->
 <script src="js/slider.js"></script>
+
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
@@ -663,5 +690,4 @@
   logged_in_greeting="Xin chào! Web88 có thể giúp gì cho bạn?"
   logged_out_greeting="Xin chào! Web88 có thể giúp gì cho bạn?">
 </div>
-
 </html>
