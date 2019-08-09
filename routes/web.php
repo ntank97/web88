@@ -17,17 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'page','middleware' => 'CheckAdmin'],function(){
+Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     Route::get('/','HomeController@index')->name('admin.dashboard');
     Route::get('/dashboard','HomeController@index');
 
 });
-Route::group(['prefix' => 'page'],function(){
+Route::group(['prefix' => 'admin'],function(){
     /*
      * Admin đăng nhập
      */
-    Route::get('sign_in', 'Auth\LoginController@showLoginForm')->name('admin.showLoginForm');
-    Route::post('sign_in', 'Auth\LoginController@postLogin')->name('admin.login_post');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.showLoginForm');
+    Route::post('login', 'Auth\LoginController@postLogin')->name('admin.login_post');
     /*
      * Admin đăng xuất
      */

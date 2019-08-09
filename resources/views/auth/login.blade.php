@@ -93,7 +93,7 @@
         <h2>sign in</h2>
     </div>
     <div class="content-bottom">
-        <form method="POST" action="{{ url('page/sign_in') }}">
+        <form method="POST" action="{{ url('admin/login') }}">
             @csrf
             @if ( Session::has('error') )
                 <div class="alert alert-danger alert-dismissible" role="alert">

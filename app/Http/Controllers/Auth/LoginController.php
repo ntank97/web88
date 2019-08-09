@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use DB;
 
 class LoginController extends Controller
 {
@@ -45,7 +46,7 @@ class LoginController extends Controller
     }
 
     public function getLogin() {
-        return view('auth/login');
+        return view('auth.login');
     }
 
     public function postLogin(Request $request) {
@@ -64,12 +65,12 @@ class LoginController extends Controller
         
         if ($validator->fails()) {
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
-            return redirect('admin.sign_in')->withErrors($validator)->withInput();
+            return redirect('admin/login')->withErrors($validator)->withInput();
         } else {
             // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
             $email = $request->input('email');
             $password = $request->input('password');
-            
+        
             if( Auth::attempt(['email' => $email, 'password' =>$password])) {
                 // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
                 $user = Auth::user()->id;
@@ -79,7 +80,7 @@ class LoginController extends Controller
             } else {
                 // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
                 Session::flash('error', 'Email hoặc mật khẩu không đúng!');
-                return redirect('admin/sign_in');
+                return redirect('admin/login');
             }
         }
     }
