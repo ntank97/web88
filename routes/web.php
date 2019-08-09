@@ -12,25 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'page','middleware' => 'CheckAdmin'],function(){
+    Route::get('/','HomeController@index')->name('admin.dashboard');
+    Route::get('/dashboard','HomeController@index');
 
-// Route::group(['prefix'=>'/page','Middlware'=>'CheckAdmin'],function(){
-    
-//     Route::get('/','HomeControll@index')->name('admin.view_all');
-    
-//     Route::get('/dashboard}','HomeController@index' );
-    
-// });
+});
+Route::group(['prefix' => 'page'],function(){
+    /*
+     * Admin đăng nhập
+     */
+    Route::get('sign_in', 'Auth\LoginController@showLoginForm')->name('admin.showLoginForm');
+    Route::post('sign_in', 'Auth\LoginController@postLogin')->name('admin.login_post');
+    /*
+     * Admin đăng xuất
+     */
+    Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
+});
 
-
-// Route::group(['prefix' => 'admin'], function() {
-//     Route::get('/login', 'LoginController@form')->name('login.form');
-//     Route::post('/login','LoginController@access')->name('login.access');
-
-//     Route::get('logout','LogoutController@logout')->name('logout');
-// });

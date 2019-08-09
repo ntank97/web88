@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+=======
         $this->call($this->role());
         $this->call($this->admin());
     }
@@ -27,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+>>>>>>> d315f39e72ddf6316e0f129b719d9ba136bd4f92
     }
     private function admin()
     {
