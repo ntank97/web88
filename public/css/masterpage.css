@@ -209,8 +209,8 @@ nav.navbar > .container {
     height: 50px;
     border-radius: 50%;
     position: fixed;
-    right: 2px;
-    bottom: 76px;
+    right: 22px;
+    bottom: 100px;
     text-align: center;
     cursor: pointer;
     display: none;
