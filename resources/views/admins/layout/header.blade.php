@@ -29,7 +29,7 @@
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('') }}/admin/dist/img/user2-160x160.jpg" class="img-circle"
+                                            <img src="{{ asset('') }}/admins/dist/img/user2-160x160.jpg" class="img-circle"
                                                  alt="User Image">
                                         </div>
                                         <h4>
@@ -43,7 +43,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('') }}/admin/dist/img/user3-128x128.jpg" class="img-circle"
+                                            <img src="{{ asset('') }}/admins/dist/img/user3-128x128.jpg" class="img-circle"
                                                  alt="User Image">
                                         </div>
                                         <h4>
@@ -56,7 +56,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('') }}/admin/dist/img/user4-128x128.jpg" class="img-circle"
+                                            <img src="{{ asset('') }}/admins/dist/img/user4-128x128.jpg" class="img-circle"
                                                  alt="User Image">
                                         </div>
                                         <h4>
@@ -69,7 +69,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('') }}/admin/dist/img/user3-128x128.jpg" class="img-circle"
+                                            <img src="{{ asset('') }}/admins/dist/img/user3-128x128.jpg" class="img-circle"
                                                  alt="User Image">
                                         </div>
                                         <h4>
@@ -82,7 +82,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('') }}/admin/dist/img/user4-128x128.jpg" class="img-circle"
+                                            <img src="{{ asset('') }}/admins/dist/img/user4-128x128.jpg" class="img-circle"
                                                  alt="User Image">
                                         </div>
                                         <h4>
