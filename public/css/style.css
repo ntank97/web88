@@ -643,11 +643,6 @@ i.fas.fa-globe-americas {
     align-items: center;
 }
 
-.contact__wrap-detail--text {
-    text-align: left;
-    padding-left: 1.5rem;
-}
-
 .contact__wrap-detail--text span {
     color: #969696;
 }
