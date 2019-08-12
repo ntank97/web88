@@ -17,11 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
-    Route::get('/','HomeController@index')->name('admin.dashboard');
-    Route::get('/dashboard','HomeController@index');
-
-});
 Route::group(['prefix' => 'admin'],function(){
     /*
      * Admin đăng nhập
@@ -32,5 +27,14 @@ Route::group(['prefix' => 'admin'],function(){
      * Admin đăng xuất
      */
     Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
+});
+
+Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
+    Route::get('/','HomeController@index')->name('admin.dashboard');
+    Route::get('/dashboard','HomeController@index');
+    Route::group(['prefix' => 'account'],function(){
+        Route::get('account','Admin\AcountController@admin')->name('admin.account.index');
+        Route::get('account','Admin\AcountController@user')->name('user.account.index');
+    });
 });
 

@@ -77,13 +77,13 @@
     </script>
     <!-- //Meta-Tags -->
     <!-- Index-Page-CSS -->
-    <link rel="stylesheet" href="{{ asset('admin/login') }}/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('admins/login') }}/css/style.css" type="text/css" media="all">
     <!-- //Custom-Stylesheet-Links -->
     <!--fonts -->
     <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
     <!-- //fonts -->
     <!-- Font-Awesome-File-Links -->
-    <link rel="stylesheet" href="{{ asset('admin/login') }}/css/font-awesome.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('admins/login') }}/css/font-awesome.css" type="text/css" media="all">
 </head>
 
 <body>
