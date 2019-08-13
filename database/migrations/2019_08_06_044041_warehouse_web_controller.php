@@ -19,24 +19,21 @@ class WarehouseWebController extends Migration
         Schema::create('cate_web',function (Blueprint $table)
         {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
+            $table->string('name')->unique();
+            $table->tinyInteger('active')->default(1)->index();
+            $table->string('slug')->index();
+            $table->char('icon')->nullable();
             $table->timestamps();
         });
         Schema::create('web',function (Blueprint $table)
         {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->index();
             $table->string('image');
             $table->string('link');
-            $table->string('code');
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_web')
-                ->onDelete('cascade');
-            $table->integer('status');
+            $table->integer('cate_id')->default(0)->index();
+            $table->tinyInteger('active')->default(0)->index();
             $table->timestamps();
         });
         Schema::create('users',function (Blueprint $table)
