@@ -62,7 +62,7 @@
                                 <a href="#">Mẫu web giới thiệu công ty  </a>
                                 <a href="#">Mẫu web ảnh viện áo cưới  </a>
                                 <a href="#">Mẫu web âm nhạc  </a>
-                                <a href="#">Mẫu web nhà hàng khách sạn  </a>
+                                <a href="#">Mẫu web nhà hàng khách sạn </a>
                                 <a href="#">Mẫu web bất động sản  </a>
                                 <a href="#">Mẫu web cá nhân  </a>
                                 <a href="#">Mẫu web du lịch  </a>
