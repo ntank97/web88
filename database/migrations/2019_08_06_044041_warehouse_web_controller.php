@@ -32,18 +32,23 @@ class WarehouseWebController extends Migration
             $table->string('slug')->index();
             $table->string('image');
             $table->string('link');
-            $table->integer('cate_id')->default(0)->index();
-            $table->tinyInteger('active')->default(0)->index();
+            
+            $table->bigInteger('cate_id')->unsigned();
+            $table->foreign('cate_id')
+                ->references('id')
+                ->on('cate_web')
+                ->onDelete('cascade');
+            $table->tinyInteger('active')->default(1)->index();
             $table->timestamps();
         });
         Schema::create('users',function (Blueprint $table)
         {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email');
+            $table->string('address');
+            $table->string('email')->unique();;
             $table->string('phone');
-            $table->string('password');
-            $table->integer('status');
+            $table->tinyInteger('active');
             $table->timestamps();
         });
         Schema::create('web_users',function (Blueprint $table)
@@ -58,6 +63,9 @@ class WarehouseWebController extends Migration
                 ->references('id')
                 ->on('web')
                 ->onDelete('cascade');
+            $table->string('title');
+            $table->string('content');
+            
         });
     /**
      * Dịch vụ - Thiết kế - Seo
@@ -66,6 +74,7 @@ class WarehouseWebController extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
+            $table->tinyInteger('active');
             $table->timestamps();
         });
 
@@ -84,7 +93,7 @@ class WarehouseWebController extends Migration
                 ->on('cate_service')
                 ->onDelete('cascade');
             $table->timestamps();
-            $table->integer('status');
+            $table->tinyInteger('active');
         });
         Schema::create('service_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -97,76 +106,9 @@ class WarehouseWebController extends Migration
             $table->timestamps();
             $table->integer('searchs');
         });
-        Schema::create('cate_design', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->timestamps();
-        });
+       
 
-        Schema::create('design', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('image');
-            $table->text('summary');
-            $table->text('content');
-            $table->integer('focus');
-            $table->integer('view')->default(0);
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_design')
-                ->onDelete('cascade');
-            $table->timestamps();
-            $table->integer('status');
-        });
-        Schema::create('design_tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->bigInteger('design_id')->unsigned();
-            $table->foreign('design_id')
-                ->references('id')
-                ->on('design')
-                ->onDelete('cascade');
-            $table->timestamps();
-            $table->integer('searchs');
-        });
-        Schema::create('cate_seo', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->timestamps();
-        });
-
-        Schema::create('seo', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('image');
-            $table->text('summary');
-            $table->text('content');
-            $table->integer('focus');
-            $table->integer('view')->default(0);
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_seo')
-                ->onDelete('cascade');
-            $table->timestamps();
-            $table->integer('status');
-        });
-        Schema::create('seo_tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->bigInteger('seo_id')->unsigned();
-            $table->foreign('seo_id')
-                ->references('id')
-                ->on('seo')
-                ->onDelete('cascade');
-            $table->timestamps();
-            $table->integer('searchs');
-        });
+        
         /**
          * Đối tác
          */
@@ -176,7 +118,7 @@ class WarehouseWebController extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('link');
-            $table->integer('status');
+            $table->tinyInteger('active');
             $table->timestamps();
         });
         /**
@@ -204,7 +146,84 @@ class WarehouseWebController extends Migration
             $table->timestamps();
 
         });
+        //Slider 
+        Schema::create('sliders', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('image');
+            $table->string('title')->nullable();
+            $table->tinyInteger('active');
+            $table->timestamps();
+        });
+        //Support 
+        Schema::create('supports', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('image');
+            $table->string('phone');
+            $table->string('email')->unique();
+            $table->tinyInteger('active');
+            $table->timestamps();
+        });
+        //Contact
+        Schema::create('contact', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->tinyInteger('active');
+            $table->timestamps();
+        });
+       //Blogs
+       Schema::create('blogs', function (Blueprint $table) {
+        $table->bigIncrements('id');
+           $table->text('summary');
+           $table->text('detail');
+           $table->tinyInteger('active')->default(0);
+           $table->integer('view')->default(0);
+           $table->bigInteger('admin_id')->unsigned();
+           $table->foreign('admin_id')
+            ->references('id')
+            ->on('admin')
+            ->onDelete('cascade');
+           $table->timestamps();
 
+        
+       });
+       Schema::create('blog_tags', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('name');
+        $table->bigInteger('blogs_id')->unsigned();
+        $table->foreign('blogs_id')
+            ->references('id')
+            ->on('blogs')
+            ->onDelete('cascade');
+        $table->timestamps();
+        $table->integer('searchs');
+    });
+    // dich vu khac
+    Schema::create('type_other_service', function (Blueprint $table) {
+        $table->bigIncrements('id');
+          $table->string('title');
+           $table->tinyInteger('active')->default(0);
+           $table->string('slug');
+           $table->timestamps();
+
+        
+       });
+       Schema::create('other_service', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('name');
+        $table->text('content');
+        $table->bigInteger('type_id')->unsigned();
+        $table->foreign('type_id')
+        ->references('id')
+        ->on('type_other_service')
+        ->onDelete('cascade');
+        $table->timestamps();
+        
+    });
+    
 
 
 
