@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/','HomeController@index')->name('home');
+
+Route::group(['prefix' => 'kho-giao-dien'], function (){
+   Route::get('/','FrontendController@khogiaodien')->name('kho.giao.dien');
 });
+
+
+
 Route::get('/admin', function () {
     return view('admins.dashboard');
 });
