@@ -11,9 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::get('/','HomeController@index')->name('home');
+
+Route::group(['prefix' => 'kho-giao-dien'], function (){
+   route::get('/','frontendcontroller@khogiaodien')->name('kho.giao.dien');
 });
+
+route::get('lien-he','frontendcontroller@lienhe')->name('lien.he');
+
+route::get('/khach-hang','frontendcontroller@khachhang')->name('khach.hang');
+
+Route::get('seo','FrontendController@seo')->name('seo');
+
+route::get('thiet-ke-website','frontendcontroller@thietkewesite')->name('thiet.ke.wesite');
 
 Auth::routes();
 
@@ -54,7 +64,7 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         });
 
         Route::group(['prefix' => 'pending'],function(){
-            Route::get('index','Pending@index')->name('pending.index');
+            Route::get('index','PendingController@index')->name('pending.index');
         });
     });
 });
