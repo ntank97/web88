@@ -27,18 +27,13 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Admin Accounts</span>
+                    <i class="fa fa-dashboard"></i> <span>Profile</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can('view')
-                        <li><a href="{{ Route('editor.account.profile') }}"><i class="fa fa-circle-o"></i> Quản lý Tài Khoản</a></li>
-                    @endcan
-                    @can('')
-                         <li><a href="{{ Route('pending.index') }}"><i class="fa fa-circle-o"></i> Quản lý Pending</a></li>
-                    @endcan
+                    <li><a href="{{ Route('editor.account.profile') }}"><i class="fa fa-circle-o"></i> Quản lý Tài Khoản</a></li>
                 </ul>
             </li>
             <li class="active treeview">

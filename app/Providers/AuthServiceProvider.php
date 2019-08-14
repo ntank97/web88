@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         //Admin
+        //1:Quản trị
+        // 2:Editor
+        // 3:User
+        $role=['1','2','3'];
 
         Gate::before(function($user) {
             if($user->level == '1') {
@@ -35,12 +39,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view',function($user){
             return $user->level==1;
         });
-        // Editor
+        // Editor: quyền thêm web, service, blog
         Gate::define('add',function($user){
             return $user->level==2;
         });
 
-        //User
+        //User: quyền sửa khi ở trạng thái pending=0
 
         Gate::define('edit',function($user,$web){
             if($user->level==3){
@@ -55,7 +59,7 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
-
+        //User: quyền xóa khi ở trạng thái pending=0
         Gate::define('delete',function($user,$web){
             if($user->level==3){
                 if($web->status==0){

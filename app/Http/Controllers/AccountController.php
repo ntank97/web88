@@ -14,7 +14,7 @@ class AccountController extends Controller
     public function profile()
     {
         $admin=new admin();
-        if(Gate::allows('view')){
+        //if(Gate::allows('view')){
             $editor['editor'] = DB::table('admin')          
 
             ->join("role", "role.id", "=", "admin.level")
@@ -28,16 +28,25 @@ class AccountController extends Controller
                 ),
                 'clients' => array(
                     'client'=>DB::table('users')->get(),
+                ),
+                'webs' => array(
+                    'web'=>DB::table('web')->where('active','1')->get(),
+                ),
+                'blogs' => array(
+                    'blog'=>DB::table('blogs')->where('active','1')->get(),
+                ),
+                'services' => array(
+                    'service'=>DB::table('service')->where('active','1')->get(),
                 )
             );
             // $role['role']=DB::table('role')->get();
 
             // $client['client']= DB::table('users')->get();
             return view('admins.page.account.profile',$editor,$array);
-        }
-        else{
-            return view('admins.page.account.error');
-        }
+        //}
+        //else{
+        //    return view('admins.page.account.error');
+        //}
     }
 
     public function store(Request $request)
