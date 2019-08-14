@@ -19,6 +19,6 @@ class CheckAdmin
         if (Auth::check()) {           
             return $next($request);
         }
-        return redirect()->route('admin.showFormLogin');       
+        return redirect()->route('admin.showLoginForm');       
     }
 }

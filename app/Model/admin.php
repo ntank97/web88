@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class admin extends Authenticatable
 {
+    protected $table='admin';
+
     protected $guard = 'admin';
 
     protected $fillable = [
@@ -16,4 +18,10 @@ class admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Model\role','level');
+    }
+
 }

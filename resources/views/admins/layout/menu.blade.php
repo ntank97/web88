@@ -33,8 +33,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ Route('admin.account.index') }}"><i class="fa fa-circle-o"></i> Quản lý Admin</a></li>
-                    <li><a href="{{ Route('user.account.index') }}"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
+                    @can('view')
+                        <li><a href="{{ Route('editor.account.profile') }}"><i class="fa fa-circle-o"></i> Quản lý Tài Khoản</a></li>
+                    @endcan
                 </ul>
             </li>
             <li class="active treeview">

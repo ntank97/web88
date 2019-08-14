@@ -15,16 +15,6 @@ $(function() {
 
 // Back to top
 // , scrollMenuHide() 
-window.onscroll = function() { scrollFunction(), scrollMenuHide() }; 
-
-function scrollFunction() {
-    if (window.pageYOffset > 450) {
-        document.getElementById("back-to-top").style.display = "block";
-    } else {
-        document.getElementById("back-to-top").style.display = "none";
-    }
-};
-
 // document.getElementById("back-to-top").addEventListener("click", backToTop);
 // function backToTop() {
 //     window.scrollTo(0, 0);

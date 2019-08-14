@@ -32,9 +32,26 @@ Route::group(['prefix' => 'admin'],function(){
 Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     Route::get('/','HomeController@index')->name('admin.dashboard');
     Route::get('/dashboard','HomeController@index');
-    Route::group(['prefix' => 'account'],function(){
-        Route::get('account','Admin\AcountController@admin')->name('admin.account.index');
-        Route::get('account','Admin\AcountController@user')->name('user.account.index');
+    /*
+     * Tài khoản
+     */
+    Route::prefix('account')->group(function (){
+        
+        Route::group(['prefix' => 'editor'],function(){
+            Route::get('profile','AccountController@profile')->name('editor.account.profile');
+            Route::post('add','AccountController@store')->name('editor.account.store');
+            Route::get('edit/{id}','AccountController@edit')->name('editor.account.edit');
+            Route::post('update/{id}','AccountController@update')->name('editor.account.update');
+            Route::get('delete/{id}','AccountController@delete')->name('editor.account.delete');
+        });
+
+        Route::group(['prefix' => 'user'],function(){
+            Route::get('profile','ClientController@profile')->name('editor.account.index');
+            Route::post('add','ClientController@store')->name('user.account.store');
+            Route::get('edit/{id}','ClientController@edit')->name('user.account.edit');
+            Route::post('edit/{id}','ClientController@update')->name('user.account.update');
+            Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
+        });
     });
 });
 
