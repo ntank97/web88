@@ -103,6 +103,7 @@
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                     <div class="table-responsive">
+                    
                 <form action="{{ Route('editor.account.update',['id' => $editor->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

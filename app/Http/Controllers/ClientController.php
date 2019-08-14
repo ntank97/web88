@@ -31,13 +31,13 @@ class ClientController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         $this->validate($request,
                [
                 'name' =>'required',
                 'phone' =>'required|numeric',
                 'email' =>'required|email',
-                'password' => 'required|min:6',
+                'address' => 'required|min:6',
                ],
                [
                 'name.required' => 'Tên admin là trường bắt buộc',
@@ -45,9 +45,9 @@ class ClientController extends Controller
                 'phone.numeric' => 'Viết sai số điện thoại',
                 'email.required' => 'Email là trường bắt buộc',
                 'email.email' => 'Email không đúng định dạng',
-                'password.required' => 'Mật khẩu là trường bắt buộc',
-                'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+                'address.required' => 'Địa chỉ là trường bắt buộc',
                ]);
+        
         $email=DB::table('users')->pluck('email');
         $phone=DB::table('users')->pluck('phone');
         foreach ($email as $value) {
@@ -67,8 +67,8 @@ class ClientController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'status' => 1,
+            'address' => $request->address,
+            'active' => 1,
             'created_at' => now(),
         ]);
 
@@ -88,7 +88,7 @@ class ClientController extends Controller
                 'name' =>'required',
                 'phone' =>'required|numeric',
                 'email' =>'required|email',
-                'password' => 'required|min:6',
+                'address' => 'required|min:6',
                ],
                [
                 'name.required' => 'Tên admin là trường bắt buộc',
@@ -96,8 +96,7 @@ class ClientController extends Controller
                 'phone.numeric' => 'Viết sai số điện thoại',
                 'email.required' => 'Email là trường bắt buộc',
                 'email.email' => 'Email không đúng định dạng',
-                'password.required' => 'Mật khẩu là trường bắt buộc',
-                'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+                'address.required' => 'Địa chỉ là trường bắt buộc',
                ]);
                
 
@@ -114,8 +113,8 @@ class ClientController extends Controller
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'status' => 1,
+                    'address' => $request->address,
+                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -131,8 +130,8 @@ class ClientController extends Controller
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'status' => 1,
+                    'address' => $request->address,
+                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -144,8 +143,8 @@ class ClientController extends Controller
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'status' => 1,
+                    'address' => $request->address,
+                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -161,8 +160,8 @@ class ClientController extends Controller
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'status' => 1,
+                    'address' => $request->address,
+                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -178,8 +177,7 @@ class ClientController extends Controller
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'status' => 1,
+                'active' => 1,
                 'updated_at' => now(),
             ]);
         }

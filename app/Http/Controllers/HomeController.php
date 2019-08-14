@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
-
+use App\Web;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends FrontendController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * 
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('auth');
+        parent::__construct();
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('admins.dashboard');
+        $webs = Web::where([
+            'active' => Web::STATUS_PUBLIC
+        ])->limit(18)->get();
+
+        $viewData = [
+            'webs' => $webs,
+        ];
+        return view('index',$viewData);
     }
 }

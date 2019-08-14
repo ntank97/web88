@@ -36,6 +36,9 @@
                     @can('view')
                         <li><a href="{{ Route('editor.account.profile') }}"><i class="fa fa-circle-o"></i> Quản lý Tài Khoản</a></li>
                     @endcan
+                    @can('')
+                         <li><a href="{{ Route('pending.index') }}"><i class="fa fa-circle-o"></i> Quản lý Pending</a></li>
+                    @endcan
                 </ul>
             </li>
             <li class="active treeview">

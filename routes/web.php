@@ -30,8 +30,8 @@ Route::group(['prefix' => 'admin'],function(){
 });
 
 Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
-    Route::get('/','HomeController@index')->name('admin.dashboard');
-    Route::get('/dashboard','HomeController@index');
+    Route::get('/','AdminController@index')->name('admin.dashboard');
+    Route::get('/dashboard','AdminController@index');
     /*
      * Tài khoản
      */
@@ -51,6 +51,10 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::get('edit/{id}','ClientController@edit')->name('user.account.edit');
             Route::post('edit/{id}','ClientController@update')->name('user.account.update');
             Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
+        });
+
+        Route::group(['prefix' => 'pending'],function(){
+            Route::get('index','Pending@index')->name('pending.index');
         });
     });
 });

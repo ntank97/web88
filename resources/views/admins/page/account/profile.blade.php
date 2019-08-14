@@ -253,18 +253,10 @@
                             <p style="color:red">{{ $errors->first('email') }}</p>
                         </div>
                         <div class="form-group">
-                            <p>Mật khẩu</p>
-                            <input name="password" class="form-control" id="pass" type="password" placeholder="Password" onchange="return lengthPasswword()">
-                            <p style="color:red">{{ $errors->first('password') }}</p>
-                            <div id="lengthpass" style="color:red"></div>
+                            <p>Address</p>
+                            <input name="address" class="form-control" type="address" placeholder="Address" value="{{ old('address') }}" />
+                            <p style="color:red">{{ $errors->first('address') }}</p>
                         </div>
-                        <div class="form-group">
-                            <p>Nhập lại mật khẩu</p>
-                            <input name="password_confirmation" class="form-control" id="confirmpass" type="password" placeholder="Confirm password" onchange="return confirmPasswword()">
-                            <p style="color:red">{{ $errors->first('password_confirmation') }}</p>
-                            <div id="errorpass" style="color:red"></div>
-                        </div>
-
                         <div class="form-group">
                             <a class="btn btn-primary" href="{{ Route('editor.account.profile') }}" type="submit" title="Cancel">Hủy</a>
                             <input name="submit" class="btn btn-success" type="submit" value="Tạo" >
