@@ -11,7 +11,7 @@
                 <li class="col-md-3 col-sm-6" style="margin-top:30px;">
                     <center>
                         <div>
-                            <img src="./image/user.jpg" class="img-circle" width="140px;margin-left:30px!important;">
+                            <img src="{{ asset('image/user.jpg') }}" class="img-circle" width="140px;margin-left:30px!important;">
                         </div>
                         <div class="contact__wrap-detail">
                             <p class="contact__wrap-detail--text">
@@ -27,7 +27,7 @@
                 <li class="col-md-3 col-sm-6" style="margin-top:30px;">
                     <center>
                         <div>
-                            <img src="./image/user1.jpg" class="img-circle" width="140px;">
+                            <img src="{{ asset('image/user1.jpg') }}" class="img-circle" width="140px;">
                         </div>
                         <div class="contact__wrap-detail">
                             <p class="contact__wrap-detail--text">
@@ -43,7 +43,7 @@
                 <li class="col-md-3 col-sm-6" style="margin-top:30px;">
                     <center>
                         <div>
-                            <img src="./image/nct.jpg" class="img-circle" width="140px;">
+                            <img src="{{ asset('image/nct.jpg') }}" class="img-circle" width="140px;">
                         </div>
                         <div class="contact__wrap-detail">
 
@@ -60,7 +60,7 @@
                 <li class="col-md-3 col-sm-6" style="margin-top:30px;">
                     <center>
                         <div>
-                            <img src="./image/cskh.jpg" class="img-circle" width="140px;">
+                            <img src="{{asset('image/cskh.jpg')}}" class="img-circle" width="140px;">
                         </div>
                         <div class="contact__wrap-detail">
 
@@ -249,31 +249,34 @@
                             <span><a href="javascript:void(0)"> Talentwins.co</a></span>
                         </div>
                     </div>
-                    <div class="text-center"><img src="./image/contact.jpg" alt=""></div>
+                    <div class="text-center"><img src="{{ asset('image/contact.jpg')}}" alt=""></div>
                 </div>
-                <form class="col-md-8" style="padding-bottom: 2rem">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1" style="padding-top: 2rem;">Tên của bạn</label><br>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Tên của bạn">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ email</label><br>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Số điện thoại</label><br>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Số điện thoại">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tiêu đề</label><br>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tiêu đề">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Nội dung</label><br>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Thông điệp"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success" onclick="window.alert('Đăng ký thành công!')" style="margin-left: 20px!important;">Gửi</button>
-                </form>
+                <div class="col-md-8">
+                    <form>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" style="padding-top: 2rem;">Tên của bạn</label><br>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Tên của bạn">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa chỉ email</label><br>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Số điện thoại</label><br>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Số điện thoại">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tiêu đề</label><br>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tiêu đề">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Nội dung</label><br>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Thông điệp"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success" onclick="window.alert('Đăng ký thành công!')" style="margin-left: 20px!important;">Gửi</button>
+                    </form>
+                </div>
             </div>
         </div>
     </form>

@@ -154,6 +154,13 @@ class WarehouseWebController extends Migration
             $table->tinyInteger('active');
             $table->timestamps();
         });
+        Schema::create('slider_content', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('image');
+            $table->string('title')->nullable();
+            $table->tinyInteger('active')->default(0);
+            $table->timestamps();
+        });
         //Support 
         Schema::create('supports', function (Blueprint $table) {
             $table->bigIncrements('id');
