@@ -22,12 +22,13 @@
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="{{ asset('') }}/admins/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+    <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,7 +38,15 @@
 
     <!-- Google Font -->
     <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
           href="{{ asset('') }}/admins/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    {{-- ck --}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    {{-- tag --}}
+    <link rel="stylesheet" type="text/css" href="{{asset('')}}tag/dist/jquery-tagsinput.min.css"/>
+    <script src="{{asset('')}}tag/dist/jquery-tagsinput.min.js" defer></script>
+    {{-- endtag --}}
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -257,6 +266,45 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
+
+
+
+
+<script src="{{ asset('') }}/admins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}/admins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    $(function () {
+        $('#example1').DataTable();
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        });
+    })
+</script>
+<script>
+    CKEDITOR.replace('contentt', {
+        filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+</script>
+<script src="{{ asset('') }}admins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}admins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+{{--Tag--}}
+{{-- tags --}}
+<script>
+    $(document).ready(function () {
+        $('[data-role="tags-input"]').tagsInput();
+    });
+</script>
+
+{{--EndTag--}}
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('') }}admins/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->

@@ -82,6 +82,58 @@ Route::group(['prefix' => 'admin'],function(){
      */
     Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
 });
+<<<<<<< HEAD
+Route::group(['prefix' => 'admin'],function(){
+    //    News
+    Route::prefix('web-store')->group(function () {
+        Route::get('/list', 'WebStoreController@index')->name('webstore.index');
+
+        Route::get('/add', 'WebStoreController@create')->name('webstore.create');
+        Route::post('/add', 'WebStoreController@store')->name('webstore.store');
+
+        Route::get('/add-cate', 'WebStoreController@createCate')->name('webstore.createCate');
+        Route::post('/add-cate', 'WebStoreController@storeCate')->name('webstore.storeCate');
+
+        Route::get('/edit/{id}', 'WebStoreController@edit')->name('webstore.edit');
+        Route::post('/edit/{id}', 'WebStoreController@update')->name('webstore.update');
+
+        Route::get('/destroy/{id}', 'WebStoreController@destroy')->name('webstore.destroy');
+        Route::get('/destroy-cate/{id}', 'WebStoreController@destroyCate')->name('webstore.destroyCate');
+
+        Route::get('/show/{id}', 'WebStoreController@show')->name('webstore.show');
+
+        Route::get('/detail/{id}', 'WebStoreController@detail')->name('webstore.detail');
+        Route::get('/setactive/{id}/{status}', 'WebStoreController@setactive')->name('webstore.setactive');
+        Route::get('/setactive-cate/{id}/{status}', 'WebStoreController@setactiveCate')->name('webstore.setactiveCate');
+
+
+    });
+//    Service
+    Route::prefix('service')->group(function () {
+        Route::get('/list', 'ServiceController@index')->name('service.index');
+
+        Route::get('/add', 'ServiceController@create')->name('service.create');
+        Route::post('/add', 'ServiceController@store')->name('service.store');
+
+        Route::get('/add-cate', 'ServiceController@createCate')->name('service.createCate');
+        Route::post('/add-cate', 'ServiceController@storeCate')->name('service.storeCate');
+
+        Route::get('/edit/{id}', 'ServiceController@edit')->name('service.edit');
+        Route::post('/edit/{id}', 'ServiceController@update')->name('service.update');
+
+        Route::get('/destroy/{id}', 'ServiceController@destroy')->name('service.destroy');
+        Route::get('/destroy-cate/{id}', 'ServiceController@destroyCate')->name('service.destroyCate');
+
+        Route::get('/show/{id}', 'ServiceController@show')->name('service.show');
+
+        Route::get('/detail/{id}', 'ServiceController@detail')->name('service.detail');
+        Route::get('/setactive/{id}/{status}', 'ServiceController@setactive')->name('service.setactive');
+        Route::get('/setactive-cate/{id}/{status}', 'ServiceController@setactiveCate')->name('service.setactiveCate');
+
+
+    });
+});
+=======
 
 Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     Route::get('/','AdminController@index')->name('admin.dashboard');
@@ -108,8 +160,31 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         });
 
         Route::group(['prefix' => 'pending'],function(){
-            Route::get('index','PendingController@index')->name('pending.index');
+            Route::get('web/{id}','PendingController@web')->name('pending.edit');
+            Route::get('blogs/{id}','PendingController@blogs')->name('pending.blogs.edit');
+            Route::get('service/{id}','PendingController@service')->name('pending.service.edit');
         });
     });
+
+    Route::prefix('partner')->group(function(){
+        Route::get('list','PartnerController@list')->name('partner.list');
+        Route::get('add','PartnerController@add')->name('partner.add');
+        Route::post('add','PartnerController@store')->name('partner.add');
+        Route::get('edit/{id}','PartnerController@edit')->name('partner.edit');
+        Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
+        Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
+    });
+
+    Route::prefix('blogs')->group(function(){
+        Route::get('list','BlogsController@list')->name('blogs.list');
+        Route::get('add','BlogsController@add')->name('blogs.add');
+        Route::post('add','BlogsController@store')->name('blogs.add');
+        Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
+        Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
+        Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
+    });
+
+    
 });
 
+>>>>>>> 41048f89b88042f1343a9b0688729e9c657e35c4

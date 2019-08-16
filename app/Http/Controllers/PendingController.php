@@ -10,20 +10,25 @@ use App\Model\admin;
 
 class PendingController extends Controller
 {
-    public function index()
+    public function web($id)
     {
-        $array = array(
-            'webs' => array(
-                'web'=>DB::table('web')->where('active',1)->get(),
-            ),
-            'blogs' => array(
-                'blog'=>DB::table('blogs')->where('active',1)->get(),
-            ),
-            'services' => array(
-                'service'=>DB::table('service')->where('active',1)->get(),
-            )
-        );
-
-        return view('admins.page.account.pending',$array);
+        DB::table('web')->where('id',$id)->update([
+            'active' => 1,
+        ]);
+        return redirect()->route('editor.account.profile');
+    }
+    public function blogs($id)
+    {
+        DB::table('blogs')->where('id',$id)->update([
+            'active' => 1,
+        ]);
+        return redirect()->route('editor.account.profile');
+    }
+    public function service($id)
+    {
+        DB::table('service')->where('id',$id)->update([
+            'active' => 1,
+        ]);
+        return redirect()->route('editor.account.profile');
     }
 }
