@@ -13,21 +13,35 @@ class ClientController extends Controller
     public function profile()
     {
         $admin=new admin();
-        if(Gate::allows('view')){
-            $array['editor'] = DB::table('admin')          
+        //if(Gate::allows('view')){
+            $editor['editor'] = DB::table('admin')          
 
             ->join("role", "role.id", "=", "admin.level")
 
             ->select( 'role.name as name_level','role.id as role_id','admin.*' ) 
 
             ->get();
+            $array = array(
+                'roles' => array(
+                    'role'=>DB::table('role')->get(),
+                ),
+                'clients' => array(
+                    'client'=>DB::table('users')->get(),
+                ),
+                'webs' => array(
+                    'web'=>DB::table('web')->where('active','0')->get(),
+                ),
+                'blogs' => array(
+                    'blog'=>DB::table('blogs')->where('active','0')->get(),
+                ),
+                'services' => array(
+                    'service'=>DB::table('service')->where('active','0')->get(),
+                )
+            );
+            // $role['role']=DB::table('role')->get();
 
-            $client['client']= DB::table('users')->get();
-            return view('admins.page.account.profile',$array,$client);
-        }
-        else{
-            return view('admins.page.account.error');
-        }
+            // $client['client']= DB::table('users')->get();
+            return view('admins.page.account.profile',$editor,$array);
     }
 
     public function store(Request $request)

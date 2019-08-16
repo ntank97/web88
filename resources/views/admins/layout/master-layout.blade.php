@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+    <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
 
     <!-- Google Font -->
     <link rel="stylesheet"
-          href="{{ asset('') }}/admins/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -257,6 +257,24 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
+<script>
+  $(function () {
+    $('#example1').DataTable();
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    });
+  })
+</script>
+
+
+
+<script src="{{ asset('') }}/admins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}/admins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('') }}admins/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->

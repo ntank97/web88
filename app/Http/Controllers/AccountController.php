@@ -30,13 +30,13 @@ class AccountController extends Controller
                     'client'=>DB::table('users')->get(),
                 ),
                 'webs' => array(
-                    'web'=>DB::table('web')->where('active','1')->get(),
+                    'web'=>DB::table('web')->where('active','0')->get(),
                 ),
                 'blogs' => array(
-                    'blog'=>DB::table('blogs')->where('active','1')->get(),
+                    'blog'=>DB::table('blogs')->where('active','0')->get(),
                 ),
                 'services' => array(
-                    'service'=>DB::table('service')->where('active','1')->get(),
+                    'service'=>DB::table('service')->where('active','0')->get(),
                 )
             );
             // $role['role']=DB::table('role')->get();
