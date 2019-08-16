@@ -25,17 +25,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Profile</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ Route('editor.account.profile') }}"><i class="fa fa-circle-o"></i> Quản lý Tài Khoản</a></li>
-                </ul>
-            </li>
+            
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -229,6 +219,23 @@
                 </ul>
             </li>
             <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Đối tác</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('partner.list')}}"><i class="fa fa-circle-o"></i> Danh sách đối tác</a></li>
+                    <li><a href="{{Route('partner.add')}}"><i class="fa fa-circle-o"></i> Thêm đối tác</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ Route('editor.account.profile') }}">
+                    <i class="fa fa-dashboard"></i> <span>Profile</span>
+                </a>
+            </li>
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

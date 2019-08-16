@@ -15,7 +15,6 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
         <li class="active">User profile</li>
       </ol>
     </section>
@@ -23,79 +22,8 @@
     <!-- Main content -->
     <section class="content">
 
-      <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-              <p class="text-muted text-center">Software Engineer</p>
-
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
-                </li>
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-              <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">Malibu, California</p>
-
-              <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-              <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
+      <div class="row" style="padding-left:10px;">
+        
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Sửa thông tin</a></li>
@@ -122,21 +50,13 @@
                         <input name="phone" class="form-control" type="tel" placeholder="Email" value="{{ $users->phone }}" />
                         <p style="color:red">{{ $errors->first('email') }}</p>
                     </div>
-                    
-                    <div v-if='showChangePassword'>
-                        <div class="form-group">
-                            <p class="text-body custom-control-p">Mật khẩu mới</p>
-                            <input name="password" class="form-control" type="password" placeholder="Password">
-                            <p style="color:red">{{ $errors->first('password') }}</p>
-                        </div>
-                        <div class="form-group">
-                            <p class="text-body custom-control-p">Nhập lại mật khẩu</p>
-                            <input name="password_confirmation" class="form-control" type="password" placeholder="Confirm password">
-                            <p style="color:red">{{ $errors->first('password_confirmation') }}</p>
-                        </div>
+                    <div class="form-group">
+                        <p class="text-body custom-control-p">Address</p>
+                        <input name="address" class="form-control" type="text" placeholder="Address" value="{{ $users->address }}" />
+                        <p style="color:red">{{ $errors->first('address') }}</p>
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-primary" href="{{ Route('editor.account.profile') }}" type="submit" title="Cancel">Hủy</a>
+                        <a class="btn btn-primary" href="{{ Route('editor.account.index') }}" type="submit" title="Cancel">Hủy</a>
                         <input name="submit" class="btn btn btn-success" type="submit" value="Cập nhật" >
                     </div>
                 </form>
@@ -149,7 +69,7 @@
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
-        </div>
+        
         <!-- /.col -->
       </div>
       <!-- /.row -->

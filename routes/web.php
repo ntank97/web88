@@ -68,6 +68,23 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::get('index','PendingController@index')->name('pending.index');
         });
     });
+    Route::prefix('partner')->group(function(){
+        Route::get('list','PartnerController@list')->name('partner.list');
+        Route::get('add','PartnerController@add')->name('partner.add');
+        Route::post('add','PartnerController@store')->name('partner.add');
+        Route::get('edit/{id}','PartnerController@edit')->name('partner.edit');
+        Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
+        Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
+    });
+
+    Route::prefix('blogs')->group(function(){
+        Route::get('list','BlogsController@list')->name('blogs.list');
+        Route::get('add','BlogsController@add')->name('blogs.add');
+        Route::post('add','BlogsController@store')->name('blogs.add');
+        Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
+        Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
+        Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
+    });
     //    News
     Route::prefix('web-store')->group(function () {
         Route::get('/list', 'WebStoreController@index')->name('webstore.index');
@@ -117,4 +134,11 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 
     });
 });
+
+
+
+    
+
+    
+
 
