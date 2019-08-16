@@ -38,8 +38,36 @@ Route::group(['prefix' => 'admin'],function(){
      */
     Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
 });
-<<<<<<< HEAD
-Route::group(['prefix' => 'admin'],function(){
+
+
+Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
+    Route::get('/','AdminController@index')->name('admin.dashboard');
+    Route::get('/dashboard','AdminController@index');
+    /*
+     * Tài khoản
+     */
+    Route::prefix('account')->group(function (){
+        
+        Route::group(['prefix' => 'editor'],function(){
+            Route::get('profile','AccountController@profile')->name('editor.account.profile');
+            Route::post('add','AccountController@store')->name('editor.account.store');
+            Route::get('edit/{id}','AccountController@edit')->name('editor.account.edit');
+            Route::post('update/{id}','AccountController@update')->name('editor.account.update');
+            Route::get('delete/{id}','AccountController@delete')->name('editor.account.delete');
+        });
+
+        Route::group(['prefix' => 'user'],function(){
+            Route::get('profile','ClientController@profile')->name('editor.account.index');
+            Route::post('add','ClientController@store')->name('user.account.store');
+            Route::get('edit/{id}','ClientController@edit')->name('user.account.edit');
+            Route::post('edit/{id}','ClientController@update')->name('user.account.update');
+            Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
+        });
+
+        Route::group(['prefix' => 'pending'],function(){
+            Route::get('index','PendingController@index')->name('pending.index');
+        });
+    });
     //    News
     Route::prefix('web-store')->group(function () {
         Route::get('/list', 'WebStoreController@index')->name('webstore.index');
@@ -89,36 +117,4 @@ Route::group(['prefix' => 'admin'],function(){
 
     });
 });
-=======
 
-Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
-    Route::get('/','AdminController@index')->name('admin.dashboard');
-    Route::get('/dashboard','AdminController@index');
-    /*
-     * Tài khoản
-     */
-    Route::prefix('account')->group(function (){
-        
-        Route::group(['prefix' => 'editor'],function(){
-            Route::get('profile','AccountController@profile')->name('editor.account.profile');
-            Route::post('add','AccountController@store')->name('editor.account.store');
-            Route::get('edit/{id}','AccountController@edit')->name('editor.account.edit');
-            Route::post('update/{id}','AccountController@update')->name('editor.account.update');
-            Route::get('delete/{id}','AccountController@delete')->name('editor.account.delete');
-        });
-
-        Route::group(['prefix' => 'user'],function(){
-            Route::get('profile','ClientController@profile')->name('editor.account.index');
-            Route::post('add','ClientController@store')->name('user.account.store');
-            Route::get('edit/{id}','ClientController@edit')->name('user.account.edit');
-            Route::post('edit/{id}','ClientController@update')->name('user.account.update');
-            Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
-        });
-
-        Route::group(['prefix' => 'pending'],function(){
-            Route::get('index','PendingController@index')->name('pending.index');
-        });
-    });
-});
-
->>>>>>> 41048f89b88042f1343a9b0688729e9c657e35c4
