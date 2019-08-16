@@ -116,9 +116,31 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         });
 
         Route::group(['prefix' => 'pending'],function(){
-            Route::get('index','PendingController@index')->name('pending.index');
+            Route::get('web/{id}','PendingController@web')->name('pending.edit');
+            Route::get('blogs/{id}','PendingController@blogs')->name('pending.blogs.edit');
+            Route::get('service/{id}','PendingController@service')->name('pending.service.edit');
         });
     });
+
+    Route::prefix('partner')->group(function(){
+        Route::get('list','PartnerController@list')->name('partner.list');
+        Route::get('add','PartnerController@add')->name('partner.add');
+        Route::post('add','PartnerController@store')->name('partner.add');
+        Route::get('edit/{id}','PartnerController@edit')->name('partner.edit');
+        Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
+        Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
+    });
+
+    Route::prefix('blogs')->group(function(){
+        Route::get('list','BlogsController@list')->name('blogs.list');
+        Route::get('add','BlogsController@add')->name('blogs.add');
+        Route::post('add','BlogsController@store')->name('blogs.add');
+        Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
+        Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
+        Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
+    });
+
+    
 });
 
 >>>>>>> 41048f89b88042f1343a9b0688729e9c657e35c4
