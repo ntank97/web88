@@ -54,6 +54,33 @@
                             Sidebar</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Kho giao diện</span>
+                    <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('webstore.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('webstore.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
+            <li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Dịch vụ</span>
+                    <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="pages/widgets.html">
                     <i class="fa fa-th"></i> <span>Widgets</span>
