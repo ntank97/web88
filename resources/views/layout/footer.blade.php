@@ -225,7 +225,7 @@
 
 <!-- form dang ki -->
 <div id="id01" class="modal">
-    <form class="modal-content animate" action="">
+    <form class="modal-content animate" action="" method="POST">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <div class="container pt-4" style="padding-bottom: 2rem;">
             <div class="row">

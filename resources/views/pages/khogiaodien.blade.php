@@ -27,39 +27,18 @@
     <!--  -->
     <div class="list__category">
         <div class="container">
-            <div class="row list__category-item wow bounceInUp">
-                <div class="col-md-3 col-sm-6">
+            <div class="row wow bounceInUp">
+                @if(isset($cateweb))
+                    @foreach($cateweb as $cate)
+                <div class="col-md-3 col-sm-6" style="margin-bottom:15px;">
                     <center>
-                        <a href="javascript:void(0)">
-                            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/cart.png" alt="">
-                        </a>
-                        <p><a href="javascript:void(0)"><span>Mẫu web</span> thương mại điện tử</a></p>
+                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
+                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ $cate->icon }}" alt=""></a>
+                        <p><a href="">{{ $cate->name }}</a></p>
                     </center>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/intro-web.png" alt="">
-                        </a>
-                        <p><a href="javascript:void(0)">Mẫu web giới thiệu công ty</a></p>
-                    </center>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/news.png" alt="">
-                        </a>
-                        <p><a href="javascript:void(0)">Mẫu web tin tức</a></p>
-                    </center>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/music.png" alt="">
-                        </a>
-                        <p><a href="javascript:void(0)">Mẫu web âm nhạc</a></p>
-                    </center>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

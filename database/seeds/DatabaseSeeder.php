@@ -11,8 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        function role()
-        {
+        $this->call($this->role());
+        $this->call($this->admin());
+    }
+    private function role()
+    {
+//        $location = "Cộng tác viên, Quản trị viên, Người dùng";
+//        $explode = explode(',',$location);
     //        $location = "Cộng tác viên, Quản trị viên, Người dùng";
     //        $explode = explode(',',$location);
             $location =array('Quản trị viên','Cộng tác viên','Người dùng');
@@ -23,7 +28,6 @@ class DatabaseSeeder extends Seeder
                     'name' => $location[$i],
                 ]);
             }
-        }
 
         DB::table('cate_web')->insert([
             [
@@ -142,5 +146,17 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
     }
+    private function admin()
+    {
+            DB::table('admin')->insert([
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'phone' => '0388346413',
+                'level' => '1',
+                'status' => '1',
+                'created_at' => now(),
+                'password' => bcrypt('123456'),
+            ]);
 
+    }
 }

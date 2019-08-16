@@ -172,7 +172,6 @@
                     <center>
                         <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
                         <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ $cate->icon }}" alt=""></a>
-                    </a>
                     <p><a href="">{{ $cate->name }}</a></p>
                 </center>
                 </div>
