@@ -187,19 +187,19 @@
                     <div class="mt-50 text-left">
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Tòa CT2, khu đô thị Thái Hà Constrexim, 43 Phạm Văn Đồng, Hà Nội</span>
+                            <span>{{ $contact->address }}</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@talentwins.co</span>
+                            <span>{{ $contact->email }}</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-phone-alt"></i>
-                            <span>0927 15 15 35 - Zalo</span>
+                            <span>{{ $contact->phone }} - Zalo</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-globe"></i>
-                            <span><a href="javascript:void(0)"> Talentwins.co</a></span>
+                            <span><a href="javascript:void(0)">{{ $contact->website }}</a></span>
                         </div>
                     </div>
                     <div class="text-center"><img src="{{ asset('image/contact.jpg')}}" alt=""></div>
