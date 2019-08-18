@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Hình ảnh icoin </label>
+                                    <label for="exampleInputFile">Hình ảnh icon </label>
                                     <input type="file" id="image" name="image" onchange="showIMG()">
                                 </div>
                                 <div class="form-group">
@@ -127,7 +127,7 @@
                                                 <tr>
                                                     <th>Tên</th>
                                                     <th>Thời gian</th>
-                                                    <th>Icoin</th>
+                                                    <th>icon</th>
                                                     <th>Hành động</th>
 
                                                 </tr>
@@ -138,7 +138,7 @@
                                                         <td>{{$value->name}}</td>
                                                         <td>{{$value->created_at}}</td>
                                                         <td><img width="100px"
-                                                                 src="{{asset('')}}assets/img_icoin/{{$value->icoin}}">
+                                                                 src="{{asset('')}}assets/img_icon/{{$value->icon}}">
                                                         </td>
                                                         <td>
 

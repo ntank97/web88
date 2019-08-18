@@ -230,9 +230,9 @@
                                                     </a>
                                                 </th>
                                                 <td >
-                                                    <a class="btn btn-default" href="{{Route('web.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
+                                                    <a class="btn btn-default" href="{{Route('webstore.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
                                                     
-                                                    <a href="{{ Route('web.delete',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
+                                                    <a href="{{ Route('webstore.destroy',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach

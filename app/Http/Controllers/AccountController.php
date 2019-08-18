@@ -57,6 +57,7 @@ class AccountController extends Controller
                 'phone' =>'required|numeric',
                 'email' =>'required|email',
                 'password' => 'required|min:6',
+
                ],
                [
                 'name.required' => 'Tên admin là trường bắt buộc',

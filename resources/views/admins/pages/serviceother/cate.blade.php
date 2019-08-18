@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Dịch vụ
+    Dịch vụ khác
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Dịch vụ
+                Dịch vụ khác
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dịch vụ</li>
+                <li class="active">Dịch vụ khác</li>
             </ol>
         </section>
         <br>
@@ -48,14 +48,14 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        dịch vụ
-                                        <span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>
-                                <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
-                                        <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
+                                <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
+                                        dịch vụ khác
+                                        <span class="label label-primary pull-right">{{$cate_other_service_count}}</span></a></li>
+                                <li><a href="{{route('otherservice.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ khác
+                                        <span class="label label-primary pull-right">{{$other_service_count}}</span></a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('service.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('otherservice.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -70,18 +70,19 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm thể loại</h3>
-                        <form role="form" method="POST" action="{{route('service.storeCate')}}"
+                        <h3 style="text-align: left; padding-left: 5px">Thêm thể loại dịch vụ khác</h3>
+                        <form role="form" method="POST" action="{{route('otherservice.storeCate')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
 
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên thể loại(*)</label>
+                                    <label for="exampleInputEmail1">Tên thể loại dịch vụ khác (*)</label>
                                     <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
                                            value="{{ old('name') }}">
                                 </div>
+
 
                                 <div class="form-group">
                                     <label>Tiêu điểm</label>
@@ -121,23 +122,22 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($cate_service as $value)
+                                                @foreach($cate_other_service as $value)
                                                     <tr class="odd gradeX" align="center">
                                                         <td>{{$value->name}}</td>
                                                         <td>{{$value->created_at}}</td>
-
                                                         <td>
 
                                                             <a class="btn btn-danger"
-                                                               href="{{ url('admin/service/destroy-cate/'.$value->id) }}"
+                                                               href="{{ url('admin/other-service/destroy-cate/'.$value->id) }}"
                                                                onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                                             @if($value->active==1)
                                                                 <a class="btn btn-info"
-                                                                   href="{{ url('admin/service/setactive-cate/'.$value->id.'/0') }}"
+                                                                   href="{{ url('admin/other-service/setactive-cate/'.$value->id.'/0') }}"
                                                                    onclick="return confirm('Hành động sẽ ẩn Sản Phẩm này! bạn có muốn tiếp tục?')">Ẩn</a>
                                                             @else
                                                                 <a class="btn btn-warning"
-                                                                   href="{{ url('admin/service/setactive-cate/'.$value->id.'/1') }}"
+                                                                   href="{{ url('admin/other-service/setactive-cate/'.$value->id.'/1') }}"
                                                                    onclick="return confirm('Hành động sẽ hiển thị Sản Phẩm mục này! bạn có muốn tiếp tục?')">Hiển
                                                                     thị</a>
 

@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Kho giao diện
+    Dịch vụ khác
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Kho giao diện
+                Dịch vụ khác
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Kho giao diện</li>
+                <li class="active">Dịch vụ khác</li>
             </ol>
         </section>
         <br>
@@ -50,12 +50,14 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('webstore.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
+                                <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
                                         website
-                                        <span class="label label-primary pull-right">12</span></a></li>
-                                <li><a href="{{route('webstore.create')}}"><i class="fa fa-envelope-o"></i> Thêm website</a>
+                                        <span class="label label-primary pull-right">{{$cate_other_service_count}}</span></a></li>
+                                <li><a href="{{route('otherservice.create')}}"><i class="fa fa-envelope-o"></i> Thêm website
+                                        <span class="label label-primary pull-right">{{$other_service_count}}</span></a></li>
+                                </a>
                                 </li>
-                                <li><a href="{{route('webstore.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('otherservice.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -70,41 +72,31 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Sửa website</h3>
-                        <form role="form" method="POST" action="{{route('webstore.update',['id' => $web->id])}}"
+                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ khác</h3>
+                        <form role="form" method="POST" action="{{route('otherservice.store')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Thể loại website</label>
-                                    <select class="form-control" name="cate_web">
-                                        @foreach($cate_web as $value)
+                                    <label>Thể loại dịch vụ khác</label>
+                                    <select class="form-control" name="cate_service">
+                                        @foreach($cate_other_service as $value)
                                             <option value="{{$value->id}}">{{$value->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên website (*)</label>
+                                    <label for="exampleInputEmail1">Tên dịch vụ khác (*)</label>
                                     <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
-                                           value="{{ $web->name }}">
+                                           value="{{ old('name') }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Hình ảnh </label>
-                                    <input type="file" id="image" name="image" onchange="showIMG()">
-                                </div>
-                                <div class="form-group">
-                                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                                    <div id="viewImg">
-                                        <img width="100px" src="{{asset('')}}assets/img_web/{{$web ->image}}">
-                                    </div>
-                                </div>
+                                    <label for="exampleInputEmail1">Nội dung (*)</label>
+                                    <textarea name="contentt" class="form-control" rows="10" placeholder="Nhập nội dung">
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Đường dẫn (*)</label>
-                                    <input type="text" class="form-control" placeholder="goole.com" name="link"
-                                           value="{{$web->link }}">
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Tiêu điểm</label>
@@ -139,7 +131,7 @@
         function showIMG() {
             var fileInput = document.getElementById('image');
             var filePath = fileInput.value; //lấy giá trị input theo id
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/; //các tập tin cho phép
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
             //Kiểm tra định dạng
             if (!allowedExtensions.exec(filePath)) {
                 alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
