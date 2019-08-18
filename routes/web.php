@@ -180,12 +180,31 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 
 
     });
+//    Other Service
+    Route::prefix('other-service')->group(function () {
+        Route::get('/list', 'OtherServiceController@index')->name('otherservice.index');
+
+        Route::get('/add', 'OtherServiceController@create')->name('otherservice.create');
+        Route::post('/add', 'OtherServiceController@store')->name('otherservice.store');
+
+        Route::get('/add-cate', 'OtherServiceController@createCate')->name('otherservice.createCate');
+        Route::post('/add-cate', 'OtherServiceController@storeCate')->name('otherservice.storeCate');
+
+        Route::get('/edit/{id}', 'OtherServiceController@edit')->name('otherservice.edit');
+        Route::post('/edit/{id}', 'OtherServiceController@update')->name('otherservice.update');
+
+        Route::get('/destroy/{id}', 'OtherServiceController@destroy')->name('otherservice.destroy');
+        Route::get('/destroy-cate/{id}', 'OtherServiceController@destroyCate')->name('otherservice.destroyCate');
+
+        Route::get('/show/{id}', 'OtherServiceController@show')->name('otherservice.show');
+
+        Route::get('/detail/{id}', 'OtherServiceController@detail')->name('otherservice.detail');
+        Route::get('/setactive/{id}/{status}', 'OtherServiceController@setactive')->name('otherservice.setactive');
+        Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('otherservice.setactiveCate');
+
+
+    });
 });
 
-
-
-    
-
-    
 
 

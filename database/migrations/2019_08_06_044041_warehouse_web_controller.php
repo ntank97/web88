@@ -210,9 +210,9 @@ class WarehouseWebController extends Migration
         $table->integer('searchs');
     });
     // dich vu khac
-    Schema::create('type_other_service', function (Blueprint $table) {
+    Schema::create('cate_other_service', function (Blueprint $table) {
         $table->bigIncrements('id');
-          $table->string('title');
+          $table->string('name');
            $table->tinyInteger('active')->default(0);
            $table->string('slug');
            $table->timestamps();
@@ -223,10 +223,11 @@ class WarehouseWebController extends Migration
         $table->bigIncrements('id');
         $table->string('name');
         $table->text('content');
-        $table->bigInteger('type_id')->unsigned();
-        $table->foreign('type_id')
+        $table->tinyInteger('active')->default(0);
+        $table->bigInteger('cate_id')->unsigned();
+        $table->foreign('cate_id')
         ->references('id')
-        ->on('type_other_service')
+        ->on('cate_other_service')
         ->onDelete('cascade');
         $table->timestamps();
         
