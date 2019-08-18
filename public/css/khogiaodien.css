@@ -46,6 +46,7 @@
 	color: #fff;
 }
 
+
 /*Text*/
 
 strong {
@@ -54,4 +55,15 @@ strong {
 
 .list__text li {
 	list-style: circle;
+}
+button.input-group-addon.btn.btn-primary.btn-search
+{
+	position: absolute;
+	right: 0px;
+	;
+	border-radius: 5px;
+	bottom: -20px;
+	z-index: 122;
+	width: 33px;
+	height: 33px;
 }

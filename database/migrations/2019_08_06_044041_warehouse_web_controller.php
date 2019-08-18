@@ -48,7 +48,6 @@ class WarehouseWebController extends Migration
             $table->string('address');
             $table->string('email')->unique();;
             $table->string('phone');
-            $table->tinyInteger('active');
             $table->timestamps();
         });
         Schema::create('web_users',function (Blueprint $table)
@@ -63,8 +62,8 @@ class WarehouseWebController extends Migration
                 ->references('id')
                 ->on('web')
                 ->onDelete('cascade');
-            $table->string('title');
-            $table->string('content');
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
             
         });
     /**
@@ -154,6 +153,13 @@ class WarehouseWebController extends Migration
             $table->tinyInteger('active');
             $table->timestamps();
         });
+        Schema::create('slider_content', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('image');
+            $table->string('title')->nullable();
+            $table->tinyInteger('active')->default(0);
+            $table->timestamps();
+        });
         //Support 
         Schema::create('supports', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -161,13 +167,14 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->string('phone');
             $table->string('email')->unique();
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
         //Contact
         Schema::create('contact', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('masothue');
             $table->string('address');
             $table->string('phone');
             $table->string('email');
