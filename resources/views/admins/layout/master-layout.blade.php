@@ -39,6 +39,7 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
     {{-- ck --}}
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
@@ -271,6 +272,7 @@
 
 <script src="{{ asset('') }}/admins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('') }}/admins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
     $(function () {
         $('#example1').DataTable();
         $('#example2').DataTable({

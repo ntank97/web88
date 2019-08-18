@@ -48,7 +48,7 @@
             <div class="row">
                 @if(isset($products))
                     @foreach($products as $product)
-                        <div class="col-12 col-sm-6 box col-md-4 woocommerce__list wow bounceInLeft woocommerce__list-img" style="background-image:url({{ asset('image/'.$product->image )}})">
+                        <div class="col-12 col-sm-6 box col-md-4 woocommerce__list wow bounceInLeft woocommerce__list-img" style="background-image:url({{ asset('assets/img_webs/'.$product->image )}})">
                             <div style="padding-top: 400px;">
                                 <center>
                                     <p>{{ $product->name }}</p>

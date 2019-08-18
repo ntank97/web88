@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CateWeb;
+use App\Partner;
 use App\Web;
 use Illuminate\Http\Request;
 
@@ -17,16 +18,21 @@ class HomeController extends FrontendController
     {
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
-        ])->limit(18)->get();
+        ]);
 
         $catewebs = CateWeb::where([
             'active' => CateWeb::STATUS_PUBLIC
         ])->limit(8)->get();
 
+        $partners = Partner::select('logo')->where('active',CateWeb::STATUS_PUBLIC)->limit(12)->get();
+
         $viewData = [
-            'webs' => $webs,
+            'webs' => $webs->paginate(18),
             'catewebs' => $catewebs,
+            'partners' => $partners,
         ];
         return view('index',$viewData);
     }
+
+
 }

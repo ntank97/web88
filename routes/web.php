@@ -68,6 +68,7 @@ Route::get('thiet-ke-web-theo-yeu-cau','FrontendController@thietKeWebTheoYeuCau'
 
 Route::get('dich-vu-thiet-ke-web-gia-re','FrontendController@dichVuThietKeWebGiaRe')->name('dich.vu.thiet.ke.web.gia.re');
 
+Route::post('dang-ky','FrontendController@dangki')->name('khoi.tao.web');
 
 Auth::routes();
 

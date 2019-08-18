@@ -25,7 +25,7 @@
                         </div>
                     </li>
                     <li class="nav-item  dropdown">
-                        <a class="nav-link text-light" href="dichvu-thietkewebgiare.html">DỊCH VỤ <i class="fa fa-plus plus" aria-hidden="true"></i></a>
+                        <a class="nav-link text-light" >DỊCH VỤ <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
                             <a href="{{ Route('dich.vu.thiet.ke.web.gia.re') }}">Thiết kế web giá rẻ</a>
                             <a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>

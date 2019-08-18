@@ -145,6 +145,46 @@ class DatabaseSeeder extends Seeder
                 'active' => 1,
             ]
         ]);
+        DB::table('supports')->insert([
+            [
+                'name' => 'Tư vấn thiết kế web',
+                'image' => 'tuvan1.jpg',
+                'phone' => '0927 15 15 35',
+                'email' => 'sale1@web88.vn',
+                'active' => '1'
+            ],
+            [
+                'name' => 'Tư vấn thiết kế web',
+                'image' => 'tuvan2.jpg',
+                'phone' => '0927 15 15 35',
+                'email' => 'sale2@web88.vn',
+                'active' => '1'
+            ],
+            [
+                'name' => 'Hỗ trợ kỹ thuật',
+                'image' => 'hotrokythuat.jpg',
+                'phone' => '0988 747 982',
+                'email' => 'htkt@web88.vn',
+                'active' => '1'
+            ],
+            [
+                'name' => 'Chăm sóc khách hàng',
+                'image' => 'cskh.jpg',
+                'phone' => 'contact@talentwins.co',
+                'email' => 'cskh@web88.vn',
+                'active' => '1'
+            ]
+        ]);
+        DB::table('contact')->insert([
+            [
+                'title' => 'Công ty Công nghệ và Dịch vụ Talent Wins',
+                'masothue' => '0108134425',
+                'address' => 'Tòa nhà CT2, khu đô thị Constrexim Thái Hà, Phạm Văn Đồng, Hà Nội',
+                'phone' => '0927 15 15 35',
+                'email' => 'contact@talentwins.co',
+                'active' => '1'
+            ]
+        ]);
     }
     private function admin()
     {

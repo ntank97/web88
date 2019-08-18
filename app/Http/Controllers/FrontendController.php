@@ -15,6 +15,12 @@ class FrontendController extends Controller
     {
         $cateweb = CateWeb::all();
         View::Share('cateweb',$cateweb);
+
+        $supports = DB::table('supports')->get();
+        View::Share('supports',$supports);
+
+        $contact = DB::table('contact')->first();
+        View::Share('contact',$contact);
     }
 
     public function khoGiaoDien(Request $request)
@@ -54,7 +60,41 @@ class FrontendController extends Controller
         return redirect('/');
     }
 
+    public function dangki(Request $request)
+    {
+//        dd($request->all());
+        $this->validate($request,[
+            'w_name' => 'required|min:3',
+            'w_email' => 'required|unique:users,email',
+            'w_address' => 'required',
+            'w_phone' => 'required',
+        ],
+        [
+            'w_name.required' => 'Tên không được để trống.',
+            'w_name.min' => 'Tên phải ít nhất 3 ký tự.',
+            'w_email.required' => 'Email không được để trống.',
+            'w_email.unique' => 'Email đã tồn tại trong cơ sở dữ liệu.',
+            'w_address.required' => 'Địa chỉ không được để trống.',
+            'w_phone.required' => 'Số điện thoại không được để trống.',
+        ]);
+        $id = DB::table('users')->insertGetId(
+            [
+                'name' =>$request->w_name,
+                'address' =>$request->w_address,
+                'email' =>$request->w_email,
+                'phone' =>$request->w_phone,
+            ]
+        );
+        echo $id;
+        DB::table('web_users')->insert([
+            'title' => $request->w_title,
+            'content' => $request->w_content,
+            'web_id' => $request->w_id,
+            'users_id' => $id,
+        ]);
+        return redirect()->route('home')->with('thongbao','Khởi tạo website thành công.');
 
+    }
 
     public function lienHe()
     {
