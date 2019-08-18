@@ -64,7 +64,7 @@ class WarehouseWebController extends Migration
                 ->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('content')->nullable();
-            
+            $table->timestamps();
         });
     /**
      * Dịch vụ - Thiết kế - Seo
@@ -178,6 +178,7 @@ class WarehouseWebController extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('email');
+            $table->string('website');
             $table->tinyInteger('active');
             $table->timestamps();
         });

@@ -42,7 +42,6 @@ class FrontendController extends Controller
     {
         $url = $request->segment(2);
         $url = preg_split('/(-)/i',$url);
-
         if ($id = array_pop($url))
         {
             $products = Web::where([
@@ -83,22 +82,37 @@ class FrontendController extends Controller
                 'address' =>$request->w_address,
                 'email' =>$request->w_email,
                 'phone' =>$request->w_phone,
+                'created_at' => now(),
             ]
         );
         echo $id;
-        DB::table('web_users')->insert([
-            'title' => $request->w_title,
-            'content' => $request->w_content,
-            'web_id' => $request->w_id,
-            'users_id' => $id,
-        ]);
-        return redirect()->route('home')->with('thongbao','Khởi tạo website thành công.');
+        if (isset($request->w_id)){
+            DB::table('web_users')->insert([
+                'title' => $request->w_title,
+                'content' => $request->w_content,
+                'web_id' => $request->w_id,
+                'users_id' => $id,
+                'created_at' => now(),
+            ]);
+            return redirect()->route('kho.giao.dien')->with('thongbao','Khởi tạo website thành công.');
+        }
+        return redirect()->route('lien.he')->with('thongbao','Tạo liên hệ thành công.');
 
     }
 
-    public function lienHe()
+    public function lienHe(Request $request)
     {
-        return view('pages.lienhe');
+        $webs = Web::where([
+            'active' => Web::STATUS_PUBLIC
+        ]);
+        if ($request->name != null){
+            $webs->where('name','like','%'.$request->name.'%');
+        }
+        $viewData = [
+            'webs' => $webs->paginate(18),
+        ];
+//        dd($viewData);
+        return view('pages.lienhe',$viewData);
     }
 
     public function khachHang()

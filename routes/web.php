@@ -20,6 +20,8 @@ Route::get('kho-giao-dien/{slug}-{id}','FrontendController@getListProduct')->nam
 
 Route::get('lien-he','FrontendController@lienHe')->name('lien.he');
 
+Route::get('lien-he/{slug}-{id}','FrontendController@getListProduct');
+
 Route::get('khach-hang','FrontendController@khachHang')->name('khach.hang');
 
 Route::get('seo','FrontendController@seo')->name('seo');
