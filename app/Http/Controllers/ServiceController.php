@@ -16,12 +16,12 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $data['service'] = DB::table('service')
-            ->select('service.*', 'cate_service.name as cate_service')
-            ->join('cate_service', 'service.cate_id', '=', 'cate_service.id')
-            ->orderByDesc('id')
-            ->get();
-
+//        $data['service'] = DB::table('service')
+//            ->select('service.*', 'cate_service.name as cate_service')
+//            ->join('cate_service', 'service.cate_id', '=', 'cate_service.id')
+//            ->orderByDesc('id')
+//            ->get();
+        $data['service'] = DB::table('service')->orderByDesc('id')->get();
         return view('admins.pages.service.index', $data);
     }
 
@@ -32,14 +32,14 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $data['cate_service']  = DB::table('cate_service')->get();
-        return view('admins.pages.service.add',$data);
+//        $data['cate_service']  = DB::table('cate_service')->get();
+        return view('admins.pages.service.add');
     }
-    public function createCate()
-    {
-        $data['cate_service']  = DB::table('cate_service')->get();
-        return view('admins.pages.service.cate',$data);
-    }
+//    public function createCate()
+//    {
+//        $data['cate_service']  = DB::table('cate_service')->get();
+//        return view('admins.pages.service.cate',$data);
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -52,7 +52,8 @@ class ServiceController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3',
             'contentt' => 'required',
-            'summary' => 'required',
+            'contentt1' => 'required',
+            'contentt2' => 'required',
             'tags' => 'required',
 //            'image' => 'required',
 
@@ -85,10 +86,11 @@ class ServiceController extends Controller
         DB::table('service')->insert([
             'name' => $request->name,
             'slug' => str_slug($request->name).now(),
-            'summary' => $request->summary,
+            'summary' => $request->contentt1,
+            'description' => $request->contentt2,
             'content' => $request->contentt,
             'image' => $file_name,
-            'cate_id' => $request->cate_service,
+//            'cate_id' => $request->cate_service,
             'focus' => $request->focus,
             'view' => 0,
             'active' => 1,
@@ -121,25 +123,25 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCate(Request $request)
-    {
-
-        $this->validate($request,
-            [
-
-                'name' => 'required|min:3|unique:cate_service',
-            ],
-            [
-
-            ]);
-        DB::table('cate_service')->insert([
-            'name'=>$request->name,
-            'slug'=>str_slug($request->name),
-            'active'=>$request->active,
-            'created_at'=>now(),
-        ]);
-        return redirect()->back()->with('thongbao', 'Thành công!');
-    }
+//    public function storeCate(Request $request)
+//    {
+//
+//        $this->validate($request,
+//            [
+//
+//                'name' => 'required|min:3|unique:cate_service',
+//            ],
+//            [
+//
+//            ]);
+//        DB::table('cate_service')->insert([
+//            'name'=>$request->name,
+//            'slug'=>str_slug($request->name),
+//            'active'=>$request->active,
+//            'created_at'=>now(),
+//        ]);
+//        return redirect()->back()->with('thongbao', 'Thành công!');
+//    }
 
     /**
      * Display the specified resource.
@@ -186,7 +188,9 @@ class ServiceController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3',
             'contentt' => 'required',
-            'summary' => 'required',
+            'contentt1' => 'required',
+            'contentt2' => 'required',
+
             'tags' => 'required',
 
 
@@ -222,10 +226,12 @@ class ServiceController extends Controller
         DB::table('service')->where('id', '=', $id)->update([
             'name' => $request->name,
             'slug' => str_slug($request->name).now(),
-            'summary' => $request->summary,
+
+            'summary' => $request->contentt1,
+            'description' => $request->contentt2,
             'content' => $request->contentt,
             'image' => $file_name,
-            'cate_id' => $request->cate_service,
+//            'cate_id' => $request->cate_service,
             'focus' => $request->focus,
             'view' => 0,
             'active' => 1,
@@ -260,11 +266,11 @@ class ServiceController extends Controller
         DB::table('service')->where('id','=',$id)->delete();
         return redirect()->route('service.index')->with('thongbao','Xóa thành công!');
     }
-    public function destroyCate($id)
-    {
-        DB::table('cate_service')->where('id','=',$id)->delete();
-        return redirect()->back()->with('thongbao','Xóa thành công!');
-    }
+//    public function destroyCate($id)
+//    {
+//        DB::table('cate_service')->where('id','=',$id)->delete();
+//        return redirect()->back()->with('thongbao','Xóa thành công!');
+//    }
 
     public function setactive($id, $status)
     {
@@ -274,11 +280,11 @@ class ServiceController extends Controller
         return redirect()->back()->with('thanhcong', 'Thành công');
     }
 
-    public function setactiveCate($id, $status)
-    {
-        DB::table('cate_service')->where('id', '=', $id)->update([
-            'active' => $status,
-        ]);
-        return redirect()->back()->with('thanhcong', 'Thành công');
-    }
+//    public function setactiveCate($id, $status)
+//    {
+//        DB::table('cate_service')->where('id', '=', $id)->update([
+//            'active' => $status,
+//        ]);
+//        return redirect()->back()->with('thanhcong', 'Thành công');
+//    }
 }

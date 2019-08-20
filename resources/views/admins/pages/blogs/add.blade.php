@@ -51,10 +51,10 @@
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="{{route('blogs.create')}}"><i class="fa fa-envelope-o"></i> Thêm Blogs
-                                        <span class="label label-primary pull-right"></span></a></li>
+                                        <span class="label label-primary pull-right">{{$blogs_count}}</span></a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('blogs.list')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('blogs.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -79,24 +79,24 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề Blogs (*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                                           value="{{ $blogs->name }}">
+                                           value="{{ old('title') }}">
                                 </div>
                                 <label for="exampleInputEmail1">Tóm tắt Blogs (*)</label>
                                 <div class="form-group">
-
+    
                             <textarea class="form-control" name="summary" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{$blogs->summary }}</textarea>
+                                      placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
                                     <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ $blogs->detail }}</textarea>
+                                              class="form-control">{{ old('detail') }}</textarea>
                                 </div>
                                 {{-- tag --}}
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Tags</label>
-                                        <input data-role='tags-input' value="{{$str_tags}}" name="tags">
+                                        <input data-role='tags-input' value="Talentwins" name="tags">
                                     </div>
                                 </div>
                                 {{-- endtag --}}

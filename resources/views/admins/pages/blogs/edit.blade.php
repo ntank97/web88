@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Blogs
+    Dịch vụ
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Blogs
+                Dịch vụ
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Blogs</li>
+                <li class="active">Dịch vụ</li>
             </ol>
         </section>
         <br>
@@ -50,11 +50,14 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('blogs.create')}}"><i class="fa fa-envelope-o"></i> Thêm Blogs
-                                        <span class="label label-primary pull-right"></span></a></li>
+                                <li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
+                                        dịch vụ
+                                        <span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>
+                                <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
+                                        <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('blogs.list')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('service.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -69,43 +72,67 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm Blogs</h3>
-                        <form role="form" method="POST" action="{{route('blogs.store')}}"
+                        <h3 style="text-align: left; padding-left: 5px">Sửa dịch vụ</h3>
+                        <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-
+                                <div class="form-group">
+                                    <label>Thể loại</label>
+                                    <select class="form-control" name="cate_service">
+                                        @foreach($cate_service as $cate)
+                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề Blogs (*)</label>
+                                    <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                                           value="{{ $blogs->name }}">
+                                           value="{{ $service->name}}">
                                 </div>
-                                <label for="exampleInputEmail1">Tóm tắt Blogs (*)</label>
+                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
 
                             <textarea class="form-control" name="summary" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{$blogs->summary }}</textarea>
+                                      placeholder="Nhập tóm tắt nội dung">{{ $service->summary }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
                                     <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ $blogs->detail }}</textarea>
+                                              class="form-control">{{ $service->content }}</textarea>
                                 </div>
-                                {{-- tag --}}
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Tags</label>
-                                        <input data-role='tags-input' value="{{$str_tags}}" name="tags">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Ảnh nền</label>
+                                    <input type="file" id="image" name="image" onchange="showIMG()">
                                 </div>
-                                {{-- endtag --}}
-
+                            </div>
+                            <div class="form-group">
+                                <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                <div id="viewImg">
+                                    <img width="100px" src="{{asset('')}}assets/img_service/{{$service ->image}}">
+                                </div>
                             </div>
 
-
-
-
+                            {{-- tag --}}
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Tags</label>
+                                    <input data-role='tags-input'  value="{{$str_tags}}"  name="tags">
+                                </div>
+                            </div>
+                            {{-- endtag --}}
+                            {{--Tiêu điểm --}}
+                            <div class="form-group">
+                                <label>Tiêu điểm</label>
+                                <label class="radio-inline">
+                                    <input name="focus" value="1" checked="" type="radio">Có
+                                </label>
+                                <label class="radio-inline">
+                                    <input name="focus" value="0" type="radio">Không
+                                </label>
+                            </div>
+                            {{--Hết tiêu điểm--}}
 
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Thêm</button>

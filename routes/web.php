@@ -126,11 +126,15 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 
     Route::prefix('blogs')->group(function(){
         Route::get('list','BlogsController@list')->name('blogs.list');
-        Route::get('add','BlogsController@add')->name('blogs.add');
-        Route::post('add','BlogsController@store')->name('blogs.add');
+        Route::get('add','BlogsController@create')->name('blogs.create');
+        Route::post('add','BlogsController@store')->name('blogs.store');
+
+        Route::get('/destroy/{id}', 'BlogsController@destroy')->name('webstore.destroy');
+        Route::get('/setactive/{id}/{status}', 'BlogsController@setactive')->name('webstore.setactive');
+
         Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
         Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
-        Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
+
     });
     //    News
     Route::prefix('web-store')->group(function () {
@@ -204,6 +208,7 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 
 
     });
+
 });
 
 
