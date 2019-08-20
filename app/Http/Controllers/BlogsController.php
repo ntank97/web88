@@ -47,18 +47,10 @@ class BlogsController extends Controller
             $active=1;
         }
 
-        if ($request->view=='null') {
-            $view=0;
-         }
-         else{
-             $view=1;
-         }
-         dd($active);
         DB::table('blogs')->where('id',$id)->update([
             'summary' => $request->summary,
             'detail' => $request->detail,
             'active' =>$active,
-            'view' => $view,
         ]);
 
         return redirect()->route('blogs.list');

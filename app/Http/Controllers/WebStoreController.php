@@ -138,6 +138,45 @@ class WebStoreController extends Controller
 
     }
 
+    public function update_pending(Request $request)
+    {   
+        // dd($request->all());
+        if($request->_token == csrf_token()){
+            DB::table('web')->where('id',$request->id)->update([
+                'active' => $request->id_pending,
+            ]);
+            return response()->json([
+                'thongbao' => 'ban da phe duyet thanh cong',
+            ]);
+        }
+    }
+
+    public function update_pending_blogs(Request $request)
+    {   
+        // dd($request->all());
+        if($request->_token == csrf_token()){
+            DB::table('blogs')->where('id',$request->id)->update([
+                'active' => $request->id_pending,
+            ]);
+            return response()->json([
+                'thongbao' => 'ban da phe duyet thanh cong',
+            ]);
+        }
+    }
+
+    public function update_pending_services(Request $request)
+    {   
+        // dd($request->all());
+        if($request->_token == csrf_token()){
+            DB::table('service')->where('id',$request->id)->update([
+                'active' => $request->id_pending,
+            ]);
+            return response()->json([
+                'thongbao' => 'ban da phe duyet thanh cong',
+            ]);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

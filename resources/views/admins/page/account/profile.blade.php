@@ -43,13 +43,17 @@
                 <li><a href="#add_client" data-toggle="tab">Thêm client</a></li>
               @endcan
              
-              <li class="active"><a href="#pending_web" data-toggle="tab">Web pending</a></li>
+              <li @cannot('view')class="active"@endcannot><a href="#pending_web" data-toggle="tab">Web pending</a></li>
               <li><a href="#pending_blog" data-toggle="tab">Blog pending</a></li>
               <li><a href="#pending_service" data-toggle="tab">Service pending</a></li>
             </ul>
             <div class="tab-content">
             @can('view')
-              <div @can('view')class="active tab-pane"@endcan id="activity">
+              <div 
+              @can('view')
+              class="active tab-pane" id="activity"
+              @endcan
+               >
                     <div class="box-body">
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
@@ -107,9 +111,8 @@
                         <div class="form-group">
                             <p>Cấp bậc</p>
                             <select name="level">
-                                @foreach($roles['role'] as $value )
-                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                @endforeach
+                               <option value='2'>Cộng tác viên</option>
+                               <option value='3'>Người dùng</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -120,8 +123,8 @@
                         </div>
                         <div class="form-group">
                             <p>Nhập lại mật khẩu</p>
-                            <input name="password_confirmation" class="form-control" id="confirmpass" type="password" placeholder="Confirm password" onchange="return confirmPasswword()">
-                            <p style="color:red">{{ $errors->first('password_confirmation') }}</p>
+                            <input name="password_confirm" class="form-control" id="confirmpass" type="password" placeholder="Confirm password" onchange="return confirmPasswword()">
+                            <p style="color:red">{{ $errors->first('password_confirm') }}</p>
                             <div id="errorpass" style="color:red"></div>
                         </div>
 
@@ -137,7 +140,7 @@
 
               <div class="tab-pane" id="client">
                 <div class="box-body">
-                                <table id="example1" class="table table-bordered table-hover">
+                                <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>Tên</th>
@@ -202,9 +205,16 @@
                 </div>
               </div>
               @endcan
-              <div class="tab-pane" id="pending_web">
+              <div 
+                    @cannot('view')
+                        class="active tab-pane" id="pending_web"
+                    @endcannot
+                    @can('view')
+                        class="tab-pane" id="pending_web"
+                    @endcan
+              >
               <div class="box-body">
-                                <table id="example1" class="table table-bordered table-hover">
+                                <table id="example3" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
@@ -224,15 +234,21 @@
                                                 <td>{{ $value->image }}</td>
                                                 <td>{{ $value->link }}</td>
                                                 <th>
-                                                    <a>
-                                                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
-                                                    <span class="sr-only">Loading...</span>
-                                                    </a>
+                                                    <div class="pendding">
+                                                    
+                                                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
+                                                        <span>Pending</span>
+                                                        <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_pending(this,{{ $value->id }})">
+                                                            <option selected disabled>--Chọn trạng thái--</option>
+                                                            <option value='1'>Active</option>
+                                                            <option value='0'>Pending</option>
+                                                        </select>
+                                                    </div>
                                                 </th>
                                                 <td >
-                                                    <a class="btn btn-default" href="{{Route('web.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
+                                                    <a class="btn btn-default" href="{{Route('webstore.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
                                                     
-                                                    <a href="{{ Route('web.delete',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
+                                                    <a href="{{ Route('webstore.destroy',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -246,7 +262,7 @@
             </div>
             <div class="tab-pane" id="pending_blog">
               <div class="box-body">
-                                <table id="example1" class="table table-bordered table-hover">
+                                <table id="example4" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
@@ -263,12 +279,18 @@
                                                 <td>{{ $key+1}}</td>
                                                 <td>{{ $value->summary }}</td>
                                                 <td>{{ $value->detail }}</td>
-                                                <td>
-                                                    <a type="button" id='change_active' onclick="load_ajax()">
-                                                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
-                                                    <span class="sr-only">Loading...</span>
-                                                    </a>
-                                                </td>
+                                                <th>
+                                                    <div class="pendding">
+                                                    
+                                                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
+                                                        <span>Pending</span>
+                                                        <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_blogs(this,{{ $value->id }})">
+                                                            <option selected disabled>--Chọn trạng thái--</option>
+                                                            <option value='1'>Active</option>
+                                                            <option value='0'>Pending</option>
+                                                        </select>
+                                                    </div>
+                                                </th>
                                                 <td >
                                                     <a class="btn btn-default" href="{{Route('blogs.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
                                                     
@@ -286,7 +308,7 @@
             </div>
             <div class="tab-pane" id="pending_service">
               <div class="box-body">
-                                <table id="example1" class="table table-bordered table-hover">
+                                <table id="example5" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
@@ -305,12 +327,18 @@
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->image }}</td>
                                                 <td>{{ $value->summary }}</td>
-                                                <td>
-                                                    <a>
-                                                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
-                                                    <span class="sr-only">Loading...</span>
-                                                    </a>
-                                                </td>
+                                               <th>
+                                                    <div class="pendding">
+                                                    
+                                                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
+                                                        <span>Pending</span>
+                                                        <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_services(this,{{ $value->id }})">
+                                                            <option selected disabled>--Chọn trạng thái--</option>
+                                                            <option value='1'>Active</option>
+                                                            <option value='0'>Pending</option>
+                                                        </select>
+                                                    </div>
+                                                </th>
                                                 <td >
                                                     <a class="btn btn-default" href="{{Route('user.account.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
                                                     
@@ -323,6 +351,8 @@
 
 
                                 </table>
+                            </div>
+                            <div id="result">
                             </div>
               
             </div>
@@ -338,19 +368,83 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-   {{--  <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-        <script language="javascript">
-            function load_ajax(){
-                $.post({
-                            
-                    'admin/account/pending/edit', // URL 
-                    {id_web : $('#id_web').val()},  // Data
-                    function(result){ // Success
-                        $('#result').html(result);
-                    }, 
-                    'text' // dataTyppe
-                });
+
+  <script>
+    function edit_pending(obj,id){
+		var id_pending=obj.value;
+        var id_web=id;
+        var _this = obj.parentNode.parentNode.parentNode;
+        console.log(_this);
+        $.ajax({
+            url : "update_pending",
+            type : "post",
+            dataType:"text",
+            data : {
+                _token : '{{ csrf_token() }}',
+                id_pending: id_pending,
+                id: id_web,
+            },
+            success : function (ketqua){
+                if(ketqua){
+                    alert('thanh cong!');
+                    _this.remove();
+                }
+                //$('#result').html(ketqua);
             }
-        </script>  --}}
+        });
+                 
+    }
+
+    function edit_blogs(obj,id){
+		var id_pending=obj.value;
+        var id_web=id;
+        var _this = obj.parentNode.parentNode.parentNode;
+        console.log(_this);
+        $.ajax({
+            url : "update_pending_blogs",
+            type : "post",
+            dataType:"text",
+            data : {
+                _token : '{{ csrf_token() }}',
+                id_pending: id_pending,
+                id: id_web,
+            },
+            success : function (ketqua){
+                if(ketqua){
+                    alert('thanh cong!');
+                    _this.remove();
+                }
+                //$('#result').html(ketqua);
+            }
+        });
+                 
+    }
+
+    function edit_services(obj,id){
+		var id_pending=obj.value;
+        var id_web=id;
+        var _this = obj.parentNode.parentNode.parentNode;
+        console.log(_this);
+        $.ajax({
+            url : "update_pending_services",
+            type : "post",
+            dataType:"text",
+            data : {
+                _token : '{{ csrf_token() }}',
+                id_pending: id_pending,
+                id: id_web,
+            },
+            success : function (ketqua){
+                if(ketqua){
+                    alert('thanh cong!');
+                    _this.remove();
+                }
+                //$('#result').html(ketqua);
+            }
+        });
+                 
+    }
+
+</script>
 
 @endsection

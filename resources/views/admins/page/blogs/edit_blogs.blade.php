@@ -31,19 +31,17 @@
                             <label for="exampleInputEmail1">Tóm tắt tin tức (*)</label>
                             <textarea class="form-control" name="summary" cols="50" rows="10"
                                       placeholder="Nhập tóm tắt nội dung">{{ $blogs->summary }}</textarea>
+                            <p style="color:red">{{ $errors->first('summary') }}</p>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nội dung (*)</label>
-                            <textarea name="detail" rows="10" placeholder="Nhập nội dung"
+                            <textarea  name="detail" rows="10" placeholder="Nhập nội dung"
                                       class="form-control">{{ $blogs->detail }}</textarea>
+                             <p style="color:red">{{ $errors->first('detail') }}</p>
                         </div>
                     <div class="form-group">
                         <input type="checkbox" name="active" class="custom-control-input" id="defaultUnchecked">
                         <label class="custom-control-label" for="defaultUnchecked">Active</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="view" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">View</label>
                     </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Thêm</button>

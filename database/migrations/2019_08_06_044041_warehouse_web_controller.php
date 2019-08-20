@@ -64,6 +64,7 @@ class WarehouseWebController extends Migration
                 ->on('web')
                 ->onDelete('cascade');
             $table->string('title');
+            $table->tinyInteger('status')->default(0);
             $table->string('content');
             
         });

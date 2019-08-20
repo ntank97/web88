@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
 });
 
+
 Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     Route::get('/','AdminController@index')->name('admin.dashboard');
     Route::get('/dashboard','AdminController@index');
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::get('edit/{id}','AccountController@edit')->name('editor.account.edit');
             Route::post('update/{id}','AccountController@update')->name('editor.account.update');
             Route::get('delete/{id}','AccountController@delete')->name('editor.account.delete');
+
+            Route::post('update_pending','WebStoreController@update_pending')->name('update_pending');
+            Route::post('update_pending_blogs','WebStoreController@update_pending_blogs')->name('update_pending_blogs');
+            Route::post('update_pending_services','WebStoreController@update_pending_services')->name('update_pending_services');
         });
 
         Route::group(['prefix' => 'user'],function(){
@@ -63,11 +68,12 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
         });
 
-        Route::group(['prefix' => 'pending'],function(){
-            Route::get('web/{id}','PendingController@web')->name('pending.edit');
-            Route::get('blogs/{id}','PendingController@blogs')->name('pending.blogs.edit');
-            Route::get('service/{id}','PendingController@service')->name('pending.service.edit');
-        });
+    });
+    
+    Route::prefix('web_users')->group(function(){
+        Route::get('list','WebUsersController@list')->name('web_users.contact');
+        Route::post('edit_pending','WebUsersController@edit_pending')->name('edit_pending');
+        Route::get('detail/{web_id}/{users_id}','WebUsersController@detail')->name('detail');
     });
 
     Route::prefix('partner')->group(function(){
@@ -79,6 +85,24 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
     });
 
+    Route::prefix('contact')->group(function(){
+        Route::get('list','ContactController@list')->name('contact.list');
+        Route::get('add','ContactController@add')->name('contact.add');
+        Route::post('add','ContactController@store')->name('contact.add');
+        Route::get('edit/{id}','ContactController@edit')->name('contact.edit');
+        Route::post('edit/{id}','ContactController@update')->name('contact.edit');
+        Route::get('delete/{id}','ContactController@delete')->name('contact.delete');
+    });
+
+    Route::prefix('supports')->group(function(){
+        Route::get('list','SupportsController@list')->name('supports.list');
+        Route::get('add','SupportsController@add')->name('supports.add');
+        Route::post('add','SupportsController@store')->name('supports.add');
+        Route::get('edit/{id}','SupportsController@edit')->name('supports.edit');
+        Route::post('edit/{id}','SupportsController@update')->name('supports.edit');
+        Route::get('delete/{id}','SupportsController@delete')->name('supports.delete');
+    });
+
     Route::prefix('blogs')->group(function(){
         Route::get('list','BlogsController@list')->name('blogs.list');
         Route::get('add','BlogsController@add')->name('blogs.add');
@@ -87,7 +111,6 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
         Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
     });
-
     //    News
     Route::prefix('web-store')->group(function () {
         Route::get('/list', 'WebStoreController@index')->name('webstore.index');
@@ -137,4 +160,14 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 
     });
 });
+
+
+
+    
+
+   
+
+
+    
+
 

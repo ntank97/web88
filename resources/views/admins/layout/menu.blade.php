@@ -221,6 +221,30 @@
             <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-table"></i> <span>Liên hệ</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('contact.list')}}"><i class="fa fa-circle-o"></i> Danh sách liên hệ</a></li>
+                    <li><a href="{{Route('contact.add')}}"><i class="fa fa-circle-o"></i> Thêm liên hệ</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Hỗ trợ</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('supports.list')}}"><i class="fa fa-circle-o"></i> Danh sách hỗ trợ</a></li>
+                    <li><a href="{{Route('supports.add')}}"><i class="fa fa-circle-o"></i> Thêm hỗ trợ</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-table"></i> <span>Đối tác</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -230,6 +254,11 @@
                     <li><a href="{{Route('partner.list')}}"><i class="fa fa-circle-o"></i> Danh sách đối tác</a></li>
                     <li><a href="{{Route('partner.add')}}"><i class="fa fa-circle-o"></i> Thêm đối tác</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ Route('web_users.contact') }}">
+                    <i class="fa fa-dashboard"></i> <span>Liên hệ khách hàng</span>
+                </a>
             </li>
             <li>
                 <a href="{{ Route('editor.account.profile') }}">

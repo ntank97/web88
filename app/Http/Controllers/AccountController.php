@@ -50,13 +50,14 @@ class AccountController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         $this->validate($request,
                [
                 'name' =>'required',
                 'phone' =>'required|numeric',
                 'email' =>'required|email',
                 'password' => 'required|min:6',
+                'password_confirm' => 'required|same:password'
                ],
                [
                 'name.required' => 'Tên admin là trường bắt buộc',
@@ -66,6 +67,7 @@ class AccountController extends Controller
                 'email.email' => 'Email không đúng định dạng',
                 'password.required' => 'Mật khẩu là trường bắt buộc',
                 'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+                'password_confirm.same' => "Hai mật khẩu phải giống nhau"
                ]);
         $email=DB::table('admin')->pluck('email');
         $phone=DB::table('admin')->pluck('phone');
@@ -81,7 +83,7 @@ class AccountController extends Controller
                 return redirect('admin/account/editor/profile')->withInput();
             }
         }
-
+       
         DB::table('admin')->insert([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -110,6 +112,7 @@ class AccountController extends Controller
                 'phone' =>'required|numeric',
                 'email' =>'required|email',
                 'password' => 'required|min:6',
+                'password_confirm' => 'required|same:password'
                ],
                [
                 'name.required' => 'Tên admin là trường bắt buộc',
@@ -119,6 +122,7 @@ class AccountController extends Controller
                 'email.email' => 'Email không đúng định dạng',
                 'password.required' => 'Mật khẩu là trường bắt buộc',
                 'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+                'password_confirm.same' => "Hai mật khẩu phải giống nhau"
                ]);
                
 

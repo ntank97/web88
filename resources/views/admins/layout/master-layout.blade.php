@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UwrapperA-Compatible" content="IE=edge">
     <title>Web88-@yield('title')</title>
+    <style>
+        .pendding {
+		background-color: lightblue;
+		width: 270px;
+		height: 30px;
+	}
+    </style>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -28,7 +35,9 @@
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,7 +47,8 @@
 
     <!-- Google Font -->
     <link rel="stylesheet"
-          href="{{ asset('') }}/admins/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+          <href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+          
     {{-- ck --}}
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
@@ -271,9 +281,14 @@
 
 <script src="{{ asset('') }}/admins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('') }}/admins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
     $(function () {
         $('#example1').DataTable();
+        $('#example3').DataTable();
+        $('#example4').DataTable();
+        $('#example5').DataTable();
         $('#example2').DataTable({
+
             'paging': true,
             'lengthChange': false,
             'searching': false,
