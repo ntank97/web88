@@ -50,9 +50,9 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        dịch vụ
-                                        <span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>
+                                {{--<li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
+                                        {{--dịch vụ--}}
+                                        {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
                                 <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
                                         <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
                                 </a>
@@ -77,14 +77,14 @@
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label>Thể loại</label>
-                                    <select class="form-control" name="cate_service">
-                                        @foreach($cate_service as $cate)
-                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--<label>Thể loại</label>--}}
+                                    {{--<select class="form-control" name="cate_service">--}}
+                                        {{--@foreach($cate_service as $cate)--}}
+                                            {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>

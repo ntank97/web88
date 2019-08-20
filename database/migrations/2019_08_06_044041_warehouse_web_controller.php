@@ -86,11 +86,12 @@ class WarehouseWebController extends Migration
             $table->text('content');
             $table->integer('focus');
             $table->integer('view')->default(0);
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_service')
-                ->onDelete('cascade');
+            $table->text('description');
+//            $table->bigInteger('cate_id')->unsigned();
+//            $table->foreign('cate_id')
+//                ->references('id')
+//                ->on('cate_service')
+//                ->onDelete('cascade');
             $table->timestamps();
             $table->tinyInteger('active');
         });
@@ -185,6 +186,7 @@ class WarehouseWebController extends Migration
        //Blogs
        Schema::create('blogs', function (Blueprint $table) {
         $table->bigIncrements('id');
+        $table->string('name');
            $table->text('summary');
            $table->text('detail');
            $table->tinyInteger('active')->default(0);
@@ -209,6 +211,7 @@ class WarehouseWebController extends Migration
         $table->timestamps();
         $table->integer('searchs');
     });
+
     // dich vu khac
     Schema::create('cate_other_service', function (Blueprint $table) {
         $table->bigIncrements('id');
