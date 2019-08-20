@@ -50,10 +50,10 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        website
-                                        <span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>
-                                <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm website
+                                {{--<li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
+                                        {{--dịch vụ--}}
+                                        {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
+                                <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
                                         <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
                                 </a>
                                 </li>
@@ -72,29 +72,34 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm website</h3>
+                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ</h3>
                         <form role="form" method="POST" action="{{route('service.store')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label>Thể loại</label>
-                                    <select class="form-control" name="cate_service">
-                                        @foreach($cate_service as $cate)
-                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--<label>Thể loại</label>--}}
+                                    {{--<select class="form-control" name="cate_service">--}}
+                                        {{--@foreach($cate_service as $cate)--}}
+                                            {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề tin tức (*)</label>
+                                    <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
                                            value="{{ old('title') }}">
                                 </div>
-                                <label for="exampleInputEmail1">Tóm tắt tin tức (*)</label>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Mô tả (*)</label>
+                                    <textarea name = "contentt2" class="form-control" name="summary" cols="50" rows="10"
+                                              placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
+                                </div>
+                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
     
-                            <textarea class="form-control" name="summary" cols="50" rows="10"
+                            <textarea name = "contentt1" class="form-control" cols="50" rows="10"
                                       placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
                                 </div>
                                 <div class="form-group">

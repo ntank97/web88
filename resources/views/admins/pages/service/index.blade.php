@@ -42,7 +42,7 @@
                                         <th>Tiêu đề</th>
                                         <th>Tóm tắt </th>
                                         <th>Ảnh</th>
-                                        <th>Thể loại</th>
+                                        {{--<th>Thể loại</th>--}}
                                         <th>Lượt xem</th>
 
                                         <th class="col-md-3">Hành động</th>
@@ -54,9 +54,9 @@
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name}}</td>
                                             <td>{{$value->summary}}</td>
-                                            <td><img width="100px" src="{{asset('')}}assets/img_web/{{$value->image}}">
+                                            <td><img width="100px" src="{{asset('')}}assets/img_service/{{$value->image}}">
                                             </td>
-                                            <td>{{$value->cate_service}}</td>
+                                            {{--<td>{{$value->cate_service}}</td>--}}
                                             <td>{{$value->view}}</td>
 
                                             <td>

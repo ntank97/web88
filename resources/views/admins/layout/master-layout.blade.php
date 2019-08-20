@@ -46,9 +46,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          <href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-          
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
     {{-- ck --}}
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
@@ -300,6 +299,22 @@
 </script>
 <script>
     CKEDITOR.replace('contentt', {
+        filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+    CKEDITOR.replace('contentt1', {
+        filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+    CKEDITOR.replace('contentt2', {
         filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
         filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',

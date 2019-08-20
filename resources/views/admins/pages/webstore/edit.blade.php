@@ -70,7 +70,7 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm website</h3>
+                        <h3 style="text-align: left; padding-left: 5px">Sửa website</h3>
                         <form role="form" method="POST" action="{{route('webstore.update',['id' => $web->id])}}"
                               enctype="multipart/form-data">
                             @csrf

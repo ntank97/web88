@@ -5,7 +5,7 @@
         <ul id="sb-slider" class="sb-slider">
             <li>
                 <a href="javascript:void(0)">
-                    <img src="image/slide-1.jpg"
+                    <img src="{{ asset('image/slide-1.jpg') }}"
                          alt="">
                 </a>
                 <div class="slide-text">
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <a href="javascript:void(0)">
-                    <img src="image/slide-3.jpeg"
+                    <img src="{{ asset('image/slide-3.jpeg') }}"
                          alt="">
                 </a>
 
@@ -164,75 +164,22 @@
     </div>
     <div class="list__category">
         <div class="container">
-            <div class="row list__category-item wow bounceInUp">
-                <div class="col-md-3 col-sm-6">
+
+            <div class="row wow bounceInUp">
+                @if(isset($catewebs))
+                    @foreach($catewebs as $cate)
+                <div class="col-md-3 col-sm-6" style="margin-bottom:15px;">
                     <center>
-                    <a href="javascript:void(0)">
-                        <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/cart.png" alt="">
-                    </a>
-                    <p><a href="javascript:void(0)"><span>Mẫu web</span> thương mại điện tử</a></p>
+                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
+                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ $cate->icon }}" alt=""></a>
+                    <p><a href="">{{ $cate->name }}</a></p>
                 </center>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                                <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/intro-web.png" alt="">
-                            </a>
-                            <p><a href="javascript:void(0)">Mẫu web giới thiệu công ty</a></p>
-                        </center>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                                <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/news.png" alt="">
-                            </a>
-                            <p><a href="javascript:void(0)">Mẫu web tin tức</a></p>
-                        </center>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <center>
-                        <a href="javascript:void(0)">
-                                <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/music.png" alt="">
-                            </a>
-                            <p><a href="javascript:void(0)">Mẫu web âm nhạc</a></p>
-                        </center>
-                </div>
+                    @endforeach
+                @endif
             </div>
-            <div class="row list__category-item wow bounceInUp" style="padding-top: 30px;">
-                    <div class="col-md-3 col-sm-6">
-                        <center>
-                            <a href="javascript:void(0)">
-                                    <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/heart.png" alt="">
-                                </a>
-                                <p><a href="javascript:void(0)">Mẫu web ảnh viện áo cưới</a></p>
-                            </center>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <center>
-                            <a href="javascript:void(0)">
-                                    <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/real-estate.png" alt="">
-                                </a>
-                                <p><a href="javascript:void(0)">Mẫu web bất động sản</a></p>
-                            </center>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <center>
-                            <a href="javascript:void(0)">
-                                    <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/education.png" alt="">
-                                </a>
-                                <p><a href="javascript:void(0)">Mẫu web giáo dục</a></p>
-                            </center>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <center>
-                            <a href="javascript:void(0)">
-                                    <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/personal.png" alt="">
-                                </a>
-                                <p><a href="javascript:void(0)">Mẫu web cá nhân</a></p>
-                                </center>
-                    </div>
-            </div>
-            </div>
+
+        </div>
     </div>
     <div class="woocommerce">
         <div class="container">
@@ -248,7 +195,7 @@
                         <a href="{{ $web->link }}" class="btn btn-warning">
                             <i class="far fa-eye"></i>
                         Dùng thử</a>
-                        <a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'">
+                        <a class="btn btn-success" onclick="hien({{ $web->id }})">
                             <i class="fas fa-check"></i>
                         Chọn mẫu web này</a>
                     </p>
@@ -257,17 +204,22 @@
                     @endforeach
                 @endif
             </div>
+            <script>
+                function hien(id) {
+                    //alert(id);
+                    $('#dk_id').val(id);
+                    document.getElementById('id01').style.display='block'
+                }
+            </script>
         </div>
     </div>
                 <!-- phân trang -->
                 <center>
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item"><a class="page-link" href="khogiaodien.html">1</a></li>
-                      <li class="page-item"><a class="page-link" href="page2.html">2</a></li>
-                      <li class="page-item"><a class="page-link" href="page3.html">3</a></li>
-                      <li class="page-item"><a class="page-link" href="page4.html">4</a></li>
-                      <li class="page-item"><a class="page-link" href="page5.html">5</a></li>
-                    </ul>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {{ $webs->links() }}
+                        </ul>
+                    </nav>
                 </center>
     <div class="more__info">
 
@@ -281,7 +233,7 @@
                         Không dừng lại ở thiết kế website chuyên nghiệp, chúng tôi mang lại những công cụ để khách hàng có thể bán hàng trực tuyến và phát triển thương hiệu một cách hiệu quả nhất. Với chúng tôi, thành công của khách hàng cũng chính là thành công của chúng tôi
                     </p>
                     <div class="more__info-wrap--btn">
-                        <a href="javascript:void(0)" class="btn btn-warning wow bounceInLeft">
+                        <a href="{{ Route('kho.giao.dien') }}" class="btn btn-warning wow bounceInLeft">
                             <i class="far fa-image"></i>
                         Kho giao diện</a>
                         <a href="javascript:void(0)" class="btn btn-success wow bounceInRight">
@@ -300,18 +252,11 @@
             <p class="customer__text--desc">KHÁCH HÀNG VÀ ĐỐI TÁC SỬ DỤNG DỊCH VỤ THIẾT KẾ WEB</p>
         </div>
         <div class="customer__silder">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2017/12/hamleys.png" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2018/08/logo_thanhhung_316x200.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/10/thegioituixach1.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/10/2-dunkin-donuts1.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/10/tamkhoashop1.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/12/anhduong.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2016/12/logo.jpg" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2017/05/logo-coffee-website-up-tkwn.png" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2017/07/logo-bo-si-do-an-vat-2.png" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2017/07/logo_316.png" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2018/04/cua5f.png" alt="">
-            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2018/11/logo-100.jpg" alt="">
+            @if(isset($partners))
+                @foreach($partners as $partner)
+                    <img src="{{ asset('assets/img_doitac/'.$partner->logo) }}" alt="">
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

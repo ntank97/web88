@@ -48,7 +48,6 @@ class WarehouseWebController extends Migration
             $table->string('address');
             $table->string('email')->unique();;
             $table->string('phone');
-            $table->tinyInteger('active');
             $table->timestamps();
         });
         Schema::create('web_users',function (Blueprint $table)
@@ -63,10 +62,11 @@ class WarehouseWebController extends Migration
                 ->references('id')
                 ->on('web')
                 ->onDelete('cascade');
-            $table->string('title');
             $table->tinyInteger('status')->default(0);
-            $table->string('content');
             
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
+            $table->timestamps();
         });
     /**
      * Dịch vụ - Thiết kế - Seo
@@ -88,11 +88,12 @@ class WarehouseWebController extends Migration
             $table->text('content');
             $table->integer('focus');
             $table->integer('view')->default(0);
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_service')
-                ->onDelete('cascade');
+            $table->text('description');
+//            $table->bigInteger('cate_id')->unsigned();
+//            $table->foreign('cate_id')
+//                ->references('id')
+//                ->on('cate_service')
+//                ->onDelete('cascade');
             $table->timestamps();
             $table->tinyInteger('active');
         });
@@ -155,6 +156,13 @@ class WarehouseWebController extends Migration
             $table->tinyInteger('active');
             $table->timestamps();
         });
+        Schema::create('slider_content', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('image');
+            $table->string('title')->nullable();
+            $table->tinyInteger('active')->default(0);
+            $table->timestamps();
+        });
         //Support 
         Schema::create('supports', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -162,22 +170,25 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->string('phone');
             $table->string('email')->unique();
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
         //Contact
         Schema::create('contact', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('masothue');
             $table->string('address');
             $table->string('phone');
             $table->string('email');
+            $table->string('website');
             $table->tinyInteger('active');
             $table->timestamps();
         });
        //Blogs
        Schema::create('blogs', function (Blueprint $table) {
         $table->bigIncrements('id');
+        $table->string('name');
            $table->text('summary');
            $table->text('detail');
            $table->tinyInteger('active')->default(0);
@@ -202,10 +213,11 @@ class WarehouseWebController extends Migration
         $table->timestamps();
         $table->integer('searchs');
     });
+
     // dich vu khac
-    Schema::create('type_other_service', function (Blueprint $table) {
+    Schema::create('cate_other_service', function (Blueprint $table) {
         $table->bigIncrements('id');
-          $table->string('title');
+          $table->string('name');
            $table->tinyInteger('active')->default(0);
            $table->string('slug');
            $table->timestamps();
@@ -216,10 +228,11 @@ class WarehouseWebController extends Migration
         $table->bigIncrements('id');
         $table->string('name');
         $table->text('content');
-        $table->bigInteger('type_id')->unsigned();
-        $table->foreign('type_id')
+        $table->tinyInteger('active')->default(0);
+        $table->bigInteger('cate_id')->unsigned();
+        $table->foreign('cate_id')
         ->references('id')
-        ->on('type_other_service')
+        ->on('cate_other_service')
         ->onDelete('cascade');
         $table->timestamps();
         

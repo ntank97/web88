@@ -4,76 +4,30 @@
             <h4 class="contact__wrap-text">
                 Chúng tôi hỗ trợ khách hàng 7 ngày trong tuần với hotline
                 <br>
-                <span>0927 15 15 35</span>
+                <span>{{ $contact->phone }}</span>
             </h4>
             <p class="contact__wrap-desc">Với đội ngũ nhân viên hơn 5 năm kinh nghiệm, không chỉ là hướng dẫn và xử lý các vấn đề từ website, chúng tôi luôn đồng hành tư vấn và phát triển cùng doanh nghiệp của bạn</p>
             <ul class="row">
+                @if(isset($supports))
+                    @foreach($supports as $support)
                 <li class="col-md-3 col-sm-6" style="margin-top:30px;">
                     <center>
                         <div>
-                            <img src="./image/user.jpg" class="img-circle" width="140px;margin-left:30px!important;">
+                            <img src="{{ asset('assets/img_supports/'.$support->image) }}" class="img-circle" width="140px;margin-left:30px!important;">
                         </div>
                         <div class="contact__wrap-detail">
                             <p class="contact__wrap-detail--text">
-                                <span>Tư vấn thiết kế web</span>
+                                <span>{{ $support->name }}</span>
                                 <br>
-                                <a href="javascript:void(0)">0927 15 15 35</a>
+                                <a href="javascript:void(0)">{{ $support->phone }}</a>
                                 <br>
-                                <a href="javascript:void(0)">sale1@web88.vn</a>
+                                <a href="javascript:void(0)">{{ $support->email }}</a>
                             </p>
                         </div>
                     </center>
                 </li>
-                <li class="col-md-3 col-sm-6" style="margin-top:30px;">
-                    <center>
-                        <div>
-                            <img src="./image/user1.jpg" class="img-circle" width="140px;">
-                        </div>
-                        <div class="contact__wrap-detail">
-                            <p class="contact__wrap-detail--text">
-                                <span>Tư vấn thiết kế web</span>
-                                <br>
-                                <a href="javascript:void(0)">0927 15 15 35</a>
-                                <br>
-                                <a href="javascript:void(0)">sale2@web88.vn</a>
-                            </p>
-                        </div>
-                    </center>
-                </li>
-                <li class="col-md-3 col-sm-6" style="margin-top:30px;">
-                    <center>
-                        <div>
-                            <img src="./image/nct.jpg" class="img-circle" width="140px;">
-                        </div>
-                        <div class="contact__wrap-detail">
-
-                            <p class="contact__wrap-detail--text">
-                                <span>Hỗ trợ kỹ thuật</span>
-                                <br>
-                                <a href="javascript:void(0)">0988 747 982</a>
-                                <br>
-                                <a href="javascript:void(0)">htkt@web88.vn</a>
-                            </p>
-                        </div>
-                    </center>
-                </li>
-                <li class="col-md-3 col-sm-6" style="margin-top:30px;">
-                    <center>
-                        <div>
-                            <img src="./image/cskh.jpg" class="img-circle" width="140px;">
-                        </div>
-                        <div class="contact__wrap-detail">
-
-                            <p class="contact__wrap-detail--text">
-                                <span>Chăm sóc khách hàng</span>
-                                <br>
-                                <a href="javascript:void(0)">contact@talentwins.co</a>
-                                <br>
-                                <a href="javascript:void(0)">cskh@web88.vn</a>
-                            </p>
-                        </div>
-                    </center>
-                </li>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
@@ -85,31 +39,29 @@
             <div class="row">
                 <div class=" col-md-3 col-sm-6 col-12">
                     <ul class="footer__wrap-info">
+                        @if(isset($contact))
                         <li>
                             <i class="fas fa-user fa-fw check"></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text">Công ty Công nghệ và Dịch vụ Talent Wins</a>
+                            <a href="javascript:void(0)" class="footer__wrap-info--text">{{ $contact->title }}</a>
                         </li>
                         <li>
                             <i class="fab fa-codepen fa-fw check"></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text">Mã số thuế: 0108134425</a>
+                            <a href="javascript:void(0)" class="footer__wrap-info--text">Mã số thuế: {{ $contact->masothue }}</a>
                         </li>
-                        <!-- <li>
-                            <i class="far fa-calendar-alt fa-fw"></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text">Ngày cấp: 2018-01-16</a>
-                        </li> -->
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw check "></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text special">Tòa nhà CT2, khu đô thị Constrexim Thái Hà, Phạm Văn Đồng, Hà Nội</a>
+                            <a href="javascript:void(0)" class="footer__wrap-info--text special">{{ $contact->address }}</a>
                         </li>
                         <li>
                             <i class="fas fa-phone-alt fa-fw check"></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text">0927 15 15 35</a>
+                            <a href="javascript:void(0)" class="footer__wrap-info--text">{{ $contact->phone }}</a>
                         </li>
                         <li>
                             <i class="far fa-envelope fa-fw
                                 check"></i>
-                            <a href="javascript:void(0)" class="footer__wrap-info--text">contact@talentwins.co</a>
+                            <a href="javascript:void(0)" class="footer__wrap-info--text">{{ $contact->email }}</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
@@ -225,7 +177,8 @@
 
 <!-- form dang ki -->
 <div id="id01" class="modal">
-    <form class="modal-content animate" action="">
+    <form id="dk_form" class="modal-content animate" action="{{ Route('khoi.tao.web') }}" method="POST">
+        @csrf
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <div class="container pt-4" style="padding-bottom: 2rem;">
             <div class="row">
@@ -234,46 +187,54 @@
                     <div class="mt-50 text-left">
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Tòa CT2, khu đô thị Thái Hà Constrexim, 43 Phạm Văn Đồng, Hà Nội</span>
+                            <span>{{ $contact->address }}</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@talentwins.co</span>
+                            <span>{{ $contact->email }}</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-phone-alt"></i>
-                            <span>0927 15 15 35 - Zalo</span>
+                            <span>{{ $contact->phone }} - Zalo</span>
                         </div>
                         <div class="col-md-12 d-flex justify-content-start content-contact" style="padding-bottom: 1.5rem">
                             <i class="fas fa-globe"></i>
-                            <span><a href="javascript:void(0)"> Talentwins.co</a></span>
+                            <span><a href="javascript:void(0)">{{ $contact->website }}</a></span>
                         </div>
                     </div>
-                    <div class="text-center"><img src="./image/contact.jpg" alt=""></div>
+                    <div class="text-center"><img src="{{ asset('image/contact.jpg')}}" alt=""></div>
                 </div>
-                <form class="col-md-8" style="padding-bottom: 2rem">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1" style="padding-top: 2rem;">Tên của bạn</label><br>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Tên của bạn">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ email</label><br>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Số điện thoại</label><br>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Số điện thoại">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tiêu đề</label><br>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tiêu đề">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Nội dung</label><br>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Thông điệp"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success" onclick="window.alert('Đăng ký thành công!')" style="margin-left: 20px!important;">Gửi</button>
-                </form>
+                <div class="col-md-8">
+                    <form id="dk_form" method="POST" >
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" style="padding-top: 2rem;">Tên của bạn ✵</label><br>
+                            <input type="text" class="form-control" name="w_name" id="dk_name" placeholder="Tên của bạn">
+                            <input type="hidden" name="w_id" id="dk_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa chỉ ✵</label><br>
+                            <input type="text" name="w_address" class="form-control" id="dk_address" aria-describedby="emailHelp" placeholder="Địa chỉ">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa chỉ Email ✵</label><br>
+                            <input type="email" name="w_email" class="form-control" id="dk_email" aria-describedby="emailHelp" placeholder="Nhập địa chỉ email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Số điện thoại ✵</label><br>
+                            <input type="number" name="w_phone" class="form-control" id="dk_sdt" placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tiêu đề</label><br>
+                            <input type="text" name="w_title" class="form-control" id="dk_title" aria-describedby="emailHelp" placeholder="Tiêu đề">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Nội dung</label><br>
+                            <textarea class="form-control" name="w_content" id="dk_content" rows="3" placeholder="Thông điệp"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="margin-left: 20px!important;">Gửi</button>
+                    </form>
+                </div>
             </div>
         </div>
     </form>
