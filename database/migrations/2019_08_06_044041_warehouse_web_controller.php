@@ -81,18 +81,20 @@ class WarehouseWebController extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
+            $table->string('title');
+            $table->string('description');
             $table->string('image');
             $table->text('summary');
             $table->text('content');
             $table->integer('focus');
             $table->integer('view')->default(0);
+            $table->tinyInteger('active');
             $table->bigInteger('cate_id')->unsigned();
             $table->foreign('cate_id')
                 ->references('id')
                 ->on('cate_service')
                 ->onDelete('cascade');
             $table->timestamps();
-            $table->tinyInteger('active');
         });
         Schema::create('service_tags', function (Blueprint $table) {
             $table->bigIncrements('id');

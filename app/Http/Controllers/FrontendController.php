@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CateWeb;
+use App\Service;
 use App\Web;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,6 +22,9 @@ class FrontendController extends Controller
 
         $contact = DB::table('contact')->first();
         View::Share('contact',$contact);
+
+        $servis = Service::where('active', Web::STATUS_PUBLIC)->get();
+        View::Share('servis',$servis);
     }
 
     public function khoGiaoDien(Request $request)
@@ -61,7 +65,6 @@ class FrontendController extends Controller
 
     public function dangki(Request $request)
     {
-//        dd($request->all());
         $this->validate($request,[
             'w_name' => 'required|min:3',
             'w_email' => 'required|unique:users,email',
@@ -113,6 +116,20 @@ class FrontendController extends Controller
         ];
 //        dd($viewData);
         return view('pages.lienhe',$viewData);
+    }
+
+    public function getListService(Request $request)
+    {
+        $url = $request->segment(2);
+        $services = Service::where([
+            'slug' => $url,
+            'active' => Service::STATUS_PUBLIC
+        ])->first();
+        dd($services);
+        $viewData = [
+            'services' => $services
+        ];
+        return view('pages.dichvu-thietkewebgiare',$viewData);
     }
 
     public function khachHang()
@@ -216,7 +233,12 @@ class FrontendController extends Controller
     public function dichVuThietKeWebGiaRe()
     {
         $sliders = DB::table('slider_content')->where('active',1)->get();
-//        dd($sliders);
-        return view('pages.dichvu-thietkewebgiare',compact('sliders'));
+
+        $service = DB::table('service')->where('active',1)->get();
+        $viewData = [
+            'sliders' => $sliders,
+            'service' => $service,
+        ];
+        return view('pages.dichvu-thietkewebgiare',$viewData);
     }
 }

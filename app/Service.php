@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Web extends Model
+class Service extends Model
 {
-    protected $table = 'web';
+    protected $table = 'service';
     protected  $guarded = [''];
 
     const STATUS_PUBLIC = 1;
@@ -28,8 +28,4 @@ class Web extends Model
         return array_get($this->status,$this->active,'[N\A]');
     }
 
-    public function category()
-    {
-        return $this->belongsTo(CateWeb::class,'cate_id');
-    }
 }

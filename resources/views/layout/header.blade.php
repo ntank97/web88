@@ -27,17 +27,23 @@
                     <li class="nav-item  dropdown">
                         <a class="nav-link text-light" >DỊCH VỤ <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
-                            <a href="{{ Route('dich.vu.thiet.ke.web.gia.re') }}">Thiết kế web giá rẻ</a>
-                            <a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>
-                            <a href="{{ Route('thiet.ke.web.theo.yeu.cau') }}">Thiết kế web theo yêu cầu</a>
-                            <a href="{{ Route('thiet.ke.web.chuan.seo.chuyen.nghiep') }}">Thiết kế web chuẩn SEO chuyên nghiệp</a>
-                            <a href="{{ Route('thiet.ke.web.chuan.mobile') }}">Thiết kế web chuẩn Mobile</a>
-                            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ SEO website</a>
-                            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ viết bài SEO website</a>
-                            <a href="{{ Route('thiet.web.tron.goi.gia.re') }}">Thiết kế web trọn gói giá rẻ</a>
-                            <a href="{{ Route('cham.soc.website') }}">Chăm sóc website</a>
-                            <a href="{{ Route('hosting.chat.luong.cao') }}">Hosting chất lượng cao</a>
-                            <a href="{{ Route('domain.gia.re') }}">Domain giá rẻ</a>
+
+                            @if(isset($servis))
+                                @foreach($servis as $servi)
+                                    <a href="{{ Route('get.list.service',[$servi->slug]) }}">{{ $servi->name }}</a>
+                                @endforeach
+                            @endif
+
+                            {{--<a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.theo.yeu.cau') }}">Thiết kế web theo yêu cầu</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.chuan.seo.chuyen.nghiep') }}">Thiết kế web chuẩn SEO chuyên nghiệp</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.chuan.mobile') }}">Thiết kế web chuẩn Mobile</a>--}}
+                            {{--<a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ SEO website</a>--}}
+                            {{--<a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ viết bài SEO website</a>--}}
+                            {{--<a href="{{ Route('thiet.web.tron.goi.gia.re') }}">Thiết kế web trọn gói giá rẻ</a>--}}
+                            {{--<a href="{{ Route('cham.soc.website') }}">Chăm sóc website</a>--}}
+                            {{--<a href="{{ Route('hosting.chat.luong.cao') }}">Hosting chất lượng cao</a>--}}
+                            {{--<a href="{{ Route('domain.gia.re') }}">Domain giá rẻ</a>--}}
                         </div>
                     </li>
                     <li class="nav-item">

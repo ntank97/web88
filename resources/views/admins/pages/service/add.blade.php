@@ -85,22 +85,30 @@
                                         @endforeach
                                     </select>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
+                                           value="{{ old('name') }}">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
                                            value="{{ old('title') }}">
                                 </div>
-                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-    
-                            <textarea class="form-control" name="summary" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    <label for="exampleInputEmail1">Miêu tả dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập miêu tả" name="description"
+                                           value="{{ old('description') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ old('content') }}</textarea>
+                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="summary" cols="50" rows="10" placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Nội dung (*)</label>
+                                <div class="form-group">
+                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung" class="form-control">{{ old('content') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh nền</label>

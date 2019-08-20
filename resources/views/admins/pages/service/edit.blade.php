@@ -85,16 +85,26 @@
                                         @endforeach
                                     </select>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
+                                           value="{{ $service->name }}">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                                           value="{{ $service->name}}">
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
+                                           value="{{ $service->title}}">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Miêu tả dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập miêu tả" name="description"
+                                           value="{{ $service->description }}">
+                                </div>
+
                                 <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
 
-                            <textarea class="form-control" name="summary" cols="50" rows="10"
+                                    <textarea class="form-control" name="summary" cols="50" rows="10"
                                       placeholder="Nhập tóm tắt nội dung">{{ $service->summary }}</textarea>
                                 </div>
                                 <div class="form-group">

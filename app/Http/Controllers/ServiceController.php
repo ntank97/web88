@@ -51,15 +51,18 @@ class ServiceController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:3',
+            'title' => 'required',
+            'description' => 'required|min:3|max:255',
             'contentt' => 'required',
             'summary' => 'required',
             'tags' => 'required',
 //            'image' => 'required',
 
         ], [
-            'name.required' => 'Tên không được xác định',
-            'name.min' => 'Tên không được ít hơn 3 kí tự',
-            'summary' => 'Tóm tắt chưa được xác định',
+            'name.required' => 'Tên dịch vụ không được xác định',
+            'name.min' => 'Tên dịch vụ không được ít hơn 3 kí tự',
+            'title.required' => 'Tiêu đề dịch vụ không được để trống',
+            'summary.required' => 'Tóm tắt chưa được xác định',
             'contentt.required' => 'Nội dung không được xác định',
 //            'image.required' => 'Ảnh không được xác định',
             'tags.required' => 'Thể loại không được xác định',
@@ -84,7 +87,9 @@ class ServiceController extends Controller
 
         DB::table('service')->insert([
             'name' => $request->name,
-            'slug' => str_slug($request->name).now(),
+            'title' => $request->title,
+            'description' => $request->description,
+            'slug' => str_slug($request->name),
             'summary' => $request->summary,
             'content' => $request->contentt,
             'image' => $file_name,
@@ -221,7 +226,7 @@ class ServiceController extends Controller
         }
         DB::table('service')->where('id', '=', $id)->update([
             'name' => $request->name,
-            'slug' => str_slug($request->name).now(),
+            'slug' => str_slug($request->name),
             'summary' => $request->summary,
             'content' => $request->contentt,
             'image' => $file_name,
