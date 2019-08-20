@@ -182,6 +182,7 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Tòa nhà CT2, khu đô thị Constrexim Thái Hà, Phạm Văn Đồng, Hà Nội',
                 'phone' => '0927 15 15 35',
                 'email' => 'contact@talentwins.co',
+                'website' => 'Talentwins.co',
                 'active' => '1'
             ]
         ]);
