@@ -6,6 +6,7 @@ use App\CateWeb;
 use App\Partner;
 use App\Web;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends FrontendController
 {
@@ -24,12 +25,15 @@ class HomeController extends FrontendController
             'active' => CateWeb::STATUS_PUBLIC
         ])->limit(8)->get();
 
-        $partners = Partner::select('logo')->where('active',CateWeb::STATUS_PUBLIC)->limit(12)->get();
+        $partners = Partner::where('active',CateWeb::STATUS_PUBLIC)->limit(12)->get();
+
+        $sliders = DB::table('sliders')->where('active',1)->get();
 
         $viewData = [
             'webs' => $webs->paginate(18),
             'catewebs' => $catewebs,
             'partners' => $partners,
+            'sliders' => $sliders,
         ];
         return view('index',$viewData);
     }

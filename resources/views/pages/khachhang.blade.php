@@ -1,25 +1,20 @@
 @extends('layout.master-layout')
-@section('title','khách hàng')
+@section('title','Khách hàng')
 @section('content')
 <div class="content">
-    <div class="content__top" style="padding-bottom: 30px;">
-        <div class="content__top-img">
+    <div class="content__top">
+        <div class="content__top-img" style=" background-image:url({{ asset('assets/img_partner/header_saigonbg.jpg') }})">
             <div class="col-12 col-md-12 content-block">
                 <h3 class="content__top-title wow bounceInLeft">
-                    Hơn 1000 giao diện web cực đẹp và liên tục được cập nhật
+                    KHÁCH HÀNG CỦA THIẾT KẾ WEBSITE NHANH
                 </h3>
                 <p class="content__top-desc wow bounceInRight">
-                    Thay đổi dễ dàng theo phong cách của riêng của bạn
+                    <!-- Dịch vụ web hosting uy tín, ổn định -->
                 </p>
-                <div class="input-group col-sm-4 form__search">
-                    <input class="form-control"
-                           placeholder="Tìm kiếm">
-                    <div class="input-group-addon btn-search" >
-                        <i class="fas fa-search"></i>
-                    </div>
+                <div class="input-group form__search">
+                    <p class="ghichu">Hơn 1000 khách hàng tin tưởng sử dụng dịch vụ của chúng tôi, từ các cửa hàng nhỏ lẻ cho tới các doanh nghiệp lớn</p>
                 </div>
             </div>
-
         </div>
     </div>
     <!--  -->
@@ -27,42 +22,13 @@
         <div class="container">
             <div class="row">
                 <div class="customer__block-img">
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <img class="customer__img" src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/ledhg.png" alt="">
-                    </div>
+                    @if(isset($partners))
+                        @foreach($partners as $partner)
+                            <div class="col-md-3 col-sm-4 col-12">
+                                <a href="{{ $partner->link }}"><img width="316" height="200" class="customer__img" src="{{ asset('assets/img_partner/'.$partner->logo) }}" title="{{ $partner->name }}"></a>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
