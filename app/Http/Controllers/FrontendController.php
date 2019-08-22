@@ -18,16 +18,16 @@ class FrontendController extends Controller
     public function __construct()
     {
         $cateweb = CateWeb::all();
-        View::Share('cateweb',$cateweb);
+        View::Share('cateweb', $cateweb);
 
         $supports = DB::table('supports')->get();
-        View::Share('supports',$supports);
+        View::Share('supports', $supports);
 
         $contact = DB::table('contact')->first();
-        View::Share('contact',$contact);
+        View::Share('contact', $contact);
 
         $servis = Service::where('active', Service::STATUS_PUBLIC)->get();
-        View::Share('servis',$servis);
+        View::Share('servis', $servis);
 
         $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
         View::Share('otherservi',$otherservi);
@@ -41,64 +41,63 @@ class FrontendController extends Controller
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
-        if ($request->name != null){
-            $webs->where('name','like','%'.$request->name.'%');
+        if ($request->name != null) {
+            $webs->where('name', 'like', '%' . $request->name . '%');
         }
         $viewData = [
             'webs' => $webs->paginate(18),
         ];
 //        dd($viewData);
-        return view('pages.khogiaodien',$viewData);
+        return view('pages.khogiaodien', $viewData);
     }
 
     public function getListProduct(Request $request)
     {
         $url = $request->segment(2);
-        $url = preg_split('/(-)/i',$url);
-        if ($id = array_pop($url))
-        {
+        $url = preg_split('/(-)/i', $url);
+        if ($id = array_pop($url)) {
             $products = Web::where([
                 'cate_id' => $id,
-                'active'      => Web::STATUS_PUBLIC
+                'active' => Web::STATUS_PUBLIC
             ]);
-            if ($request->name != null){
-                $products->where('name','like','%'.$request->name.'%');
+            if ($request->name != null) {
+                $products->where('name', 'like', '%' . $request->name . '%');
             }
             $viewData = [
-                'products' => $products->orderBy('id','DESC')->paginate(10)
+                'products' => $products->orderBy('id', 'DESC')->paginate(10)
             ];
-            return view('pages.product.index',$viewData);
+            return view('pages.product.index', $viewData);
         }
         return redirect('/');
     }
 
     public function dangki(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'w_name' => 'required|min:3',
             'w_email' => 'required|unique:users,email',
             'w_address' => 'required',
             'w_phone' => 'required',
         ],
-        [
-            'w_name.required' => 'Tên không được để trống.',
-            'w_name.min' => 'Tên phải ít nhất 3 ký tự.',
-            'w_email.required' => 'Email không được để trống.',
-            'w_email.unique' => 'Email đã tồn tại trong cơ sở dữ liệu.',
-            'w_address.required' => 'Địa chỉ không được để trống.',
-            'w_phone.required' => 'Số điện thoại không được để trống.',
-        ]);
+            [
+                'w_name.required' => 'Tên không được để trống.',
+                'w_name.min' => 'Tên phải ít nhất 3 ký tự.',
+                'w_email.required' => 'Email không được để trống.',
+                'w_email.unique' => 'Email đã tồn tại trong cơ sở dữ liệu.',
+                'w_address.required' => 'Địa chỉ không được để trống.',
+                'w_phone.required' => 'Số điện thoại không được để trống.',
+            ]);
         $id = DB::table('users')->insertGetId(
             [
-                'name' =>$request->w_name,
-                'address' =>$request->w_address,
-                'email' =>$request->w_email,
-                'phone' =>$request->w_phone,
+                'name' => $request->w_name,
+                'address' => $request->w_address,
+                'email' => $request->w_email,
+                'phone' => $request->w_phone,
                 'created_at' => now(),
             ]
         );
         echo $id;
-        if (isset($request->w_id)){
+        if (isset($request->w_id)) {
             DB::table('web_users')->insert([
                 'title' => $request->w_title,
                 'content' => $request->w_content,
@@ -106,9 +105,9 @@ class FrontendController extends Controller
                 'users_id' => $id,
                 'created_at' => now(),
             ]);
-            return redirect()->route('kho.giao.dien')->with('thongbao','Khởi tạo website thành công.');
+            return redirect()->route('kho.giao.dien')->with('thongbao', 'Khởi tạo website thành công.');
         }
-        return redirect()->route('lien.he')->with('thongbao','Tạo liên hệ thành công.');
+        return redirect()->route('lien.he')->with('thongbao', 'Tạo liên hệ thành công.');
 
     }
 
@@ -117,14 +116,14 @@ class FrontendController extends Controller
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
-        if ($request->name != null){
-            $webs->where('name','like','%'.$request->name.'%');
+        if ($request->name != null) {
+            $webs->where('name', 'like', '%' . $request->name . '%');
         }
         $viewData = [
             'webs' => $webs->paginate(18),
         ];
 //        dd($viewData);
-        return view('pages.lienhe',$viewData);
+        return view('pages.lienhe', $viewData);
     }
 
     public function getListService(Request $request)
@@ -137,7 +136,7 @@ class FrontendController extends Controller
         $viewData = [
             'services' => $services
         ];
-        return view('pages.dichvu',$viewData);
+        return view('pages.dichvu', $viewData);
     }
 
     public function getListOtherService(Request $request)
@@ -150,7 +149,7 @@ class FrontendController extends Controller
         $viewData = [
             'otherService' => $otherService
         ];
-        return view('pages.dichvukhac',$viewData);
+        return view('pages.dichvukhac', $viewData);
     }
 
     public function getListNews()
@@ -166,7 +165,7 @@ class FrontendController extends Controller
     public function khachHang()
     {
         $partners = Partner::all();
-        return view('pages.khachhang',compact('partners'));
+        return view('pages.khachhang', compact('partners'));
     }
 
     public function gioiThieuDichVu()
@@ -174,24 +173,28 @@ class FrontendController extends Controller
         return view('pages.gioithieudichvu');
     }
 
-    public function seo()
+    public function seo(Request $request)
     {
-        return view('pages.seo');
+        $seo = DB::table('blogs')->where('id_blog', 1)->paginate(10);
+        return view('pages.seo', compact('seo'));
     }
 
-    public function thietKeWebsite()
+    public function thietKeWebsite(Request $request)
     {
-        return view('pages.thietke-website');
+        $tkweb = DB::table('blogs')->where('id_blog', 2)->paginate(10);
+        return view('pages.thietke-website', compact('tkweb'));
     }
 
     public function bangGiaThietKeWebsite()
     {
         return view('pages.banggiathietkewebsite');
     }
+
     public function chamSocWebsite()
     {
         return view('pages.chamsocwebsite');
     }
+
     public function dichVuThietKeWebsite()
     {
         return view('pages.dichvu-thietkewebgiare');
@@ -201,14 +204,17 @@ class FrontendController extends Controller
     {
         return view('pages.dichvuseowebsite');
     }
+
     public function dichVuVietBaiChuanSeo()
     {
         return view('pages.dichvuvietbaichuanseo');
     }
+
     public function dieuKienVaChinhSach()
     {
         return view('pages.dieukienvachinhsach');
     }
+
     public function domaiGiaRe()
     {
         return view('pages.domaingiare');
@@ -218,10 +224,12 @@ class FrontendController extends Controller
     {
         return view('pages.hinhthucthanhtoan');
     }
+
     public function hostingChatLuongCao()
     {
         return view('pages.hostingchatluongcao');
     }
+
     public function hoTroKhachHang()
     {
         return view('pages.hotrokhachhang');
@@ -237,6 +245,7 @@ class FrontendController extends Controller
     {
         return view('pages.thietkewebchuanmoblie');
     }
+
     public function thietKeWebChuanSeoChuyenNghiep()
     {
         return view('pages.thietkewebchuanseochuyennghiep');
@@ -246,6 +255,7 @@ class FrontendController extends Controller
     {
         return view('pages.thietkewebsitetheomau');
     }
+
     public function thietKeWebTronGoiGiaRe()
     {
         return view('pages.thietkewebtrongoigiare');
@@ -263,13 +273,13 @@ class FrontendController extends Controller
 
     public function dichVuThietKeWebGiaRe()
     {
-        $sliders = DB::table('slider_content')->where('active',1)->get();
+        $sliders = DB::table('slider_content')->where('active', 1)->get();
 
-        $service = DB::table('service')->where('active',1)->get();
+        $service = DB::table('service')->where('active', 1)->get();
         $viewData = [
             'sliders' => $sliders,
             'service' => $service,
         ];
-        return view('pages.dichvu-thietkewebgiare',$viewData);
+        return view('pages.dichvu-thietkewebgiare', $viewData);
     }
 }
