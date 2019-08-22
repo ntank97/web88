@@ -50,8 +50,8 @@
                                             
                                             @if ($value->status == 3)
                                                 <div class="pendding">                                 
-                                                    <i class="glyphicon glyphicon-off"></i>
-                                                    <span>Pending</span>
+                                                    &emsp;<i style="color:orange" class="glyphicon glyphicon-off"></i>
+                                                    <span style="color:red">&emsp;Failed&emsp;</span>
                                                     <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_pending(this,{{$value->users_id}},{{$value->web_id}})">
                                                         <option {{ $value->status == 1 ? 'selected' : '' }} value='1'>Đang đàm phán</option>
                                                         <option {{ $value->status == 2 ? 'selected' : '' }} value='2'>Thành công</option>
@@ -60,8 +60,8 @@
                                                 </div>
                                             @else
                                                 <div class="pendding">                                 
-                                                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
-                                                    <span>Pending</span>
+                                                    &emsp;<i style="color:#0c3f50" class="fa fa-spinner fa-pulse fa-1x fa-fw margin-bottom"></i>
+                                                    <span style="color:blue">Pending&emsp;</span>
                                                     <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_pending(this,{{$value->users_id}},{{$value->web_id}})">
                                                         <option {{ $value->status == 0 ? 'selected' : '' }} disabled>Pending</option>
                                                         <option {{ $value->status == 1 ? 'selected' : '' }} value='1'>Đang đàm phán</option>
@@ -99,6 +99,8 @@
         var id_pending=obj.value;
         var users_id=users_id;
         var web_id=web_id;
+        var c=obj.parentNode.children[1];
+        
         $.ajax({
             url : "edit_pending",
             type : "post",
@@ -117,14 +119,15 @@
         });
         if (id_pending==1){        
             obj.parentNode.firstChild.nextElementSibling.setAttribute('class','fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom');
-            
+            c.innerHTML="Pending";
         }
         if (id_pending==2){
             obj.parentNode.parentNode.parentNode.remove();
         }
         
         if (id_pending==3){      
-            obj.parentNode.firstChild.nextElementSibling.setAttribute('class','glyphicon glyphicon-off');          
+            obj.parentNode.firstChild.nextElementSibling.setAttribute('class','glyphicon glyphicon-off');
+            c.innerHTML=" &emsp; Failed  &emsp;";
         }
     }
 </script>

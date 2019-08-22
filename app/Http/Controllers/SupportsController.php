@@ -42,7 +42,7 @@ class SupportsController extends Controller
             $file = $request->file('image');
 
             $name = $file->getClientOriginalName();
-            $file->move('assets/supports/', $name);
+            $file->move('assets/img_supports/', $name);
             $file_name = $name;
         }
 
@@ -88,10 +88,10 @@ class SupportsController extends Controller
             $name = $file->getClientOriginalName();
 
            
-            if (file_exists('assets/supports/'.$img_old) && ($img_old !='') ) {
-                unlink('assets/supports/' . $img_old);
+            if (file_exists('assets/img_supports/'.$img_old) && ($img_old !='') ) {
+                unlink('assets/img_supports/' . $img_old);
             }
-            $file->move('assets/supports/', $name);
+            $file->move('assets/img_supports/', $name);
             $file_name = $name;
         }
         else{
@@ -104,7 +104,7 @@ class SupportsController extends Controller
             $active=1;
         }
 
-        DB::table('supports')->update([
+        DB::table('supports')->where('id',$id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -120,8 +120,8 @@ class SupportsController extends Controller
         $img_old=DB::table('supports')->find($id)->image;
 
         
-        if (file_exists('assets/supports/'.$img_old) && ($img_old !='') ) {
-            unlink('assets/supports/' . $img_old);
+        if (file_exists('assets/img_supports/'.$img_old) && ($img_old !='') ) {
+            unlink('assets/img_supports/' . $img_old);
         }
 
         DB::table('supports')->where('id',$id)->delete();

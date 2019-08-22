@@ -82,7 +82,6 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'address' => $request->address,
-            'active' => 1,
             'created_at' => now(),
         ]);
 
@@ -128,7 +127,6 @@ class ClientController extends Controller
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -145,7 +143,6 @@ class ClientController extends Controller
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -158,7 +155,6 @@ class ClientController extends Controller
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -175,7 +171,6 @@ class ClientController extends Controller
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'active' => 1,
                     'updated_at' => now(),
                 ]);
             }
@@ -191,7 +186,6 @@ class ClientController extends Controller
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
-                'active' => 1,
                 'updated_at' => now(),
             ]);
         }

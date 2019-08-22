@@ -40,7 +40,7 @@
                                     @foreach($supports as $value)
                                         <tr class="odd gradeX" >
                                             <td >{{$value->name}}</td>
-                                            <td ><img width='100px' src="{{asset('assets/supports/'.$value->image)}}"></td>
+                                            <td ><img width='100px' src="{{asset('assets/img_supports/'.$value->image)}}"></td>
                                             <td >{{$value->phone}}</td>
                                             <td >{{$value->email}}</td>
                                             <td>

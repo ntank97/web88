@@ -28,10 +28,12 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="col-md-2">Đối tác </th>
-                                        <th class="col-md-2">Image</th>
+                                        <th class="col-md-2">Tiêu đề</th>
+                                        <th class="col-md-2">Mã số thuế</th>
                                         <th class="col-md-2">Phone</th>
                                         <th class="col-md-2">Email</th>
+                                        <th class="col-md-2">Địa chỉ</th>
+                                        <th class="col-md-2">Website</th>
                                         <th class="col-md-3">Hành động</th>
 
                                     </tr>
@@ -40,9 +42,11 @@
                                     @foreach($contact as $value)
                                         <tr class="odd gradeX" >
                                             <td >{{$value->title}}</td>
+                                            <td >{{$value->masothue}}</td>
                                             <td >{{$value->phone}}</td>
                                             <td >{{$value->email}}</td>
                                             <td >{{$value->address}}</td>
+                                            <td >{{$value->website}}</td>
                                             <td>
                                                 <a class="btn btn-default" href="{{Route('contact.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
                                                 <a href="{{Route('contact.delete',['id'=> $value->id]) }}" class="btn btn-danger" onclick="return confirmAction()">Xóa</a>

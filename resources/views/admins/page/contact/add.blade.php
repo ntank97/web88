@@ -33,6 +33,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Mã số thuế  (*)</label>
+                            <input type="text" class="form-control" placeholder="Nhập mã số thuế" name="masothue"
+                                   value="{{ old('masothue') }}">
+                            <p style="color:red">{{ $errors->first('masothue') }}</p>
+                        </div>
+
+                        <div class="form-group">
                             <label>Phone (*)</label>
                             <input type="tel" class="form-control" placeholder="Nhập số điện thoại" name="phone"
                                    value="{{ old('phone') }}">
@@ -50,6 +57,12 @@
                             <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address"
                                    value="{{ old('address') }}">
                             <p style="color:red">{{ $errors->first('address') }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Website (*)</label>
+                            <input type="text" class="form-control" placeholder="Nhập tên website" name="website"
+                                   value="{{ old('website') }}">
+                            <p style="color:red">{{ $errors->first('website') }}</p>
                         </div>
 
                     <div class="box-footer">
