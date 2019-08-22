@@ -1,38 +1,35 @@
 @extends('layout.master-layout')
 @section('title','Thiết kế website chuyên nghiệp')
 @section('slider')
+    <div class="wrap-header">
     <div class="slider-top">
         <ul id="sb-slider" class="sb-slider">
+            @if(isset($sliders))
+                @foreach($sliders as $key => $slider)
             <li>
                 <a href="javascript:void(0)">
-                    <img src="{{ asset('image/slide-1.jpg') }}"
-                         alt="">
+                    <img src="{{ asset('assets/slider-index/'.$slider->image ) }}" alt="">
                 </a>
                 <div class="slide-text">
-                    <h3 class="slide-text--title">Talent Wins</h3>
-                    <p class="slide-text--desc">Thiết kế website chuyên nghiệp</p>
-                    <p class="slide-text--desc2">cho doanh nghiệp</p>
+                    {{--<h3 class="slide-text--title">Talent Wins</h3>--}}
+                    <p class="slide-text--desc">{{ $slider->title }}</p>
+                    {{--<p class="slide-text--desc2">cho doanh nghiệp</p>--}}
                 </div>
                 <!-- <div class="sb-description">
                   <h3>Creative Lifesaver</h3>
                 </div> -->
-                <img class="icon-animation icon-animation-1 animated bounceInLeft delay-0s" src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/banner_4_-21.png" alt="">
-                <img class="icon-animation icon-animation-2 animated bounceInRight delay-0s" src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/banner_4_-31.png" alt="">
+                @if($key == 0)
+                    <img class="icon-animation icon-animation-1 animated bounceInLeft delay-0s" src="{{asset('assets/slider-index/banner_4_-21.png')}}" alt="">
+                    <img class="icon-animation icon-animation-2 animated bounceInRight delay-0s" src="{{asset('assets/slider-index/banner_4_-31.png')}}" alt="">
+                @elseif($key == 1)
+                    <img class="icon-animation icon-animation-3 animated flipInX delay-1s" src="{{asset('assets/slider-index/banner_4_-91.png')}}" alt="">
+                    <img class="icon-animation icon-animation-4 animated flipInX delay-1s" data-wow-delay="1s" src="{{asset('assets/slider-index/banner_4_-11.png')}}" alt="">
+                    <img class="icon-animation icon-animation-5 animated flipInX delay-1s" src="{{asset('assets/slider-index/icon-1.png')}}" alt="">
+                    <h1 class="talent animated zoomIn">Hello World!</h1>
+                @endif
             </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <img src="{{ asset('image/slide-3.jpeg') }}"
-                         alt="">
-                </a>
-
-                <div class="sb-description animated pulse">
-                    <h3 class="slide-text--title-2">Talent Wins</h3>
-                </div>
-                <img class="icon-animation icon-animation-3 animated flipInX delay-1s" src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/banner_4_-91.png" alt="">
-                <img class="icon-animation icon-animation-4 animated flipInX delay-1s" data-wow-delay="1s" src="http://thietkewebnhanh247.com/wp-content/uploads/2016/11/banner_4_-11.png" alt="">
-                <img class="icon-animation icon-animation-5 animated flipInX delay-1s" src="image/icon-1.png" alt="">
-                <h1 class="talent animated zoomIn">Hello World!</h1>
-            </li>
+                @endforeach
+            @endif
         </ul>
 
         <!-- <div id="shadow" class="shadow"></div>
@@ -42,7 +39,9 @@
             <a href="#">Previous</a>
         </div>
 
+        </div>
     </div>
+</header>
 @endsection
 @section('content')
 <div class="content">
@@ -76,9 +75,9 @@
                                 <p class="list__services-desc">
                                     <a href="javascript:void(0)">Đưa ra ý tưởng và tập trung vào kinh doanh, chuyện còn lại để chúng tôi lo</a>
                                 </p>
-                                <p class="view-more">
-                                    <a href="javascript:void(0)">Xem thêm</a>
-                                </p>
+                                {{--<p class="view-more">--}}
+                                    {{--<a href="javascript:void(0)">Xem thêm</a>--}}
+                                {{--</p>--}}
                             </li>
                             <li class="col-12 col-md-4 list__services-stt list__services-stt-1 wow fadeInRight" onmouseover="hoverOver()" onmouseout="hoverOut()">
                                 <img class="list__services-img" src="http://thietkewebnhanh247.com/wp-content/themes/thietkewebsite/img/giaiphap3.png" alt="">
@@ -254,7 +253,7 @@
         <div class="customer__silder">
             @if(isset($partners))
                 @foreach($partners as $partner)
-                    <img src="{{ asset('assets/img_doitac/'.$partner->logo) }}" alt="">
+                    <a title="{{ $partner->name }}" href="{{ $partner->link }}"><img src="{{ asset('assets/img_partner/'.$partner->logo) }}" alt=""></a>
                 @endforeach
             @endif
         </div>

@@ -69,31 +69,32 @@ class WarehouseWebController extends Migration
     /**
      * Dịch vụ - Thiết kế - Seo
      */
-        Schema::create('cate_service', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->tinyInteger('active');
-            $table->timestamps();
-        });
+//        Schema::create('cate_service', function (Blueprint $table) {
+//            $table->bigIncrements('id');
+//            $table->string('name');
+//            $table->string('slug');
+//            $table->tinyInteger('active');
+//            $table->timestamps();
+//        });
 
         Schema::create('service', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug');
+            $table->string('title');
+            $table->string('description');
             $table->string('image');
             $table->text('summary');
             $table->text('content');
             $table->integer('focus');
             $table->integer('view')->default(0);
-            $table->text('description');
+            $table->tinyInteger('active')->default(0);
 //            $table->bigInteger('cate_id')->unsigned();
 //            $table->foreign('cate_id')
 //                ->references('id')
 //                ->on('cate_service')
 //                ->onDelete('cascade');
             $table->timestamps();
-            $table->tinyInteger('active');
         });
         Schema::create('service_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -151,7 +152,7 @@ class WarehouseWebController extends Migration
             $table->bigIncrements('id');
             $table->string('image');
             $table->string('title')->nullable();
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
         Schema::create('slider_content', function (Blueprint $table) {
@@ -213,31 +214,27 @@ class WarehouseWebController extends Migration
     });
 
     // dich vu khac
-    Schema::create('cate_other_service', function (Blueprint $table) {
-        $table->bigIncrements('id');
-          $table->string('name');
-           $table->tinyInteger('active')->default(0);
-           $table->string('slug');
-           $table->timestamps();
-
-        
-       });
+//        Schema::create('cate_other_service', function (Blueprint $table) {
+//        $table->bigIncrements('id');
+//          $table->string('name');
+//           $table->tinyInteger('active')->default(0);
+//           $table->string('slug');
+//           $table->timestamps();
+//       });
        Schema::create('other_service', function (Blueprint $table) {
-        $table->bigIncrements('id');
-        $table->string('name');
-        $table->text('content');
-        $table->tinyInteger('active')->default(0);
-        $table->bigInteger('cate_id')->unsigned();
-        $table->foreign('cate_id')
-        ->references('id')
-        ->on('cate_other_service')
-        ->onDelete('cascade');
+           $table->bigIncrements('id');
+           $table->string('name')->unique();
+           $table->string('slug');
+           $table->string('title');
+           $table->string('description');
+           $table->string('image');
+           $table->text('summary');
+           $table->text('content');
+           $table->integer('view')->default(0);
+           $table->tinyInteger('active')->default(0);
         $table->timestamps();
         
     });
-    
-
-
 
     }
 

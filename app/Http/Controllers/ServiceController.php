@@ -51,16 +51,21 @@ class ServiceController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:3',
+            'title' => 'required',
+            'description' => 'required|min:3|max:255',
             'contentt' => 'required',
-            'contentt1' => 'required',
-            'contentt2' => 'required',
+            'summary' => 'required',
             'tags' => 'required',
 //            'image' => 'required',
 
         ], [
-            'name.required' => 'Tên không được xác định',
-            'name.min' => 'Tên không được ít hơn 3 kí tự',
-            'summary' => 'Tóm tắt chưa được xác định',
+            'name.required' => 'Tên dịch vụ không được xác định',
+            'name.min' => 'Tên dịch vụ không được ít hơn 3 kí tự',
+            'title.required' => 'Tiêu đề dịch vụ không được để trống',
+            'description.required' => 'Mô tả không được để trống.',
+            'description.min' => 'Mô tả không được ít hơn 3 kí tự.',
+            'description.max' => 'Mô tả không được vượt quá 255 ký tự.',
+            'summary.required' => 'Tóm tắt chưa được xác định',
             'contentt.required' => 'Nội dung không được xác định',
 //            'image.required' => 'Ảnh không được xác định',
             'tags.required' => 'Thể loại không được xác định',
@@ -85,15 +90,14 @@ class ServiceController extends Controller
 
         DB::table('service')->insert([
             'name' => $request->name,
-            'slug' => str_slug($request->name).now(),
-            'summary' => $request->contentt1,
-            'description' => $request->contentt2,
+            'slug' => str_slug($request->name),
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'description' => $request->description,
             'content' => $request->contentt,
             'image' => $file_name,
 //            'cate_id' => $request->cate_service,
             'focus' => $request->focus,
-            'view' => 0,
-            'active' => 1,
             'created_at' => now()
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
@@ -162,7 +166,6 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $data['cate_service'] = DB::table('cate_service')->get();
         $data['service'] = DB::table('service')->find($id);
         $tags = DB::table('service_tags')->where('service_id', $id)->pluck('name');
         $array = [];
@@ -187,18 +190,23 @@ class ServiceController extends Controller
         DB::table('service_tags')->where('service_id', $id)->delete();
         $this->validate($request, [
             'name' => 'required|min:3',
+            'title' => 'required',
+            'description' => 'required|min:3|max:255',
             'contentt' => 'required',
-            'contentt1' => 'required',
-            'contentt2' => 'required',
-
+            'summary' => 'required',
             'tags' => 'required',
 
 
         ], [
-            'name.required' => 'Tên không được xác định',
-            'name.min' => 'Tên không được ít hơn 3 kí tự',
-            'summary' => 'Tóm tắt chưa được xác định',
+            'name.required' => 'Tên dịch vụ không được xác định',
+            'name.min' => 'Tên dịch vụ không được ít hơn 3 kí tự',
+            'title.required' => 'Tiêu đề dịch vụ không được để trống',
+            'description.required' => 'Mô tả không được để trống.',
+            'description.min' => 'Mô tả không được ít hơn 3 kí tự.',
+            'description.max' => 'Mô tả không được vượt quá 255 ký tự.',
+            'summary.required' => 'Tóm tắt chưa được xác định',
             'contentt.required' => 'Nội dung không được xác định',
+//            'image.required' => 'Ảnh không được xác định',
             'tags.required' => 'Thể loại không được xác định',
 
         ]);
@@ -225,17 +233,15 @@ class ServiceController extends Controller
         }
         DB::table('service')->where('id', '=', $id)->update([
             'name' => $request->name,
-            'slug' => str_slug($request->name).now(),
-
-            'summary' => $request->contentt1,
-            'description' => $request->contentt2,
+            'slug' => str_slug($request->name),
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'description' => $request->description,
             'content' => $request->contentt,
             'image' => $file_name,
 //            'cate_id' => $request->cate_service,
             'focus' => $request->focus,
-            'view' => 0,
-            'active' => 1,
-            'created_at' => now()
+            'updated_at' => now()
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
 //Tách chuỗi

@@ -27,17 +27,23 @@
                     <li class="nav-item  dropdown">
                         <a class="nav-link text-light" >DỊCH VỤ <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
-                            <a href="{{ Route('dich.vu.thiet.ke.web.gia.re') }}">Thiết kế web giá rẻ</a>
-                            <a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>
-                            <a href="{{ Route('thiet.ke.web.theo.yeu.cau') }}">Thiết kế web theo yêu cầu</a>
-                            <a href="{{ Route('thiet.ke.web.chuan.seo.chuyen.nghiep') }}">Thiết kế web chuẩn SEO chuyên nghiệp</a>
-                            <a href="{{ Route('thiet.ke.web.chuan.mobile') }}">Thiết kế web chuẩn Mobile</a>
-                            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ SEO website</a>
-                            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ viết bài SEO website</a>
-                            <a href="{{ Route('thiet.web.tron.goi.gia.re') }}">Thiết kế web trọn gói giá rẻ</a>
-                            <a href="{{ Route('cham.soc.website') }}">Chăm sóc website</a>
-                            <a href="{{ Route('hosting.chat.luong.cao') }}">Hosting chất lượng cao</a>
-                            <a href="{{ Route('domain.gia.re') }}">Domain giá rẻ</a>
+
+                            @if(isset($servis))
+                                @foreach($servis as $servi)
+                                    <a href="{{ Route('get.list.service',[$servi->slug]) }}">{{ $servi->name }}</a>
+                                @endforeach
+                            @endif
+
+                            {{--<a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.theo.yeu.cau') }}">Thiết kế web theo yêu cầu</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.chuan.seo.chuyen.nghiep') }}">Thiết kế web chuẩn SEO chuyên nghiệp</a>--}}
+                            {{--<a href="{{ Route('thiet.ke.web.chuan.mobile') }}">Thiết kế web chuẩn Mobile</a>--}}
+                            {{--<a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ SEO website</a>--}}
+                            {{--<a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ viết bài SEO website</a>--}}
+                            {{--<a href="{{ Route('thiet.web.tron.goi.gia.re') }}">Thiết kế web trọn gói giá rẻ</a>--}}
+                            {{--<a href="{{ Route('cham.soc.website') }}">Chăm sóc website</a>--}}
+                            {{--<a href="{{ Route('hosting.chat.luong.cao') }}">Hosting chất lượng cao</a>--}}
+                            {{--<a href="{{ Route('domain.gia.re') }}">Domain giá rẻ</a>--}}
                         </div>
                     </li>
                     <li class="nav-item">
@@ -52,14 +58,11 @@
                     <li class="nav-item  dropdown">
                         <a href="#" class="nav-link text-light">THÊM <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
-                            <a href="{{ Route('gioi.thieu.dich.vu') }}">Giới thiệu dịch vụ</a>
-                            <a href="{{ Route('bang.gia.thiet.ke.website') }}">Bảng giá web trọn gói</a>
-                            <a href="{{ Route('tin.tuc') }}">Tin tức</a>
-                            <a href="{{ Route('ho.tro.khach.hang') }}">Hỗ trợ khách hàng</a>
-                            <a href="{{ Route('hinh.thuc.thanh.toan') }}">Hình thức thanh toán</a>
-                            <a href="{{ Route('tuyen.dung') }}">Tuyển dụng</a>
-                            <a href="{{ Route('quy.trinh.thiet.ke.website') }}">Quá trình thiết kế website</a>
-                            <a href="{{ Route('dieu.kien.va.chinh.sach') }}">Điều kiện và chính sách</a>
+                            @if(isset($otherservi))
+                                @foreach($otherservi as $other)
+                                    <a href="{{ Route('get.list.other.service',[$other->slug]) }}">{{ $other->name }}</a>
+                                @endforeach
+                            @endif
                         </div>
                     </li>
                     <li class="nav-item">
@@ -80,8 +83,7 @@
         </div>
 
         <a href="index.html">TRANG CHỦ</a>
-        <a class="nav-link col1">KHO GIAO DIỆN<i class="fa fa-plus plus" style="
-    margin-left: 0.5rem;" aria-hidden="true"></i></a>
+        <a class="nav-link col1">KHO GIAO DIỆN<i class="fa fa-plus plus" style=" margin-left: 0.5rem;" aria-hidden="true"></i></a>
         <div class="kho-giao-dien" id="col1" style="display: none;">
             @if(isset($cateweb))
                 @foreach($cateweb as $cate)
@@ -92,17 +94,11 @@
         <a class="nav-link col2">DỊCH VỤ<i class="fa fa-plus plus" aria-hidden="true" style="
     margin-left: 0.5rem;"></i></a>
         <div class="kho-giao-dien" id="col2" style="display: none;">
-            <a href="dichvu-thietkewebgiare.html">Thiết kế web giá rẻ</a>
-            <a href="{{ Route('thiet.ke.website.theo.mau') }}">Thiết kế web theo mẫu</a>
-            <a href="{{ Route('thiet.ke.web.theo.yeu.cau') }}">Thiết kế web theo yêu cầu</a>
-            <a href="{{ Route('thiet.ke.web.chuan.seo.chuyen.nghiep') }}">Thiết kế web chuẩn SEO chuyên nghiệp</a>
-            <a href="{{ Route('thiet.ke.web.chuan.mobile') }}">Thiết kế web chuẩn Mobile</a>
-            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ SEO website</a>
-            <a href="{{ Route('dich.vu.seo.website') }}">Dịch vụ viết bài SEO website</a>
-            <a href="{{ Route('thiet.web.tron.goi.gia.re') }}">Thiết kế web trọn gói giá rẻ</a>
-            <a href="{{ Route('cham.soc.website') }}">Chăm sóc website</a>
-            <a href="{{ Route('hosting.chat.luong.cao') }}">Hosting chất lượng cao</a>
-            <a href="{{ Route('domain.gia.re') }}">Domain giá rẻ</a>
+            @if(isset($servis))
+                @foreach($servis as $servi)
+                    <a href="{{ Route('get.list.service',[$servi->slug]) }}">{{ $servi->name }}</a>
+                @endforeach
+            @endif
         </div>
         <a href="{{ Route('thiet.ke.website') }}">THIẾT KẾ WEBSITE</a>
         <a href="{{ Route('seo') }}">SEO</a>
@@ -110,20 +106,18 @@
         <a href="#" class="nav-link col3">THÊM<i class="fa fa-plus plus" aria-hidden="true" style="
     margin-left: 0.5rem;"></i></a>
         <div class="kho-giao-dien" id="col3" style="display: none;">
-            <a href="{{ Route('gioi.thieu.dich.vu') }}">Giới thiệu dịch vụ</a>
-            <a href="{{ Route('bang.gia.thiet.ke.website') }}">Bảng giá web trọn gói</a>
-            <a href="{{ Route('tin.tuc') }}">Tin tức</a>
-            <a href="{{ Route('ho.tro.khach.hang') }}">Hỗ trợ khách hàng</a>
-            <a href="{{ Route('hinh.thuc.thanh.toan') }}">Hình thức thanh toán</a>
-            <a href="{{ Route('tuyen.dung') }}">Tuyển dụng</a>
-            <a href="{{ Route('quy.trinh.thiet.ke.website') }}">Quá trình thiết kế website</a>
-            <a href="{{ Route('dieu.kien.va.chinh.sach') }}">Điều kiện và chính sách</a>
+            {{--<a href="{{ Route('get.list.news',[$news->slug]) }}">{{ $news->name }}</a>--}}
+            @if(isset($otherservi))
+                @foreach($otherservi as $other)
+                    <a href="{{ Route('get.list.other.service',[$other->slug]) }}">{{ $other->name }}</a>
+                @endforeach
+            @endif
         </div>
         <a href="{{ Route('lien.he') }}">LIÊN HỆ</a>
         <a onclick="document.getElementById('id01').style.display='block'">ĐĂNG KÝ</a>
     </div>
-    <div class="wrap-header">
-        @yield('slider')
 
-    </div>
+    @yield('slider')
+
+
 </header>
