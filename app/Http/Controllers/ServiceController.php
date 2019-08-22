@@ -162,7 +162,7 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $data['cate_service'] = DB::table('cate_service')->get();
+//        $data['cate_service'] = DB::table('cate_service')->get();
         $data['service'] = DB::table('service')->find($id);
         $tags = DB::table('service_tags')->where('service_id', $id)->pluck('name');
         $array = [];
@@ -170,7 +170,6 @@ class ServiceController extends Controller
             array_push($array, $value);
         }
         $data['str_tags'] = implode(";", $array);
-
         return view('admins.pages.service.edit',$data);
     }
 
@@ -183,6 +182,7 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $image_update = DB::table('service')->where('id', '=', $id)->pluck('image');
         DB::table('service_tags')->where('service_id', $id)->delete();
         $this->validate($request, [
