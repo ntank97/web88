@@ -186,6 +186,33 @@ class DatabaseSeeder extends Seeder
                 'active' => '1'
             ]
         ]);
+        DB::table('partner')->insert([
+            [
+                'name' => 'Viet Phone',
+                'logo' => '2-dunkin-donuts1.jpg',
+                'link' => '0927 15 15 35',
+                'active' => '1'
+            ],
+            [
+                'name' => 'Tâm khoa Shop',
+                'logo' => 'anhduong.jpg',
+                'link' => 'http://tamkhoashop.com/',
+                'active' => '1'
+            ],
+            [
+                'name' => 'Phúc Khang',
+                'logo' => 'bangiatot.jpg    ',
+                'link' => 'http://phuckhang.vn/',
+                'active' => '1'
+            ],
+            [
+                'name' => 'HLC.,JSC',
+                'logo' => 'bisidoanvat.png',
+                'link' => 'http://hlc.com.vn/en/',
+                'active' => '1'
+            ]
+        ]);
+
     }
     private function admin()
     {

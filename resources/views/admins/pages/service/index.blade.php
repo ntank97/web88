@@ -39,7 +39,9 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th>Tên</th>
                                         <th>Tiêu đề</th>
+                                        <th>Mô tả</th>
                                         <th>Tóm tắt </th>
                                         <th>Ảnh</th>
                                         {{--<th>Thể loại</th>--}}
@@ -52,8 +54,10 @@
                                     <tbody>
                                     @foreach($service as $value)
                                         <tr class="odd gradeX" align="center">
-                                            <td>{{$value->name}}</td>
-                                            <td>{{$value->summary}}</td>
+                                            <td>{{$value->name }}</td>
+                                            <td>{{$value->title }}</td>
+                                            <td>{{$value->description }}</td>
+                                            <td>{{$value->summary }}</td>
                                             <td><img width="100px" src="{{asset('')}}assets/img_service/{{$value->image}}">
                                             </td>
                                             {{--<td>{{$value->cate_service}}</td>--}}

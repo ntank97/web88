@@ -51,8 +51,8 @@
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
                                 {{--<li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
-                                        {{--dịch vụ--}}
-                                        {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
+                                {{--dịch vụ--}}
+                                {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
                                 <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
                                         <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
                                 </a>
@@ -78,71 +78,78 @@
                             @csrf
                             <div class="box-body">
                                 {{--<div class="form-group">--}}
-                                    {{--<label>Thể loại</label>--}}
-                                    {{--<select class="form-control" name="cate_service">--}}
-                                        {{--@foreach($cate_service as $cate)--}}
-                                            {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
-                                        {{--@endforeach--}}
-                                    {{--</select>--}}
+                                {{--<label>Thể loại</label>--}}
+                                {{--<select class="form-control" name="cate_service">--}}
+                                {{--@foreach($cate_service as $cate)--}}
+                                {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                {{--@endforeach--}}
+                                {{--</select>--}}
                                 {{--</div>--}}
-
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
+                                           value="{{ old('name') }}">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
                                            value="{{ old('title') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả (*)</label>
-                                    <textarea name = "contentt2" class="form-control" name="summary" cols="50" rows="10"
+                                    <textarea class="form-control" name="description"
                                               placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
                                 </div>
-                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-    
-                            <textarea name = "contentt1" class="form-control" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
+                                    <div class="form-group">
+                                    <textarea name="summary" class="form-control" cols="50" rows="10"
+                                              placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ old('content') }}</textarea>
+                                    <div class="form-group">
+                                        <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
+                                                  class="form-control">{{ old('contentt') }}</textarea>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh nền</label>
                                     <input type="file" id="image" name="image" onchange="showIMG()">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                                <div id="viewImg">
 
-                                </div>
-                            </div>
-
-                            {{-- tag --}}
-                            <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Tags</label>
-                                    <input data-role='tags-input' value="Talentwins" name="tags">
+                                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                    <div id="viewImg">
+
+                                    </div>
+                                </div>
+
+                                {{-- tag --}}
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tags</label>
+                                        <input data-role='tags-input' value="Talentwins" name="tags">
+                                    </div>
+                                </div>
+                                {{-- endtag --}}
+                                {{--Tiêu điểm --}}
+                                <div class="form-group">
+                                    <label>Hiển thị</label>
+                                    <label class="radio-inline">
+                                        <input name="active" value="1" checked="" type="radio">Có
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="active" value="0" type="radio">Không
+                                    </label>
+                                </div>
+                                {{--Hết tiêu điểm--}}
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>
                             </div>
-                            {{-- endtag --}}
-                            {{--Tiêu điểm --}}
-                            <div class="form-group">
-                                <label>Tiêu điểm</label>
-                                <label class="radio-inline">
-                                    <input name="focus" value="1" checked="" type="radio">Có
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="focus" value="0" type="radio">Không
-                                </label>
-                            </div>
-                            {{--Hết tiêu điểm--}}
-
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Thêm</button>
-                            </div>
-
                         </form>
                     </div>
                     <!-- /. box -->
@@ -152,13 +159,11 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
 
 
 @endsection
 <script>
-
 
 
     function showIMG() {

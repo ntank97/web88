@@ -36,7 +36,7 @@ class PartnerController extends Controller
             $file = $request->file('image');
 
             $name = $file->getClientOriginalName();
-            $file->move('assets/partner/', $name);
+            $file->move('assets/img_partner/', $name);
             $file_name = $name;
         }
 
@@ -75,10 +75,10 @@ class PartnerController extends Controller
             $name = $file->getClientOriginalName();
 
            
-            if (file_exists('assets/partner/'.$img_old) && ($img_old !='') ) {
-                unlink('assets/partner/' . $img_old);
+            if (file_exists('assets/img_partner/'.$img_old) && ($img_old !='') ) {
+                unlink('assets/img_partner/' . $img_old);
             }
-            $file->move('assets/partner/', $name);
+            $file->move('assets/img_partner/', $name);
             $file_name = $name;
         }
         else{
@@ -99,8 +99,8 @@ class PartnerController extends Controller
         $img_old=DB::table('partner')->find($id)->logo;
 
         
-        if (file_exists('assets/partner/'.$img_old) && ($img_old !='') ) {
-            unlink('assets/partner/' . $img_old);
+        if (file_exists('assets/img_partner/'.$img_old) && ($img_old !='') ) {
+            unlink('assets/img_partner/' . $img_old);
         }
 
         DB::table('partner')->where('id',$id)->delete();

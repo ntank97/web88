@@ -39,7 +39,7 @@
                                     @foreach($partner as $value)
                                         <tr class="odd gradeX" >
                                             <td >{{$value->name}}</td>
-                                            <td ><img width='100px' src="{{asset('assets/partner/'.$value->logo)}}"></td>
+                                            <td ><img width='100px' src="{{asset('assets/img_partner/'.$value->logo)}}"></td>
                                             <td >{{$value->link}}</td>
                                             <td>
                                                 <a class="btn btn-default" href="{{Route('partner.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>

@@ -15,8 +15,8 @@ class CheckAdmin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
-        if (Auth::check()) {           
+    {
+        if (Auth::check()) {
             return $next($request);
         }
         return redirect()->route('admin.showLoginForm');       

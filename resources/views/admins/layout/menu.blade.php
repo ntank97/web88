@@ -80,7 +80,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>
+{{--                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>--}}
                     <li><a href="{{route('service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
                     <li><a href="{{route('service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
@@ -95,9 +95,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
-                    <li><a href="{{route('otherservice.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('otherservice.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('other_service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('other_service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -110,11 +109,13 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-
+                    <li><a href="{{route('blogs.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
                     <li><a href="{{route('blogs.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('blogs.list')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('blogs.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
+
+
             {{--<li>--}}
                 {{--<a href="pages/widgets.html">--}}
                     {{--<i class="fa fa-th"></i> <span>Widgets</span>--}}

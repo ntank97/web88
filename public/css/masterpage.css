@@ -16,6 +16,21 @@ nav.navbar > .container {
     color: rgba(0,0,0,0.7);
 }
 
+.ghichu{
+    color: #fff;
+    font-weight: 700;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.content__top-title{
+    color: #fff;
+    font-family: RR;
+    font-size: 26px;
+    display: block;
+    position: relative;
+    font-weight: bold;
+    margin-top: 45px;
+}
 .nav-top{
     /*background-color: rgba(214,214,214,1);*/
     background-color: #fff;

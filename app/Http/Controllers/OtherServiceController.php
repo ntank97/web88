@@ -16,12 +16,9 @@ class OtherServiceController extends Controller
 
     public function index()
     {
-        $data['other_service'] = DB::table('other_service')
-            ->select('other_service.*', 'cate_other_service.name as cate_other_service')
-            ->join('cate_other_service', 'other_service.cate_id', '=', 'cate_other_service.id')
-            ->orderByDesc('id')
-            ->get();
-        return view('admins.pages.serviceother.index', $data);
+
+        $data['other_service'] = DB::table('other_service')->orderByDesc('id')->get();
+        return view('admins.pages.other_service.index', $data);
     }
 
     /**
@@ -31,14 +28,9 @@ class OtherServiceController extends Controller
      */
     public function create()
     {
-        $data['cate_other_service']  = DB::table('cate_other_service')->get();
-        return view('admins.pages.serviceother.add',$data);
+        return view('admins.pages.other_service.add');
     }
-    public function createCate()
-    {
-        $data['cate_other_service']  = DB::table('cate_other_service')->get();
-        return view('admins.pages.serviceother.cate',$data);
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,27 +40,74 @@ class OtherServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,
-            [
 
-                'name' => 'required|min:3',
-                'contentt' => 'required',
-            ],
-            [
-                'name.required'=>'Tên ít nhất 3 kí tự',
-            ]);
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'title' => 'required',
+            'description' => 'required|min:3|max:255',
+            'contentt' => 'required',
+            'summary' => 'required',
+            'tags' => 'required',
 
+        ], [
+            'name.required' => 'Tên dịch vụ không được xác định',
+            'name.min' => 'Tên dịch vụ không được ít hơn 3 kí tự',
+            'title.required' => 'Tiêu đề dịch vụ không được để trống',
+            'description.required' => 'Mô tả không được để trống.',
+            'description.min' => 'Mô tả không được ít hơn 3 kí tự.',
+            'description.max' => 'Mô tả không được vượt quá 255 ký tự.',
+            'summary.required' => 'Tóm tắt chưa được xác định',
+            'contentt.required' => 'Nội dung không được xác định',
+            'tags.required' => 'Thể loại không được xác định',
+
+        ]);
+//Kiểm tra định dạng ảnh
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_image_" . $name;
+            while (file_exists('assets/img_other_service/' . $image)) {
+                $image = str_random(4) . "_image_" . $name;
+            }
+            $file->move('assets/img_other_service/', $image);
+            $file_name = $image;
+
+        } else {
+            $file_name = 'logo1.png';
+        }
 
         DB::table('other_service')->insert([
-            'name'=>$request->name,
-            'cate_id'=>$request->cate_other_service,
-            'content' =>$request->contentt,
+            'name' => $request->name,
+            'slug' => str_slug($request->name),
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'description' => $request->description,
+            'content' => $request->contentt,
+            'image' => $file_name,
             'active'=>$request->active,
-            'created_at'=>now(),
+            'created_at' => now()
         ]);
-        return redirect()->back()->with('thongbao', 'Thành công!');
+        $other_service_id = DB::table('other_service')->where('name', $request->name)->orderBy('id', 'desc')->first();
+//Tách chuỗi
+        $explode = explode(';', $request->tags);
 
+        foreach ($explode as $ex) {
+            if ($ex != "") {
+                DB::table('other_service_tags')->insert([
+                    'name' => $ex,
+                    'other_service_id' => $other_service_id->id,
+                    'searchs' => 0,
+                    'created_at'=>now()
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('thongbao', 'Add Success');
     }
+
+
 
 
     /**
@@ -77,28 +116,7 @@ class OtherServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCate(Request $request)
-    {
 
-        $this->validate($request,
-            [
-
-                'name' => 'required|min:3|unique:cate_other_service',
-            ],
-            [
-
-            ]);
-
-
-        DB::table('cate_other_service')->insert([
-            'name'=>$request->name,
-            'slug'=>str_slug($request->name),
-            'active'=>$request->active,
-            'created_at'=>now(),
-        ]);
-        return redirect()->back()->with('thongbao', 'Thành công!');
-
-    }
 
     /**
      * Display the specified resource.
@@ -119,9 +137,15 @@ class OtherServiceController extends Controller
      */
     public function edit($id)
     {
-        $data['cate_other_service'] = DB::table('cate_other_service')->get();
         $data['other_service'] = DB::table('other_service')->find($id);
-        return view('admins.pages.serviceother.edit',$data);
+        $tags = DB::table('other_service_tags')->where('other_service_id', $id)->pluck('name');
+        $array = [];
+        foreach ($tags as $value) {
+            array_push($array, $value);
+        }
+        $data['str_tags'] = implode(";", $array);
+
+        return view('admins.pages.other_service.edit',$data);
     }
 
     /**
@@ -134,25 +158,78 @@ class OtherServiceController extends Controller
     public function update(Request $request, $id)
     {
 
-        $this->validate($request,
-            [
+        $image_update = DB::table('other_service')->where('id', '=', $id)->pluck('image');
+        DB::table('other_service_tags')->where('other_service_id', $id)->delete();
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'title' => 'required',
+            'description' => 'required|min:3|max:255',
+            'contentt' => 'required',
+            'summary' => 'required',
+            'tags' => 'required',
 
-                'name' => 'required|min:3',
-                'contentt' => 'required',
-            ],
-            [
-                'name.required'=>'Tên ít nhất 3 kí tự',
-            ]);
 
+        ], [
+            'name.required' => 'Tên dịch vụ không được xác định',
+            'name.min' => 'Tên dịch vụ không được ít hơn 3 kí tự',
+            'title.required' => 'Tiêu đề dịch vụ không được để trống',
+            'description.required' => 'Mô tả không được để trống.',
+            'description.min' => 'Mô tả không được ít hơn 3 kí tự.',
+            'description.max' => 'Mô tả không được vượt quá 255 ký tự.',
+            'summary.required' => 'Tóm tắt chưa được xác định',
+            'contentt.required' => 'Nội dung không được xác định',
+//            'image.required' => 'Ảnh không được xác định',
+            'tags.required' => 'Thể loại không được xác định',
 
-        DB::table('other_service')->where('id',$id)->update([
-            'name'=>$request->name,
-            'cate_id'=>$request->cate_other_service,
-            'content' =>$request->contentt,
-            'active'=>$request->active,
-            'created_at'=>now(),
         ]);
-        return redirect()->route('otherservice.index')->with('thongbao', 'Thành công!');
+//Kiểm tra định dạng ảnh
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_image_" . $name;
+            while (file_exists('assets/img_other_service/' . $image)) {
+                $image = str_random(4) . "_image_" . $name;
+            }
+            $file->move('assets/img_other_service/', $image);
+            $file_name = $image;
+            if (file_exists('assets/img_other_service/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_other_service/' . $image_update[0]);
+            }
+
+
+        } else {
+            $file_name = DB::table('other_service')->where('id', '=', $id)->pluck('image')->first();
+
+        }
+        DB::table('other_service')->where('id', '=', $id)->update([
+            'name' => $request->name,
+            'slug' => str_slug($request->name),
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'description' => $request->description,
+            'content' => $request->contentt,
+            'image' => $file_name,
+            'updated_at' => now(),
+            'active'=>$request->active,
+        ]);
+        $other_service_id = DB::table('other_service')->where('name', $request->name)->orderBy('id', 'desc')->first();
+//Tách chuỗi
+        $explode = explode(';', $request->tags);
+
+        foreach ($explode as $ex) {
+            if ($ex != "") {
+                DB::table('other_service_tags')->insert([
+                    'name' => $ex,
+                    'other_service_id' => $other_service_id->id,
+                    'searchs' => 0,
+                    'created_at'=>now()
+                ]);
+            }
+        }
+
+        return redirect()->route('other_service.index')->with('thongbao', 'Add Success');
     }
 
     /**
@@ -163,14 +240,15 @@ class OtherServiceController extends Controller
      */
     public function destroy($id)
     {
+        $image_update = DB::table('other_service')->where('id', '=', $id)->pluck('image');
+
+        if (file_exists('assets/img_other_service/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_other_service/' . $image_update[0]);
+        }
         DB::table('other_service')->where('id','=',$id)->delete();
-        return redirect()->route('otherservice.index')->with('thongbao','Xóa thành công!');
+        return redirect()->route('other_service.index')->with('thongbao','Xóa thành công!');
     }
-    public function destroyCate($id)
-    {
-        DB::table('cate_other_service')->where('id','=',$id)->delete();
-        return redirect()->back()->with('thongbao','Xóa thành công!');
-    }
+
 
     public function setactive($id, $status)
     {
@@ -180,11 +258,5 @@ class OtherServiceController extends Controller
         return redirect()->back()->with('thanhcong', 'Thành công');
     }
 
-    public function setactiveCate($id, $status)
-    {
-        DB::table('cate_other_service')->where('id', '=', $id)->update([
-            'active' => $status,
-        ]);
-        return redirect()->back()->with('thanhcong', 'Thành công');
-    }
+
 }

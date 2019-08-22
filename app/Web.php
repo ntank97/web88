@@ -25,7 +25,7 @@ class Web extends Model
 
     public function getStatus()
     {
-        return array_get($this->status,$this->pro_active,'[N\A]');
+        return array_get($this->status,$this->active,'[N\A]');
     }
 
     public function category()

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CateWeb;
+use App\OtherService;
+use App\Partner;
+use App\Service;
 use App\Web;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,6 +24,12 @@ class FrontendController extends Controller
 
         $contact = DB::table('contact')->first();
         View::Share('contact',$contact);
+
+        $servis = Service::where('active', Service::STATUS_PUBLIC)->get();
+        View::Share('servis',$servis);
+
+        $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
+        View::Share('otherservi',$otherservi);
     }
 
     public function khoGiaoDien(Request $request)
@@ -61,7 +70,6 @@ class FrontendController extends Controller
 
     public function dangki(Request $request)
     {
-//        dd($request->all());
         $this->validate($request,[
             'w_name' => 'required|min:3',
             'w_email' => 'required|unique:users,email',
@@ -115,9 +123,45 @@ class FrontendController extends Controller
         return view('pages.lienhe',$viewData);
     }
 
+    public function getListService(Request $request)
+    {
+        $url = $request->segment(2);
+        $services = Service::where([
+            'slug' => $url,
+            'active' => Service::STATUS_PUBLIC
+        ])->first();
+        $viewData = [
+            'services' => $services
+        ];
+        return view('pages.dichvu',$viewData);
+    }
+
+    public function getListOtherService(Request $request)
+    {
+        $url = $request->segment(2);
+        $otherService = OtherService::where([
+            'slug' => $url,
+            'active' => OtherService::STATUS_PUBLIC
+        ])->first();
+        $viewData = [
+            'otherService' => $otherService
+        ];
+        return view('pages.dichvukhac',$viewData);
+    }
+
+    public function getListNews()
+    {
+        
+    }
     public function khachHang()
     {
-        return view('pages.khachhang');
+        $partners = Partner::all();
+        return view('pages.khachhang',compact('partners'));
+    }
+
+    public function gioiThieuDichVu()
+    {
+        return view('pages.gioithieudichvu');
     }
 
     public function seo()
@@ -159,10 +203,7 @@ class FrontendController extends Controller
     {
         return view('pages.domaingiare');
     }
-    public function gioiThieuDichVu()
-    {
-        return view('pages.gioithieudichvu');
-    }
+
     public function hinhThucThanhToan()
     {
         return view('pages.hinhthucthanhtoan');
@@ -216,7 +257,12 @@ class FrontendController extends Controller
     public function dichVuThietKeWebGiaRe()
     {
         $sliders = DB::table('slider_content')->where('active',1)->get();
-//        dd($sliders);
-        return view('pages.dichvu-thietkewebgiare',compact('sliders'));
+
+        $service = DB::table('service')->where('active',1)->get();
+        $viewData = [
+            'sliders' => $sliders,
+            'service' => $service,
+        ];
+        return view('pages.dichvu-thietkewebgiare',$viewData);
     }
 }

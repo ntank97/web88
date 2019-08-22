@@ -72,7 +72,7 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Sửa dịch vụ</h3>
+                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ</h3>
                         <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}"
                               enctype="multipart/form-data">
                             @csrf
@@ -85,33 +85,37 @@
                                 {{--@endforeach--}}
                                 {{--</select>--}}
                                 {{--</div>--}}
-
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
+                                           value="{{$service->name}}">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                                           value="{{ $service->name }}">
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
+                                           value="{{ $service->title }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả (*)</label>
-                                    <textarea name="contentt2" class="form-control" name="summary" cols="50" rows="10"
-                                              placeholder="Nhập tóm tắt nội dung">{{ $service->description }}</textarea>
+                                    <textarea class="form-control" name="description"
+                                              placeholder="Nhập tóm tắt nội dung">{{ $service->description}}</textarea>
                                 </div>
                                 <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-
-                            <textarea name="contentt1" class="form-control" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{ $service->summary}}</textarea>
+                                    <textarea name="summary" class="form-control" cols="50" rows="10"
+                                              placeholder="Nhập tóm tắt nội dung">{{ $service->summary }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ $service->content }}</textarea>
+                                    <div class="form-group">
+                                        <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
+                                                  class="form-control">{{ $service->content }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh nền</label>
+                                        <input type="file" id="image" name="image" onchange="showIMG()">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh nền</label>
-                                    <input type="file" id="image" name="image" onchange="showIMG()">
-                                </div>
-
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">
@@ -129,12 +133,12 @@
                                 {{-- endtag --}}
                                 {{--Tiêu điểm --}}
                                 <div class="form-group">
-                                    <label>Tiêu điểm</label>
+                                    <label>Hiển thị</label>
                                     <label class="radio-inline">
-                                        <input name="focus" value="1" checked="" type="radio">Có
+                                        <input name="active" value="1" checked="" type="radio">Có
                                     </label>
                                     <label class="radio-inline">
-                                        <input name="focus" value="0" type="radio">Không
+                                        <input name="active" value="0" type="radio">Không
                                     </label>
                                 </div>
                                 {{--Hết tiêu điểm--}}
@@ -152,7 +156,6 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
 
 
