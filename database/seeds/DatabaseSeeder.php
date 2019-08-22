@@ -213,6 +213,56 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
+        DB::table('other_service')->insert([
+            [
+                'name' => 'GIỚI THIỆU DỊCH VỤ THIẾT KẾ WEBSITE',
+                'slug' => 'gioi-thieu-dich-vu-thiet-ke-website',
+                'title' => 'GIỚI THIỆU DỊCH VỤ THIẾT KẾ WEBSITE',
+                'description' => 'Chúng tôi luôn nỗ lực tạo nên những sản phẩm tuyệt vời trên Internet. Sống và làm việc cùng Internet',
+                'image' => 'gioi-thieu-dich-vu-thiet-ke-website-400x250.jpg',
+                'summary' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình',
+                'content' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình
+                    Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
+                    Các chức năng thường có trong một website:',
+            ],
+            [
+                'name' => 'BẢNG GIÁ THIẾT KẾ WEBSITE',
+                'slug' => 'tinh-nang-va-bang-gia',
+                'title' => 'BẢNG GIÁ THIẾT KẾ WEBSITE',
+                'description' => '',
+                'image' => 'tinh-nang-va-bang-gia.jpg',
+                'summary' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình',
+                'content' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình
+                    Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
+                    Các chức năng thường có trong một website:',
+            ],
+        ]);
+
+        DB::table('other_service')->insert([
+            [
+                'name' => 'GIỚI THIỆU DỊCH VỤ THIẾT KẾ WEBSITE',
+                'slug' => 'gioi-thieu-dich-vu-thiet-ke-website',
+                'title' => 'GIỚI THIỆU DỊCH VỤ THIẾT KẾ WEBSITE',
+                'description' => 'Chúng tôi luôn nỗ lực tạo nên những sản phẩm tuyệt vời trên Internet. Sống và làm việc cùng Internet',
+                'image' => 'gioi-thieu-dich-vu-thiet-ke-website-400x250.jpg',
+                'summary' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình',
+                'content' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình
+                    Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
+                    Các chức năng thường có trong một website:',
+            ],
+            [
+                'name' => 'BẢNG GIÁ THIẾT KẾ WEBSITE',
+                'slug' => 'tinh-nang-va-bang-gia',
+                'title' => 'BẢNG GIÁ THIẾT KẾ WEBSITE',
+                'description' => '',
+                'image' => 'tinh-nang-va-bang-gia.jpg',
+                'summary' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình',
+                'content' => 'Giới thiệu dịch vụ thiết kế web nhanh. Ngày nay, do nhu cầu phát triển kinh tế xã hội, các công ty, doanh nghiệp được thành lập ngày càng nhiều, việc trao đổi buôn bán giữa các lĩnh vực diễn ra ngày càng đa dạng, chính vì vậy mỗi công ty cần có một website để quảng bá cho thương hiệu của mình
+                    Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
+                    Các chức năng thường có trong một website:',
+            ],
+        ]);
+
     }
     private function admin()
     {

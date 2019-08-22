@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blogs;
 use App\CateWeb;
 use App\OtherService;
 use App\Partner;
@@ -30,6 +31,9 @@ class FrontendController extends Controller
 
         $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
         View::Share('otherservi',$otherservi);
+
+        $news = Blogs::where('active', Blogs::STATUS_PUBLIC)->get();
+        View::Share('news',$news);
     }
 
     public function khoGiaoDien(Request $request)
@@ -125,7 +129,7 @@ class FrontendController extends Controller
 
     public function getListService(Request $request)
     {
-        $url = $request->segment(2);
+        $url = $request->segment(1);
         $services = Service::where([
             'slug' => $url,
             'active' => Service::STATUS_PUBLIC
@@ -138,7 +142,7 @@ class FrontendController extends Controller
 
     public function getListOtherService(Request $request)
     {
-        $url = $request->segment(2);
+        $url = $request->segment(1);
         $otherService = OtherService::where([
             'slug' => $url,
             'active' => OtherService::STATUS_PUBLIC
@@ -151,8 +155,14 @@ class FrontendController extends Controller
 
     public function getListNews()
     {
-        
+//        $url = $request->segment(2)
     }
+
+    public function tinTuc()
+    {
+        return view('pages.tintuc');
+    }
+
     public function khachHang()
     {
         $partners = Partner::all();
@@ -240,10 +250,7 @@ class FrontendController extends Controller
     {
         return view('pages.thietkewebtrongoigiare');
     }
-    public function tinTuc()
-    {
-        return view('pages.tintuc');
-    }
+
     public function tuyenDung()
     {
         return view('pages.tuyendung');

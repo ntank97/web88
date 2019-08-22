@@ -46,7 +46,7 @@ class WarehouseWebController extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
-            $table->string('email')->unique();;
+            $table->string('email')->unique();
             $table->string('phone');
             $table->timestamps();
         });
@@ -86,7 +86,6 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('content');
-            $table->integer('focus');
             $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
 //            $table->bigInteger('cate_id')->unsigned();
@@ -226,7 +225,7 @@ class WarehouseWebController extends Migration
            $table->string('name')->unique();
            $table->string('slug');
            $table->string('title');
-           $table->string('description');
+           $table->string('description')->nullable();
            $table->string('image');
            $table->text('summary');
            $table->text('content');
