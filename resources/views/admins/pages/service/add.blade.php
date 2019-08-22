@@ -50,9 +50,9 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        dịch vụ
-                                        <span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>
+                                {{--<li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
+                                        {{--dịch vụ--}}
+                                        {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
                                 <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
                                         <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
                                 </a>
@@ -77,38 +77,34 @@
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label>Thể loại</label>
-                                    <select class="form-control" name="cate_service">
-                                        @foreach($cate_service as $cate)
-                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--<label>Thể loại</label>--}}
+                                    {{--<select class="form-control" name="cate_service">--}}
+                                        {{--@foreach($cate_service as $cate)--}}
+                                            {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
-                                           value="{{ old('name') }}">
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
-                                           value="{{ old('title') }}">
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title" value="{{ old('title') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Miêu tả dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập miêu tả" name="description"
-                                           value="{{ old('description') }}">
+                                    <label for="exampleInputEmail1">Mô tả (*)</label>
+                                    <textarea class="form-control" name="description" placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
                                 </div>
-                                <div class="form-group">
                                 <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="summary" cols="50" rows="10" placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    <textarea name = "summary" class="form-control" cols="50" rows="10" placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">Nội dung (*)</label>
                                 <div class="form-group">
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung" class="form-control">{{ old('content') }}</textarea>
+                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung" class="form-control">{{ old('contentt') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh nền</label>
@@ -145,7 +141,6 @@
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
-
                         </form>
                     </div>
                     <!-- /. box -->
@@ -155,7 +150,6 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
 
 

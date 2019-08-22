@@ -1,88 +1,154 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Sửa blogs
+    Blogs
 @endsection
-
 @section('content')
-
-<div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Sửa blogs
+                Blogs
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Sửa blogs</li>
+                <li class="active">Blogs</li>
             </ol>
         </section>
         <br>
-        <div class="box box-primary">
-            {{-- @if(session('thongbao'))
+        <div>
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+
+                </div>
+
+            @endif
+            @if(session('thongbao'))
                 <div class="alert alert-success">
                     {{session('thongbao')}}
                 </div>
-            @endif --}}
-            <form role="form" method="POST" action="{{Route('blogs.edit',['id'=>$blogs->id])}}" enctype="multipart/form-data">
-                @csrf
-                <div class="box-body">
-
-                     <div class="form-group">
-                            <label for="exampleInputEmail1">Tóm tắt tin tức (*)</label>
-                            <textarea class="form-control" name="summary" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{ $blogs->summary }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nội dung (*)</label>
-                            <textarea name="detail" rows="10" placeholder="Nhập nội dung"
-                                      class="form-control">{{ $blogs->detail }}</textarea>
-                        </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="active" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Active</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="view" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">View</label>
-                    </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Thêm</button>
-                </div>
-            </form>
+            @endif
         </div>
-    
-        <script>
-            CKEDITOR.replace('contentt', {
-                    filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
-                    filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
-                    filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
-                    filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                    filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                    filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-                });
 
-            function showIMG() {
-                var fileInput = document.getElementById('image');
-                var filePath = fileInput.value; //lấy giá trị input theo id
-                var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-                //Kiểm tra định dạng
-                if (!allowedExtensions.exec(filePath)) {
-                    alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                    fileInput.value = '';
-                    return false;
-                } else {
-                    //Image preview
-                    if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
-                }
-            }
-    
-        </script>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            {{-- Mục lục --}}
+                            <h3 class="box-title">Danh mục</h3>
+
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="box-body no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="{{route('blogs.create')}}"><i class="fa fa-envelope-o"></i> Thêm Blogs
+                                        <span class="label label-primary pull-right"></span></a></li>
+                                </a>
+                                </li>
+                                <li><a href="{{route('blogs.list')}}"><i class="fa fa-file-text-o"></i> Danh
+                                        sách</a></li>
+
+                            </ul>
+                        </div>
+
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /. box -->
+                    {{-- End mục luc --}}
+
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="box box-primary">
+                        <h3 style="text-align: left; padding-left: 5px">Thêm Blogs</h3>
+                        <form role="form" method="POST" action="{{route('blogs.store')}}"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <div class="box-body">
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tiêu đề Blogs (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
+                                           value="{{ $blogs->name }}">
+                                </div>
+                                <label for="exampleInputEmail1">Tóm tắt Blogs (*)</label>
+                                <div class="form-group">
+
+                            <textarea class="form-control" name="summary" cols="50" rows="10"
+                                      placeholder="Nhập tóm tắt nội dung">{{$blogs->summary }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nội dung (*)</label>
+                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
+                                              class="form-control">{{ $blogs->detail }}</textarea>
+                                </div>
+                                {{-- tag --}}
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tags</label>
+                                        <input data-role='tags-input' value="{{$str_tags}}" name="tags">
+                                    </div>
+                                </div>
+                                {{-- endtag --}}
+
+                            </div>
+
+
+
+
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /. box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+
     </div>
-</div>
+
+
 @endsection
+<script>
+
+
+
+    function showIMG() {
+        var fileInput = document.getElementById('image');
+        var filePath = fileInput.value; //lấy giá trị input theo id
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+        //Kiểm tra định dạng
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
+
+</script>
+

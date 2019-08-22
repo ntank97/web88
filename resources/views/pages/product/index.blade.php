@@ -2,7 +2,7 @@
 @section('content')
 <div class="content">
     <div class="content__top">
-        <div class="content__top-img">
+        <div class="content__top-img" style=" background-image:url('{{ asset('image/banner-top.jpg') }}')">
             <div class="col-12 col-md-12 content-block">
                 <h3 class="content__top-title wow bounceInLeft">
                     Hơn 1000 giao diện web cực đẹp và liên tục được cập nhật

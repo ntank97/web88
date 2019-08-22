@@ -17,7 +17,6 @@ class Controller extends BaseController
         $data['web_count'] = DB::table('web')->count();
         $data['cate_web_count'] = DB::table('cate_web')->count();
         $data['service_count'] = DB::table('service')->count();
-        $data['cate_service_count'] = DB::table('cate_service')->count();
         $data['other_service_count'] = DB::table('other_service')->count();
         $data['cate_other_service_count'] = DB::table('cate_other_service')->count();
         view()->share($data);

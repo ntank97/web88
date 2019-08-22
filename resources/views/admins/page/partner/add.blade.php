@@ -2,7 +2,6 @@
 @section('title')
     Thêm đối tác
 @endsection
-
 @section('content')
 
     <div class="content-wrapper">

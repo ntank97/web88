@@ -2,7 +2,7 @@
 @section('content')
 <div class="content">
     <div class="content__top">
-        <div class="content__top-img">
+        <div class="content__top-img" style=" background-image:url('{{ asset('image/banner-top.jpg') }}')">
             <div class="col-12 col-md-12 content-block">
 
                 <h3 class="content__top-title wow bounceInLeft">
@@ -13,8 +13,7 @@
                 </p>
                 <form action=""  style="width: 100%;padding-left:40%">
                     <div class="input-group col-sm-4 form__search">
-                        <input  class="form-control"
-                               placeholder="Tìm kiếm" name="name" value="{{ \Request::get('name') }}">
+                        <input  class="form-control" placeholder="Tìm kiếm" name="name" value="{{ \Request::get('name') }}">
                         <button class="input-group-addon btn btn-primary btn-search" >
                             <i class="fas fa-search"></i>
                         </button>
@@ -32,7 +31,7 @@
                     @foreach($cateweb as $cate)
                 <div class="col-md-3 col-sm-6" style="margin-bottom:15px;">
                     <center>
-                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
+                        {{--<a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>--}}
                         <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ $cate->icon }}" alt=""></a>
                         <p><a href="">{{ $cate->name }}</a></p>
                     </center>

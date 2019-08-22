@@ -39,12 +39,12 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Tên dịch vụ</th>
+                                        <th>Tên</th>
                                         <th>Tiêu đề</th>
                                         <th>Mô tả</th>
                                         <th>Tóm tắt </th>
                                         <th>Ảnh</th>
-                                        <th>Thể loại</th>
+                                        {{--<th>Thể loại</th>--}}
                                         <th>Lượt xem</th>
 
                                         <th class="col-md-3">Hành động</th>
@@ -60,7 +60,7 @@
                                             <td>{{$value->summary }}</td>
                                             <td><img width="100px" src="{{asset('')}}assets/img_service/{{$value->image}}">
                                             </td>
-                                            <td>{{$value->cate_service}}</td>
+                                            {{--<td>{{$value->cate_service}}</td>--}}
                                             <td>{{$value->view}}</td>
 
                                             <td>

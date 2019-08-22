@@ -12,10 +12,13 @@
 Route::get('/','HomeController@index')->name('home');
 Route::get('kho-giao-dien','FrontendController@khoGiaoDien')->name('kho.giao.dien');
 Route::get('kho-giao-dien/{slug}-{id}','FrontendController@getListProduct')->name('get.list.product');
-Route::get('/dich-vu/{slug}','FrontendController@getListService')->name('get.list.service');
+Route::get('dich-vu/{slug}','FrontendController@getListService')->name('get.list.service');
 Route::get('lien-he','FrontendController@lienHe')->name('lien.he');
 Route::get('lien-he/{slug}-{id}','FrontendController@getListProduct');
 Route::get('khach-hang','FrontendController@khachHang')->name('khach.hang');
+Route::get('other/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
+Route::get('news/{slug}','FrontendController@getListNews')->name('get.list.news');
+
 Route::get('seo','FrontendController@seo')->name('seo');
 Route::get('thiet-ke-website','FrontendController@thietKeWebsite')->name('thiet.ke.website');
 Route::get('bang-gia-thiet-ke-website', 'FrontendController@bangGiaThietKeWebsite')->name('bang.gia.thiet.ke.website');
@@ -25,7 +28,7 @@ Route::get('dich-vu-seo-website', 'FrontendController@dichVuSeoWebsite')->name('
 Route::get('dich-vu-viet-bai-chuan-seo', 'FrontendController@dichVuVietBaiChuanSeo')->name('dich.vu.viet.bai.chuan.seo');
 Route::get('dieu-kien-va-chinh-sach', 'FrontendController@dieuKienVaChinhSach')->name('dieu.kien.va.chinh.sach');
 Route::get('domain-gia-re', 'FrontendController@domaiGiaRe')->name('domain.gia.re');
-Route::get('gioi-thieu-dich-vu', 'FrontendController@gioiThieuDichVu')->name('gioi.thieu.dich.vu');
+
 Route::get('hinh-thuc-thanh-toan', 'FrontendController@hinhThucThanhToan')->name('hinh.thuc.thanh.toan');
 Route::get('hosting-chat-luong-cao', 'FrontendController@hostingChatLuongCao')->name('hosting.chat.luong.cao');
 Route::get('ho-tro-khach-hang', 'FrontendController@hoTroKhachHang')->name('ho.tro.khach.hang');
@@ -88,11 +91,15 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     });
     Route::prefix('blogs')->group(function(){
         Route::get('list','BlogsController@list')->name('blogs.list');
-        Route::get('add','BlogsController@add')->name('blogs.add');
-        Route::post('add','BlogsController@store')->name('blogs.add');
+        Route::get('add','BlogsController@create')->name('blogs.create');
+        Route::post('add','BlogsController@store')->name('blogs.store');
+
+        Route::get('/destroy/{id}', 'BlogsController@destroy')->name('webstore.destroy');
+        Route::get('/setactive/{id}/{status}', 'BlogsController@setactive')->name('webstore.setactive');
+
         Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
         Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
-        Route::get('delete/{id}','BlogsController@delete')->name('blogs.delete');
+
     });
     //    News
     Route::prefix('web-store')->group(function () {
@@ -143,3 +150,6 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('otherservice.setactiveCate');
     });
 });
+
+
+
