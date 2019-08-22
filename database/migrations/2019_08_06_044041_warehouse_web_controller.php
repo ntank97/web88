@@ -176,7 +176,7 @@ class WarehouseWebController extends Migration
             $table->timestamps();
         });
         //Blogs
-        Schema::create('cate-blog', function (Blueprint $table) {
+        Schema::create('cate_blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->tinyInteger('active');
@@ -190,6 +190,12 @@ class WarehouseWebController extends Migration
             $table->text('detail');
             $table->tinyInteger('active')->default(0);
             $table->integer('view')->default(0);
+
+            $table->bigInteger('cate_id')->unsigned();
+            $table->foreign('cate_id')
+                ->references('id')
+                ->on('cate_blogs')
+                ->onDelete('cascade');
             $table->bigInteger('admin_id')->unsigned();
             $table->foreign('admin_id')
                 ->references('id')
@@ -212,25 +218,26 @@ class WarehouseWebController extends Migration
         });
 
         // dich vu khac
-        Schema::create('cate_other_service', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->tinyInteger('active')->default(0);
-            $table->string('slug');
-            $table->timestamps();
-
-
-        });
+//        Schema::create('cate_other_service', function (Blueprint $table) {
+//            $table->bigIncrements('id');
+//            $table->string('name');
+//            $table->tinyInteger('active')->default(0);
+//            $table->string('slug');
+//            $table->timestamps();
+//
+//
+//        });
         Schema::create('other_service', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('slug');
+            $table->string('title');
+            $table->string('description');
+            $table->string('image');
+            $table->text('summary');
             $table->text('content');
+            $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
-                ->references('id')
-                ->on('cate_other_service')
-                ->onDelete('cascade');
             $table->timestamps();
 
         });

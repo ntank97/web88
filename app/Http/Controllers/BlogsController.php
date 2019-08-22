@@ -27,7 +27,7 @@ class BlogsController extends Controller
             array_push($array, $value);
         }
         $data['str_tags'] = implode(";", $array);
-dd($data);
+
         if (Gate::allows('edit', DB::table('blogs')->find($id))) {
             return view('admins/page/blogs/edit_blogs', $data);
         } else {
