@@ -89,17 +89,21 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
         Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
     });
-    Route::prefix('blogs')->group(function(){
-        Route::get('list','BlogsController@list')->name('blogs.list');
-        Route::get('add','BlogsController@create')->name('blogs.create');
-        Route::post('add','BlogsController@store')->name('blogs.store');
 
-        Route::get('/destroy/{id}', 'BlogsController@destroy')->name('webstore.destroy');
-        Route::get('/setactive/{id}/{status}', 'BlogsController@setactive')->name('webstore.setactive');
-
-        Route::get('edit/{id}','BlogsController@edit')->name('blogs.edit');
-        Route::post('edit/{id}','BlogsController@update')->name('blogs.edit');
-
+    Route::prefix('blogs')->group(function () {
+        Route::get('/list', 'BlogsController@index')->name('blogs.index');
+        Route::get('/add', 'BlogsController@create')->name('blogs.create');
+        Route::post('/add', 'BlogsController@store')->name('blogs.store');
+        Route::get('/add-cate', 'BlogsController@createCate')->name('blogs.createCate');
+        Route::post('/add-cate', 'BlogsController@storeCate')->name('blogs.storeCate');
+        Route::get('/edit/{id}', 'BlogsController@edit')->name('blogs.edit');
+        Route::post('/edit/{id}', 'BlogsController@update')->name('blogs.update');
+        Route::get('/destroy/{id}', 'BlogsController@destroy')->name('blogs.destroy');
+        Route::get('/destroy-cate/{id}', 'BlogsController@destroyCate')->name('blogs.destroyCate');
+        Route::get('/show/{id}', 'BlogsController@show')->name('blogs.show');
+        Route::get('/detail/{id}', 'BlogsController@detail')->name('blogs.detail');
+        Route::get('/setactive/{id}/{status}', 'BlogsController@setactive')->name('blogs.setactive');
+        Route::get('/setactive-cate/{id}/{status}', 'BlogsController@setactiveCate')->name('blogs.setactiveCate');
     });
     //    News
     Route::prefix('web-store')->group(function () {
@@ -122,8 +126,8 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('/list', 'ServiceController@index')->name('service.index');
         Route::get('/add', 'ServiceController@create')->name('service.create');
         Route::post('/add', 'ServiceController@store')->name('service.store');
-        Route::get('/add-cate', 'ServiceController@createCate')->name('service.createCate');
-        Route::post('/add-cate', 'ServiceController@storeCate')->name('service.storeCate');
+//        Route::get('/add-cate', 'ServiceController@createCate')->name('service.createCate');
+//        Route::post('/add-cate', 'ServiceController@storeCate')->name('service.storeCate');
         Route::get('/edit/{id}', 'ServiceController@edit')->name('service.edit');
         Route::post('/edit/{id}', 'ServiceController@update')->name('service.update');
         Route::get('/destroy/{id}', 'ServiceController@destroy')->name('service.destroy');
@@ -135,19 +139,19 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
     });
 //    Other Service
     Route::prefix('other-service')->group(function () {
-        Route::get('/list', 'OtherServiceController@index')->name('otherservice.index');
-        Route::get('/add', 'OtherServiceController@create')->name('otherservice.create');
-        Route::post('/add', 'OtherServiceController@store')->name('otherservice.store');
-        Route::get('/add-cate', 'OtherServiceController@createCate')->name('otherservice.createCate');
-        Route::post('/add-cate', 'OtherServiceController@storeCate')->name('otherservice.storeCate');
-        Route::get('/edit/{id}', 'OtherServiceController@edit')->name('otherservice.edit');
-        Route::post('/edit/{id}', 'OtherServiceController@update')->name('otherservice.update');
-        Route::get('/destroy/{id}', 'OtherServiceController@destroy')->name('otherservice.destroy');
-        Route::get('/destroy-cate/{id}', 'OtherServiceController@destroyCate')->name('otherservice.destroyCate');
-        Route::get('/show/{id}', 'OtherServiceController@show')->name('otherservice.show');
-        Route::get('/detail/{id}', 'OtherServiceController@detail')->name('otherservice.detail');
-        Route::get('/setactive/{id}/{status}', 'OtherServiceController@setactive')->name('otherservice.setactive');
-        Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('otherservice.setactiveCate');
+        Route::get('/list', 'OtherServiceController@index')->name('other_service.index');
+        Route::get('/add', 'OtherServiceController@create')->name('other_service.create');
+        Route::post('/add', 'OtherServiceController@store')->name('other_service.store');
+//        Route::get('/add-cate', 'OtherServiceController@createCate')->name('other_service.createCate');
+//        Route::post('/add-cate', 'OtherServiceController@storeCate')->name('other_service.storeCate');
+        Route::get('/edit/{id}', 'OtherServiceController@edit')->name('other_service.edit');
+        Route::post('/edit/{id}', 'OtherServiceController@update')->name('other_service.update');
+        Route::get('/destroy/{id}', 'OtherServiceController@destroy')->name('other_service.destroy');
+        Route::get('/destroy-cate/{id}', 'OtherServiceController@destroyCate')->name('other_service.destroyCate');
+        Route::get('/show/{id}', 'OtherServiceController@show')->name('other_service.show');
+        Route::get('/detail/{id}', 'OtherServiceController@detail')->name('other_service.detail');
+        Route::get('/setactive/{id}/{status}', 'OtherServiceController@setactive')->name('other_service.setactive');
+        Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('other_service.setactiveCate');
     });
 });
 

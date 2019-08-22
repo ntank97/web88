@@ -198,21 +198,21 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'password' => bcrypt('123456'),
         ]);
-        DB::table('cate-blog')->insert([
-            'name' => 'Seo',
-        ]);
-
-        DB::table('blogs')->insert([
-            'summary' => 'Conong nghe......',
-            'detail' => 'dasdsdab đ sá ÁHASASA',
-            'image' => 'imgae-1.jpg',
-            'title' => 'dsdadasd dsda',
-            'id_blog'=>1,
-            'active'=>0,
-            'view'=>100,
-            'admin_id'=>'1',
-            'created_at' => now(),
-        ]);
+//        DB::table('cate-blog')->insert([
+//            'name' => 'Seo',
+//        ]);
+//
+//        DB::table('blogs')->insert([
+//            'summary' => 'Conong nghe......',
+//            'detail' => 'dasdsdab đ sá ÁHASASA',
+//            'image' => 'imgae-1.jpg',
+//            'title' => 'dsdadasd dsda',
+//            'id_blog'=>1,
+//            'active'=>0,
+//            'view'=>100,
+//            'admin_id'=>'1',
+//            'created_at' => now(),
+//        ]);
 
 
     }

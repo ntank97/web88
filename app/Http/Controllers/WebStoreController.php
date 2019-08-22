@@ -67,6 +67,7 @@ class WebStoreController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $this->validate($request,
             [
@@ -84,10 +85,10 @@ class WebStoreController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_web/' . $image)) {
+            while (file_exists('assets/img_webs/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/img_web/', $image);
+            $file->move('assets/img_webs/', $image);
             $file_name = $image;
 
         } else {
@@ -212,13 +213,13 @@ class WebStoreController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_web/' . $image)) {
+            while (file_exists('assets/img_webs/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/img_web/', $image);
+            $file->move('assets/img_webs/', $image);
             $file_name = $image;
-            if (file_exists('assets/img_web/' . $image_update[0]) && $image_update[0] != '') {
-                unlink('assets/img_web/' . $image_update[0]);
+            if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_webs/' . $image_update[0]);
             }
 
 
@@ -249,13 +250,25 @@ class WebStoreController extends Controller
      */
     public function destroy($id)
     {
+        $image_update = DB::table('web')->where('id', '=', $id)->pluck('image');
+        if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_webs/' . $image_update[0]);
+        }
         DB::table('web')->where('id', '=', $id)->delete();
+
         return redirect()->route('webstore.index')->with('thongbao', 'Xóa thành công!');
     }
 
     public function destroyCate($id)
     {
+        $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('icon');
+//        dd($image_update);
+        if (file_exists('assets/img_icon/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_icon/' . $image_update[0]);
+        }
+
         DB::table('cate_web')->where('id', '=', $id)->delete();
+
         return redirect()->back()->with('thongbao', 'Xóa thành công!');
     }
 

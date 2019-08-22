@@ -43,7 +43,7 @@ class WarehouseWebController extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
-            $table->string('email')->unique();;
+            $table->string('email')->unique();
             $table->string('phone');
             $table->timestamps();
         });
@@ -65,6 +65,9 @@ class WarehouseWebController extends Migration
         /**
          * Dịch vụ - Thiết kế - Seo
          */
+        /**
+         * Dịch vụ - Thiết kế - Seo
+         */
 //        Schema::create('cate_service', function (Blueprint $table) {
 //            $table->bigIncrements('id');
 //            $table->string('name');
@@ -82,7 +85,7 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('content');
-            $table->integer('focus');
+//            $table->integer('focus');
             $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
 //            $table->bigInteger('cate_id')->unsigned();
@@ -177,30 +180,34 @@ class WarehouseWebController extends Migration
             $table->timestamps();
         });
         //Blogs
-        Schema::create('cate-blog', function (Blueprint $table) {
+        Schema::create('cate_blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->tinyInteger('active');
+            $table->timestamps();
         });
-        //Blogs
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('image');
             $table->text('summary');
             $table->text('detail');
-            $table->string('image');
-            $table->string('title');
-            $table->bigInteger('id_blog')->unsigned();
-            $table->foreign('id_blog')
-                ->references('id')
-                ->on('cate-blog')
-                ->onDelete('cascade');
             $table->tinyInteger('active')->default(0);
             $table->integer('view')->default(0);
+
+            $table->bigInteger('cate_id')->unsigned();
+            $table->foreign('cate_id')
+                ->references('id')
+                ->on('cate_blogs')
+                ->onDelete('cascade');
             $table->bigInteger('admin_id')->unsigned();
             $table->foreign('admin_id')
                 ->references('id')
                 ->on('admin')
                 ->onDelete('cascade');
             $table->timestamps();
+
+
         });
         Schema::create('blog_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -214,14 +221,7 @@ class WarehouseWebController extends Migration
             $table->integer('searchs');
         });
 
-        // dich vu khac
-//        Schema::create('cate_other_service', function (Blueprint $table) {
-//        $table->bigIncrements('id');
-//          $table->string('name');
-//           $table->tinyInteger('active')->default(0);
-//           $table->string('slug');
-//           $table->timestamps();
-//       });
+
         Schema::create('other_service', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
@@ -235,6 +235,17 @@ class WarehouseWebController extends Migration
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
 
+        });
+        Schema::create('other_service_tags', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->bigInteger('other_service_id')->unsigned();
+            $table->foreign('other_service_id')
+                ->references('id')
+                ->on('other_service')
+                ->onDelete('cascade');
+            $table->timestamps();
+            $table->integer('searchs');
         });
 
     }

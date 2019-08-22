@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Danh sách dịch vụ khác
+    Dịch vụ
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
 
             <section class="content-header">
                 <h1>
-                    Danh Sách dịch vụ khác
+                    Dịch vụ
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">dịch vụ khác</li>
+                    <li class="active">Dịch vụ</li>
                 </ol>
             </section>
             <section class="content">
@@ -29,7 +29,7 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <a href="{{route('otherservice.create')}}" class="btn btn-success">Thêm</a>
+                                <a href="{{route('other_service.create')}}" class="btn btn-success">Thêm</a>
                             </div>
                             <div class="box-header">
 
@@ -39,10 +39,14 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th>Tên</th>
                                         <th>Tiêu đề</th>
-                                        <th>Thể loại</th>
-                                        <th>Thời gian</th>
-                                        <th>Trạng thái</th>
+                                        <th>Mô tả</th>
+                                        <th>Tóm tắt </th>
+                                        <th>Ảnh</th>
+                                        {{--<th>Thể loại</th>--}}
+                                        <th>Lượt xem</th>
+
                                         <th class="col-md-3">Hành động</th>
 
                                     </tr>
@@ -50,17 +54,15 @@
                                     <tbody>
                                     @foreach($other_service as $value)
                                         <tr class="odd gradeX" align="center">
-                                            <td>{{$value->name}}</td>
-                                            <td>{{$value->cate_other_service}}</td>
-                                            <td>{{$value->created_at}}</td>
-
-                                            <td>
-                                                @if($value->active==1)
-                                                    Hiển thị
-                                                @else
-                                                    Không Hiển Thị
-                                                @endif
+                                            <td>{{$value->name }}</td>
+                                            <td>{{$value->title }}</td>
+                                            <td>{{$value->description }}</td>
+                                            <td>{{$value->summary }}</td>
+                                            <td><img width="100px" src="{{asset('')}}assets/img_other_service/{{$value->image}}">
                                             </td>
+                                            {{--<td>{{$value->cate_other_service}}</td>--}}
+                                            <td>{{$value->view}}</td>
+
                                             <td>
                                                 {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                                 <div id="button{{$value->id}}">
@@ -80,7 +82,7 @@
                                                     @endif
                                                     <a class="btn btn-danger"
                                                        href="{{ url('admin/other-service/destroy/'.$value->id) }}"
-                                                       onclick="return confirm('Hành động sẽ xóa dịch vụ khác này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                       onclick="return confirm('Hành động sẽ xóa Dịch vụ này! bạn có muốn tiếp tục?')">Xóa</a>
                                                 </div>
 
 

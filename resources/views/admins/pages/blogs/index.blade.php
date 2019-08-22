@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Blogs
+    Danh sách tin tức
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
 
             <section class="content-header">
                 <h1>
-                    Blogs
+                    Danh Sách tin tức
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Blogs</li>
+                    <li class="active">Tin tức</li>
                 </ol>
             </section>
             <section class="content">
@@ -40,11 +40,11 @@
                                     <thead>
                                     <tr>
                                         <th>Tiêu đề</th>
-                                        <th>Tóm tắt </th>
+                                        {{--<th>Tóm tắt</th>--}}
                                         <th>Ảnh</th>
                                         <th>Thể loại</th>
-                                        <th>Lượt xem</th>
-
+                                        <th>Thời gian</th>
+                                        <th>Trạng thái</th>
                                         <th class="col-md-3">Hành động</th>
 
                                     </tr>
@@ -53,12 +53,19 @@
                                     @foreach($blogs as $value)
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name}}</td>
-                                            <td>{{$value->summary}}</td>
+                                            {{--<td>{{$value->summary}}</td>--}}
                                             <td><img width="100px" src="{{asset('')}}assets/img_blogs/{{$value->image}}">
                                             </td>
                                             <td>{{$value->cate_blogs}}</td>
-                                            <td>{{$value->view}}</td>
+                                            <td>{{$value->created_at}}</td>
 
+                                            <td>
+                                                @if($value->active==1)
+                                                    Hiển thị
+                                                @else
+                                                    Không Hiển Thị
+                                                @endif
+                                            </td>
                                             <td>
                                                 {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                                 <div id="button{{$value->id}}">
@@ -78,7 +85,7 @@
                                                     @endif
                                                     <a class="btn btn-danger"
                                                        href="{{ url('admin/blogs/destroy/'.$value->id) }}"
-                                                       onclick="return confirm('Hành động sẽ xóa Blogs này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                       onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                                 </div>
 
 
