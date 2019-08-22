@@ -142,7 +142,7 @@ class WarehouseWebController extends Migration
             $table->timestamps();
 
         });
-        //Slider 
+        //Slider
         Schema::create('sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');
@@ -157,7 +157,7 @@ class WarehouseWebController extends Migration
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
-        //Support 
+        //Support
         Schema::create('supports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -221,39 +221,7 @@ class WarehouseWebController extends Migration
             $table->integer('searchs');
         });
 
-        // dich vu khac
-//        Schema::create('cate_other_service', function (Blueprint $table) {
-//            $table->bigIncrements('id');
-//            $table->string('name');
-//            $table->tinyInteger('active')->default(0);
-//            $table->string('slug');
-//            $table->timestamps();
-//
-//
-//        });
-        // Schema::create('other_service', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     $table->string('name')->unique();
-        //     $table->string('slug');
-        //     $table->string('title');
-        //     $table->string('description');
-        //     $table->string('image');
-        //     $table->text('summary');
-        //     $table->text('content');
-        //     $table->integer('view')->default(0);
-        //     $table->tinyInteger('active')->default(0);
-        //     $table->timestamps();
 
-        // });
-
-        // dich vu khac
-//        Schema::create('cate_other_service', function (Blueprint $table) {
-//        $table->bigIncrements('id');
-//          $table->string('name');
-//           $table->tinyInteger('active')->default(0);
-//           $table->string('slug');
-//           $table->timestamps();
-//       });
         Schema::create('other_service', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();

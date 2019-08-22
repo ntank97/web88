@@ -18,16 +18,16 @@ class DatabaseSeeder extends Seeder
     {
 //        $location = "Cộng tác viên, Quản trị viên, Người dùng";
 //        $explode = explode(',',$location);
-    //        $location = "Cộng tác viên, Quản trị viên, Người dùng";
-    //        $explode = explode(',',$location);
-            $location =array('Quản trị viên','Cộng tác viên','Người dùng');
-            for ($i = 0; $i <= 2; $i++ )
-            {
-                DB::table('role')->insert([
-                    'id' => $i+1,
-                    'name' => $location[$i],
-                ]);
-            }
+        //        $location = "Cộng tác viên, Quản trị viên, Người dùng";
+        //        $explode = explode(',',$location);
+        $location =array('Quản trị viên','Cộng tác viên','Người dùng');
+        for ($i = 0; $i <= 2; $i++ )
+        {
+            DB::table('role')->insert([
+                'id' => $i+1,
+                'name' => $location[$i],
+            ]);
+        }
 
         DB::table('cate_web')->insert([
             [
@@ -186,45 +186,34 @@ class DatabaseSeeder extends Seeder
                 'active' => '1'
             ]
         ]);
-        DB::table('partner')->insert([
-            [
-                'name' => 'Viet Phone',
-                'logo' => '2-dunkin-donuts1.jpg',
-                'link' => '0927 15 15 35',
-                'active' => '1'
-            ],
-            [
-                'name' => 'Tâm khoa Shop',
-                'logo' => 'anhduong.jpg',
-                'link' => 'http://tamkhoashop.com/',
-                'active' => '1'
-            ],
-            [
-                'name' => 'Phúc Khang',
-                'logo' => 'bangiatot.jpg    ',
-                'link' => 'http://phuckhang.vn/',
-                'active' => '1'
-            ],
-            [
-                'name' => 'HLC.,JSC',
-                'logo' => 'bisidoanvat.png',
-                'link' => 'http://hlc.com.vn/en/',
-                'active' => '1'
-            ]
-        ]);
-
     }
     private function admin()
     {
-            DB::table('admin')->insert([
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
-                'phone' => '0388346413',
-                'level' => '1',
-                'status' => '1',
-                'created_at' => now(),
-                'password' => bcrypt('123456'),
-            ]);
+        DB::table('admin')->insert([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'phone' => '0388346413',
+            'level' => '1',
+            'status' => '1',
+            'created_at' => now(),
+            'password' => bcrypt('123456'),
+        ]);
+//        DB::table('cate-blog')->insert([
+//            'name' => 'Seo',
+//        ]);
+//
+//        DB::table('blogs')->insert([
+//            'summary' => 'Conong nghe......',
+//            'detail' => 'dasdsdab đ sá ÁHASASA',
+//            'image' => 'imgae-1.jpg',
+//            'title' => 'dsdadasd dsda',
+//            'id_blog'=>1,
+//            'active'=>0,
+//            'view'=>100,
+//            'admin_id'=>'1',
+//            'created_at' => now(),
+//        ]);
+
 
     }
 }

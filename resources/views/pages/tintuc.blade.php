@@ -6,95 +6,20 @@
                 <div class="col-md-8">
                     <div class="mt-1">
                         <!-- <div class="media p-12"> -->
-                        <div class="row">
-                            <img class="col-md-4"
-                                 src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/5-cach-seo-web-hieu-qua-300x150.png"
-                                 class="mr-3 mt-2">
-                            <div class=" col-md-8">
-                                <i class="fa fa-calendar"> &nbsp </i>23-06-2019
-                                <p><a class="big-title" href="javascript:void(0)">5 cách SEO website hiệu quả năm
-                                        2019</a></p>
-                                <p> Kiến thức SEO 2019 Nhận thấy được tầm quan trọng của web, hiện nay hầu hết các đơn
-                                    vị, doanh nghiệp kinh doanh đều tìm đến các công ty thiết kế web với...</p>
+                        @foreach($blog as $value)
+                            <div class="row">
+                                <img class="col-md-4"
+                                     src="{{$value->image}}"
+                                     style="width: 200px;height: 200px"
+                                     class="mr-3 mt-2">
+                                <div class=" col-md-8">
+                                    <i class="fa fa-calendar"> &nbsp </i>29/09/2019
+                                    <p><a class="big-title" href="javascript:void(0)">{{$value->title}}</a></p>
+                                    <p>{{$value->summary}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <!-- </div> -->
-                        <hr>
-                        <div class="media p-12">
-                            <img
-                                src="http://thietkewebnhanh247.com/wp-content/uploads/2019/01/top-10-plugin-wordpress-160x100.jpg"
-                                class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">Top 10 plugin đa ngôn ngữ WordPress tốt nhất cho
-                                        website</a></p>
-                                <i class="fa fa-calendar"> &nbsp </i>23-06-2019
-                                <p> Bất kể quy mô, ngành công nghiệp hoặc thích hợp trang web của bạn hoạt động, rất có
-                                    thể bạn sẽ thu hút người dùng quốc tế theo thời gian. Theo thống...</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="media p-12">
-                            <img src="http://thietkewebnhanh247.com/wp-content/uploads/2018/12/google-amp-160x100.jpg"
-                                 class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">8 Plugin AMP tốt nhất cho WordPress</a></p><i
-                                    class="fa fa-calendar">
-                                    &nbsp </i>23-06-2019
-                                <p> Top 8 Plugin AMP tốt nhất cho WordPress cần thiết cho bạn AMP hoặc Accelerated
-                                    Mobile Page plugins của WordPress, Chúng được được thiết kế để cho phép khả năng
-                                    sử...</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="media p-12">
-                            <img
-                                src="http://thietkewebnhanh247.com/wp-content/uploads/2018/04/che-dau-noi-dung-160x100.png"
-                                class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">Học SEO 9: Website bị Google phạt</a></p>
-                                <i class="fa fa-calendar"> &nbsp </i> 05-06-2019
-                                <p> Những điều cần tránh của Website để không bị Google phạt Ở những bài trước chúng ta
-                                    đã nói nhiều về những điều cần làm để có xếp hạng cao trên...</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="media p-12">
-                            <img
-                                src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/thiet-ke-do-hoa-banner-logo-website-160x100.png"
-                                class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">Thiết kế web điêu khắc chuyên nghiệp</a></p>
-                                <i class="fa fa-calendar"> &nbsp </i> 05-06-2019
-                                <p> Giới thiệu dịch vụ thiết kế website điêu khắc chuyên nghiệp Thiết kế web điêu khắc
-                                    chuyên nghiệp chuẩn SEO hỗ trợ tốt nhất hoạt động kinh doanh của quý...</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="media p-12">
-                            <img
-                                src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/thiet-ke-web-chuan-seo-160x100.png"
-                                class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">Website chuẩn SEO khác gì so với web thông thường?</a>
-                                </p>
-                                <i class="fa fa-calendar"> &nbsp </i> 03-06-2019
-                                <p> EXPRO Việt Nam công ty thiết kế web uy tín, chuyên nghiệp tại Tp.Hồ Chí Minh, Hà
-                                    Nội, Bình Dương, Đà Nẵng… hỗ trợ tốt nhất nhu cầu thiết kế web của quý...</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="media p-12">
-                            <img
-                                src="http://thietkewebnhanh247.com/wp-content/uploads/2019/06/7-luu-y-khi-thiet-ke-web-du-lich-160x100.png"
-                                class="mr-4 mt-2">
-                            <div class="media-body">
-                                <p><a href="javascript:void(0)">7 lưu ý thiết kế web du lịch cần biết</a></p>
-                                <i class="fa fa-calendar"> &nbsp </i> 03-06-2019
-                                <p> Xã hội ngày càng phát triển, áp lực công việc ngày một tăng cao. Và để giảm bớt phần
-                                    nào áp lực đó, mọi người thường lựa chọn cho mình và gia đình...</p>
-                            </div>
-                        </div>
-                        <hr>
+                            <!-- </div> -->
+                        @endforeach
                     </div>
                 </div>
 
@@ -165,14 +90,9 @@
             <br>
         </div>
         <!--  -->
-
         <center>
             <ul class="pagination justify-content-center">
-                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="page2.html">2</a></li>
-                <li class="page-item"><a class="page-link" href="page3.html">3</a></li>
-                <li class="page-item"><a class="page-link" href="page4.html">4</a></li>
-                <li class="page-item"><a class="page-link" href="page5.html">5</a></li>
+                <div style="width: 50%;margin: auto">  {!!$blog->links()!!}</div>
             </ul>
         </center>
 @endsection
