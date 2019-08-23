@@ -16,7 +16,7 @@
                                         <div class=" col-md-8">
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
                                             <p><a class="big-title" href="javascript:void(0)">{{ $new->name }}</a></p>
-                                            <p>{!! $new->summary !!}</p>
+                                            <p>{!! substr($new->summary,0,100).'...' !!} </p>
                                         </div>
                                     </div>
                                 @else
@@ -28,7 +28,7 @@
                                     <div class="media-body">
                                         <p><a href="javascript:void(0)">{{ $new->name }}</a></p>
                                         <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
-                                        <p>{!! $new->summary !!}</p>
+                                        <p>{!! substr($new->summary,0,100).'...' !!}</p>
                                 </div>
                             </div>
                                 @endif

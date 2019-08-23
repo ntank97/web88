@@ -29,15 +29,26 @@ class FrontendController extends Controller
         $servis = Service::where('active', Service::STATUS_PUBLIC)->get();
         View::Share('servis', $servis);
 
+        $serviHot = Service::where([['footer_hot',1],['active',Service::STATUS_PUBLIC]])->limit(5)->get();
+        View::Share('serviHot', $serviHot);
+
         $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
         View::Share('otherservi',$otherservi);
 
+        $otherHot = OtherService::where([['footer_hot',1],['active',OtherService::STATUS_PUBLIC]])->limit(5)->get();
+        View::Share('otherHot',$otherHot);
+
         $news = Blogs::where('active', Blogs::STATUS_PUBLIC)->get();
         View::Share('news',$news);
+
+        $newHot = Blogs::where([['footer_hot',1],['active',Blogs::STATUS_PUBLIC]])->limit(5)->get();
+        View::Share('newHot',$newHot);
+
     }
 
     public function khoGiaoDien(Request $request)
     {
+
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
