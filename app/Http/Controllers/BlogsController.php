@@ -91,6 +91,7 @@ class blogsController extends Controller
         }
         DB::table('blogs')->insert([
             'name' => $request->name,
+            'slug' => str_slug($request->name),
             'image' => $file_name,
             'summary'=>$request->summary,
             'detail'=>$request->contentt,
@@ -208,6 +209,7 @@ class blogsController extends Controller
 
         DB::table('blogs')->where('id', '=', $id)->update([
             'name' => $request->name,
+            'slug'=>str_slug($request->name),
             'image' => $file_name,
             'summary'=>$request->summary,
             'detail'=>$request->contentt,

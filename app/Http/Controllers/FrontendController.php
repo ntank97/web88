@@ -38,6 +38,7 @@ class FrontendController extends Controller
 
     public function khoGiaoDien(Request $request)
     {
+
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
