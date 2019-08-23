@@ -58,6 +58,7 @@
                     <li class="nav-item  dropdown">
                         <a href="#" class="nav-link text-light">THÊM <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
+                            <a href="{{ Route('tin.tuc') }}">Tin tức</a>
                             @if(isset($otherservi))
                                 @foreach($otherservi as $other)
                                     <a href="{{ Route('get.list.other.service',[$other->slug]) }}">{{ $other->name }}</a>
@@ -106,7 +107,7 @@
         <a href="#" class="nav-link col3">THÊM<i class="fa fa-plus plus" aria-hidden="true" style="
     margin-left: 0.5rem;"></i></a>
         <div class="kho-giao-dien" id="col3" style="display: none;">
-            {{--<a href="{{ Route('get.list.news',[$news->slug]) }}">{{ $news->name }}</a>--}}
+            <a href="{{ Route('tin.tuc') }}">Tin tức</a>
             @if(isset($otherservi))
                 @foreach($otherservi as $other)
                     <a href="{{ Route('get.list.other.service',[$other->slug]) }}">{{ $other->name }}</a>

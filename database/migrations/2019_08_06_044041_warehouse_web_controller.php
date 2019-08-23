@@ -85,7 +85,6 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('content');
-//            $table->integer('focus');
             $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
 //            $table->bigInteger('cate_id')->unsigned();
@@ -189,6 +188,7 @@ class WarehouseWebController extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('slug');
             $table->string('image');
             $table->text('summary');
             $table->text('detail');
@@ -227,7 +227,7 @@ class WarehouseWebController extends Migration
             $table->string('name')->unique();
             $table->string('slug');
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image');
             $table->text('summary');
             $table->text('content');

@@ -6,20 +6,34 @@
                 <div class="col-md-8">
                     <div class="mt-1">
                         <!-- <div class="media p-12"> -->
-                        @foreach($blog as $value)
-                            <div class="row">
-                                <img class="col-md-4"
-                                     src="{{$value->image}}"
-                                     style="width: 200px;height: 200px"
-                                     class="mr-3 mt-2">
-                                <div class=" col-md-8">
-                                    <i class="fa fa-calendar"> &nbsp </i>29/09/2019
-                                    <p><a class="big-title" href="javascript:void(0)">{{$value->title}}</a></p>
-                                    <p>{{$value->summary}}</p>
+                        @if($news)
+                            @foreach($news as $key => $new)
+                                @if($key == 0)
+                                    <div class="row">
+                                        <img class="col-md-4"
+                                             src="{{ asset('assets/img_blogs/'.$new->image) }}"
+                                             class="mr-3 mt-2" width="160" height="100">
+                                        <div class=" col-md-8">
+                                            <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
+                                            <p><a class="big-title" href="javascript:void(0)">{{ $new->name }}</a></p>
+                                            <p>{{ $new->summary }}</p>
+                                        </div>
+                                    </div>
+                                @else
+                        <!-- </div> -->
+                                    <hr>
+                                <div class="media p-12">
+                                    <img src="{{ asset('assets/img_blogs/'.$new->image) }}"
+                                         class="mr-4 mt-2" width="160" height="100">
+                                    <div class="media-body">
+                                        <p><a href="javascript:void(0)">{{ $new->name }}</a></p>
+                                        <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
+                                        <p>{{ $new->summary }}</p>
                                 </div>
                             </div>
-                            <!-- </div> -->
-                        @endforeach
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
@@ -27,72 +41,35 @@
                     <table border="1" style="border:1px solid black !important" class="text-left" cellpadding="9"
                            cellspacing="10">
                         <tr style="background: #06557c">
-                            <td>
+                            <td style="color: #fff;padding: 10px">
                                 <h3 style="color: white;">
-                                    <i class="fa-list-ul fa"> </i> <span>Xem nhiều</span>
+                                    <i class="fa-list-ul fa" style="margin-right: 10px"> </i> <span>Xem nhiều</span>
                                 </h3>
                             </td>
                         </tr>
+                        @if($newsHots)
+                            @foreach($newsHots as $newsHot)
                         <tr>
-                            <td><a href="javascript:void(0)" title="">Top 5 đơn vị thiết kế website tốt nhất tại TP Hồ
-                                    Chí Minh</a></td>
+                            <td class="td-tintuc"><a href="{{ Route('get.list.news',[$newsHot->slug]) }}">{{ $newsHot->name }}</a></td>
                         </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Top 5 trang web bất động sản uy tín, chuyên nghiệp
-                                    của Việt Nam</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế web trọn gói giá rẻ uy tín chuyên nghiệp
-                                    chuẩn SEO</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế web bán hàng chuyên nghiệp</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Top trang web đăng tin bất động sản – rao vặt miễn
-                                    phí tốt nhất
-                                    2017</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế website tư vấn lô đề , xổ số kiến
-                                    thiết</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Dịch vụ SEO từ khóa website giá rẻ , uy tín chuyên
-                                    nghiệp</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế web chuẩn SEO chuyên nghiệp</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">TOP 6 công ty thiết kế website uy tín, chuyên
-                                    nghiệp tại Hà Nội</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế website bất động sản nhà đất</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Kinh nghiệm thuê thiết kế website chuyên
-                                    nghiệp</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="javascript:void(0)" title="">Thiết kế web du lịch uy tín chuyên nghiệp chuẩn
-                                    SEO</a></td>
-                        </tr>
+                            @endforeach
+                        @endif
                     </table>
                     <a href="javascript:void(0)" title=""><img class="img-1" style="width: 100%;"
                                                                src="http://thietkewebnhanh247.com/wp-content/themes/thietkewebsite/img/thiet-ke-website.jpg"
                                                                alt="Thiết kế web giá rẻ"></a>
                 </div>
-            </div>
-            <br>
+            </div> <br>
         </div>
         <!--  -->
+
         <center>
             <ul class="pagination justify-content-center">
-                <div style="width: 50%;margin: auto">  {!!$blog->links()!!}</div>
+                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                <li class="page-item"><a class="page-link" href="page2.html">2</a></li>
+                <li class="page-item"><a class="page-link" href="page3.html">3</a></li>
+                <li class="page-item"><a class="page-link" href="page4.html">4</a></li>
+                <li class="page-item"><a class="page-link" href="page5.html">5</a></li>
             </ul>
         </center>
 @endsection
