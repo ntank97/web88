@@ -156,6 +156,30 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('/setactive/{id}/{status}', 'OtherServiceController@setactive')->name('other_service.setactive');
         Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('other_service.setactiveCate');
     });
+//    Slider
+    Route::prefix('slider')->group(function () {
+        Route::get('/list', 'SliderController@index')->name('slider.index');
+        Route::get('/add', 'SliderController@create')->name('slider.create');
+        Route::post('/add', 'SliderController@store')->name('slider.store');
+        Route::get('/edit/{id}', 'SliderController@edit')->name('slider.edit');
+        Route::post('/edit/{id}', 'SliderController@update')->name('slider.update');
+        Route::get('/destroy/{id}', 'SliderController@destroy')->name('slider.destroy');
+        Route::get('/show/{id}', 'SliderController@show')->name('slider.show');
+        Route::get('/detail/{id}', 'SliderController@detail')->name('slider.detail');
+        Route::get('/setactive/{id}/{status}', 'SliderController@setactive')->name('slider.setactive');
+    });
+//    Slider content
+    Route::prefix('slider-content')->group(function () {
+        Route::get('/list', 'SliderContentController@index')->name('slidercontent.index');
+        Route::get('/add', 'SliderContentController@create')->name('slidercontent.create');
+        Route::post('/add', 'SliderContentController@store')->name('slidercontent.store');
+        Route::get('/edit/{id}', 'SliderContentController@edit')->name('slidercontent.edit');
+        Route::post('/edit/{id}', 'SliderContentController@update')->name('slidercontent.update');
+        Route::get('/destroy/{id}', 'SliderContentController@destroy')->name('slidercontent.destroy');
+        Route::get('/show/{id}', 'SliderContentController@show')->name('slidercontent.show');
+        Route::get('/detail/{id}', 'SliderContentController@detail')->name('slidercontent.detail');
+        Route::get('/setactive/{id}/{status}', 'SliderContentController@setactive')->name('slidercontent.setactive');
+    });
 });
 
 

@@ -21,6 +21,8 @@ class Controller extends BaseController
         $data['service_count'] = DB::table('service')->count();
 //        $data['cate_service_count'] = DB::table('cate_service')->count();
         $data['other_service_count'] = DB::table('other_service')->count();
+        $data['slider_count'] = DB::table('sliders')->count();
+        $data['slidercontent_count'] = DB::table('slider_content')->count();
 //        $data['cate_other_service_count'] = DB::table('cate_other_service')->count();
         view()->share($data);
     }

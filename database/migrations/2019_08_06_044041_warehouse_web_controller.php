@@ -189,7 +189,7 @@ class WarehouseWebController extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('slug');
+//            $table->string('slug');
             $table->string('image');
             $table->text('summary');
             $table->text('detail');
