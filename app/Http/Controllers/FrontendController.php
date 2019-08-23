@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blogs;
 use App\CateWeb;
 use App\OtherService;
 use App\Partner;
@@ -29,7 +30,10 @@ class FrontendController extends Controller
         View::Share('servis', $servis);
 
         $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
-        View::Share('otherservi', $otherservi);
+        View::Share('otherservi',$otherservi);
+
+        $news = Blogs::where('active', Blogs::STATUS_PUBLIC)->get();
+        View::Share('news',$news);
     }
 
     public function khoGiaoDien(Request $request)
@@ -149,9 +153,23 @@ class FrontendController extends Controller
         return view('pages.dichvukhac', $viewData);
     }
 
-    public function getListNews()
+    public function getListNews(Request $request)
     {
+        $url = $request->segment(2);
+        $listNews = Blogs::where([
+            'slug' => $url,
+            'active' => Blogs::STATUS_PUBLIC
+        ])->first();
+        $viewData = [
+            'listNews' => $listNews,
+        ];
+//        return view('pages.')
+    }
 
+    public function tinTuc()
+    {
+        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        return view('pages.tintuc',compact('newsHots'));
     }
 
     public function khachHang()
@@ -165,17 +183,26 @@ class FrontendController extends Controller
         return view('pages.gioithieudichvu');
     }
 
-    public function seo(Request $request)
+    public function seo()
     {
-        $seo = DB::table('blogs')->where('id_blog', 1)->paginate(10);
-        return view('pages.seo', compact('seo'));
+        $seo = Blogs::where([['cate_id',1],['active',1]])->paginate(10);
+        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
+        $viewData = [
+            'seo' => $seo,
+            'newsHot' => $newsHot,
+        ];
+        return view('pages.seo',$viewData);
     }
 
-    public function thietKeWebsite(Request $request)
+    public function thietKeWebsite()
     {
-
-        $tkweb = DB::table('blogs')->where('cate_id', 2)->paginate(10);
-        return view('pages.thietke-website', compact('tkweb'));
+        $tkweb = Blogs::where([['cate_id',2],['active',1]])->paginate(10);
+        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
+        $viewData = [
+            'tkweb' => $tkweb,
+            'newsHot' => $newsHot,
+        ];
+        return view('pages.thietke-website',$viewData);
     }
 
     public function bangGiaThietKeWebsite()
@@ -252,12 +279,6 @@ class FrontendController extends Controller
     public function thietKeWebTronGoiGiaRe()
     {
         return view('pages.thietkewebtrongoigiare');
-    }
-
-    public function tinTuc(Request $request)
-    {
-        $tkweb = DB::table('blogs')->where('id_blog', 2)->paginate(10);
-        return view('pages.thietke-website', compact('tkweb'));
     }
 
     public function tuyenDung()

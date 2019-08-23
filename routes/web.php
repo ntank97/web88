@@ -14,10 +14,11 @@ Route::get('kho-giao-dien','FrontendController@khoGiaoDien')->name('kho.giao.die
 Route::get('kho-giao-dien/{slug}-{id}','FrontendController@getListProduct')->name('get.list.product');
 Route::get('dich-vu/{slug}','FrontendController@getListService')->name('get.list.service');
 Route::get('lien-he','FrontendController@lienHe')->name('lien.he');
-Route::get('lien-he/{slug}-{id}','FrontendController@getListProduct');
+//Route::get('lien-he/{slug}-{id}','FrontendController@getListProduct');
 Route::get('khach-hang','FrontendController@khachHang')->name('khach.hang');
-Route::get('other/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
-Route::get('news/{slug}','FrontendController@getListNews')->name('get.list.news');
+Route::get('service/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
+Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
+Route::get('tin-tuc/{slug}','FrontendController@getListNews')->name('get.list.news');
 
 Route::get('seo','FrontendController@seo')->name('seo');
 Route::get('thiet-ke-website','FrontendController@thietKeWebsite')->name('thiet.ke.website');
@@ -38,7 +39,7 @@ Route::get('thiet-ke-web-chuan-seo-chuyen-nghiep', 'FrontendController@thietKeWe
 Route::get('thiet-ke-website', 'FrontendController@thietKeWebsite')->name('thiet.ke.website');
 Route::get('thiet-ke-website-theo-mau', 'FrontendController@thietKeWebsiteTheoMau')->name('thiet.ke.website.theo.mau');
 Route::get('thiet-ke-web-tron-goi-gia-re', 'FrontendController@thietKeWebTronGoiGiaRe')->name('thiet.web.tron.goi.gia.re');
-Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
+
 Route::get('tuyen-dung', 'FrontendController@tuyenDung')->name('tuyen.dung');
 Route::get('thiet-ke-web-theo-yeu-cau','FrontendController@thietKeWebTheoYeuCau')->name('thiet.ke.web.theo.yeu.cau');
 Route::get('dich-vu-thiet-ke-web-gia-re','FrontendController@dichVuThietKeWebGiaRe')->name('dich.vu.thiet.ke.web.gia.re');
