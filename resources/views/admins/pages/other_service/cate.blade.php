@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Dịch vụ khác
+    Dịch vụ
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Dịch vụ khác
+                Dịch vụ
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dịch vụ khác</li>
+                <li class="active">Dịch vụ</li>
             </ol>
         </section>
         <br>
@@ -30,8 +30,6 @@
                 </div>
             @endif
         </div>
-
-
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -50,14 +48,14 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        website
+                                <li><a href="{{route('other_service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
+                                        dịch vụ
                                         <span class="label label-primary pull-right">{{$cate_other_service_count}}</span></a></li>
-                                <li><a href="{{route('otherservice.create')}}"><i class="fa fa-envelope-o"></i> Thêm website
+                                <li><a href="{{route('other_service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
                                         <span class="label label-primary pull-right">{{$other_service_count}}</span></a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('otherservice.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('other_service.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -72,32 +70,19 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ khác</h3>
-                        <form role="form" method="POST" action="{{route('otherservice.store')}}"
+                        <h3 style="text-align: left; padding-left: 5px">Thêm thể loại</h3>
+                        <form role="form" method="POST" action="{{route('other_service.storeCate')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label>Thể loại dịch vụ khác</label>
-                                    <select class="form-control" name="cate_service">
-                                        @foreach($cate_other_service as $value)
-                                            <option value="{{$value->id}}">{{$value->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên dịch vụ khác (*)</label>
+                                    <label for="exampleInputEmail1">Tên thể loại(*)</label>
                                     <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
                                            value="{{ old('name') }}">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" class="form-control" rows="10" placeholder="Nhập nội dung">
-
-                                    </textarea>
-                                </div>
                                 <div class="form-group">
                                     <label>Tiêu điểm</label>
                                     <label class="radio-inline">
@@ -116,6 +101,65 @@
                             </div>
 
                         </form>
+                        {{-- Datatable cate --}}
+                        <section class="content" style="margin-bottom: 50px">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="box-header">
+                                            {{--<a class="btn btn-primary" id="btnadd" href="{{ route('add.products') }}" onclick="">Thêm Sản phẩm</a>--}}
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <table id="example1" class="table table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>Tên</th>
+                                                    <th>Thời gian</th>
+                                                    <th>Hành động</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($cate_other_service as $value)
+                                                    <tr class="odd gradeX" align="center">
+                                                        <td>{{$value->name}}</td>
+                                                        <td>{{$value->created_at}}</td>
+
+                                                        <td>
+
+                                                            <a class="btn btn-danger"
+                                                               href="{{ url('admin/other_service/destroy-cate/'.$value->id) }}"
+                                                               onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                            @if($value->active==1)
+                                                                <a class="btn btn-info"
+                                                                   href="{{ url('admin/other_service/setactive-cate/'.$value->id.'/0') }}"
+                                                                   onclick="return confirm('Hành động sẽ ẩn Sản Phẩm này! bạn có muốn tiếp tục?')">Ẩn</a>
+                                                            @else
+                                                                <a class="btn btn-warning"
+                                                                   href="{{ url('admin/other_service/setactive-cate/'.$value->id.'/1') }}"
+                                                                   onclick="return confirm('Hành động sẽ hiển thị Sản Phẩm mục này! bạn có muốn tiếp tục?')">Hiển
+                                                                    thị</a>
+
+                                                            @endif
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                    <!-- /.box -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        {{-- EndDatatable cate --}}
+
                     </div>
                     <!-- /. box -->
                 </div>
@@ -124,6 +168,7 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
+
 
     </div>
     <script>
@@ -148,6 +193,7 @@
                 }
             }
         }
+
 
     </script>
 

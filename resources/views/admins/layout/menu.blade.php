@@ -38,22 +38,7 @@
                     <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Layout Options</span>
-                    <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed
-                            Sidebar</a></li>
-                </ul>
-            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-archive"></i>
@@ -80,7 +65,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>
+{{--                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>--}}
                     <li><a href="{{route('service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
                     <li><a href="{{route('service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
@@ -95,9 +80,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
-                    <li><a href="{{route('otherservice.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('otherservice.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('other_service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('other_service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -110,11 +94,13 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-
+                    <li><a href="{{route('blogs.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
                     <li><a href="{{route('blogs.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('blogs.list')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('blogs.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
+
+
             {{--<li>--}}
                 {{--<a href="pages/widgets.html">--}}
                     {{--<i class="fa fa-th"></i> <span>Widgets</span>--}}

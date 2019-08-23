@@ -50,14 +50,14 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                {{--<li><a href="{{route('service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
+                                {{--<li><a href="{{route('other_other_service.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại--}}
                                 {{--dịch vụ--}}
-                                {{--<span class="label label-primary pull-right">{{$cate_service_count}}</span></a></li>--}}
-                                <li><a href="{{route('service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
-                                        <span class="label label-primary pull-right">{{$service_count}}</span></a></li>
+                                {{--<span class="label label-primary pull-right">{{$cate_other_service_count}}</span></a></li>--}}
+                                <li><a href="{{route('other_service.create')}}"><i class="fa fa-envelope-o"></i> Thêm dịch vụ
+                                        <span class="label label-primary pull-right">{{$other_service_count}}</span></a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('service.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                <li><a href="{{route('other_service.index')}}"><i class="fa fa-file-text-o"></i> Danh
                                         sách</a></li>
 
                             </ul>
@@ -73,14 +73,14 @@
                 <div class="col-md-9">
                     <div class="box box-primary">
                         <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ</h3>
-                        <form role="form" method="POST" action="{{route('service.store')}}"
+                        <form role="form" method="POST" action="{{route('other_service.store')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 {{--<div class="form-group">--}}
                                 {{--<label>Thể loại</label>--}}
-                                {{--<select class="form-control" name="cate_service">--}}
-                                {{--@foreach($cate_service as $cate)--}}
+                                {{--<select class="form-control" name="cate_other_service">--}}
+                                {{--@foreach($cate_other_service as $cate)--}}
                                 {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
                                 {{--@endforeach--}}
                                 {{--</select>--}}
@@ -100,12 +100,10 @@
                                     <textarea class="form-control" name="description"
                                               placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
                                 </div>
+                                <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
-                                    <div class="form-group">
                                     <textarea name="summary" class="form-control" cols="50" rows="10"
                                               placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
@@ -113,12 +111,11 @@
                                         <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
                                                   class="form-control">{{ old('contentt') }}</textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh nền</label>
+                                        <input type="file" id="image" name="image" onchange="showIMG()">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh nền</label>
-                                    <input type="file" id="image" name="image" onchange="showIMG()">
-                                </div>
-
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">

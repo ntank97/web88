@@ -109,7 +109,7 @@
                                            value="{{ old('link') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Tiêu điểm</label>
+                                    <label>Hiển thị</label>
                                     <label class="radio-inline">
                                         <input name="active" value="1" checked="" type="radio">Có
                                     </label>

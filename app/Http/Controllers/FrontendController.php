@@ -128,7 +128,7 @@ class FrontendController extends Controller
 
     public function getListService(Request $request)
     {
-        $url = $request->segment(1);
+        $url = $request->segment(2);
         $services = Service::where([
             'slug' => $url,
             'active' => Service::STATUS_PUBLIC
@@ -141,7 +141,7 @@ class FrontendController extends Controller
 
     public function getListOtherService(Request $request)
     {
-        $url = $request->segment(1);
+        $url = $request->segment(2);
         $otherService = OtherService::where([
             'slug' => $url,
             'active' => OtherService::STATUS_PUBLIC
@@ -152,14 +152,23 @@ class FrontendController extends Controller
         return view('pages.dichvukhac', $viewData);
     }
 
-    public function getListNews()
+    public function getListNews(Request $request)
     {
-//        $url = $request->segment(2)
+        $url = $request->segment(2);
+        $listNews = Blogs::where([
+            'slug' => $url,
+            'active' => Blogs::STATUS_PUBLIC
+        ])->first();
+        $viewData = [
+            'listNews' => $listNews,
+        ];
+//        return view('pages.')
     }
 
     public function tinTuc()
     {
-        return view('pages.tintuc');
+        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        return view('pages.tintuc',compact('newsHots'));
     }
 
     public function khachHang()
@@ -173,16 +182,26 @@ class FrontendController extends Controller
         return view('pages.gioithieudichvu');
     }
 
-    public function seo(Request $request)
+    public function seo()
     {
-        $seo = DB::table('blogs')->where('id_blog', 1)->paginate(10);
-        return view('pages.seo', compact('seo'));
+        $seo = Blogs::where([['cate_id',1],['active',1]])->paginate(10);
+        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
+        $viewData = [
+            'seo' => $seo,
+            'newsHot' => $newsHot,
+        ];
+        return view('pages.seo',$viewData);
     }
 
-    public function thietKeWebsite(Request $request)
+    public function thietKeWebsite()
     {
-        $tkweb = DB::table('blogs')->where('id_blog', 2)->paginate(10);
-        return view('pages.thietke-website', compact('tkweb'));
+        $tkweb = Blogs::where([['cate_id',2],['active',1]])->paginate(10);
+        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
+        $viewData = [
+            'tkweb' => $tkweb,
+            'newsHot' => $newsHot,
+        ];
+        return view('pages.thietke-website',$viewData);
     }
 
     public function bangGiaThietKeWebsite()

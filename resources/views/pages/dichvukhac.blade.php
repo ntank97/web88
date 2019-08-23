@@ -25,7 +25,7 @@
                          data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                 </div>
                 <div class="index">
-                    {{ $otherService->summary }}
+                    {!! $otherService->summary !!}
                 </div>
                 {!! $otherService->content !!}
             </div>
@@ -43,5 +43,4 @@
                 </div>
             </div>
         </div>
-
 @endsection
