@@ -8,7 +8,7 @@
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> tien</a>
+                <a href=""><i class="fa fa-circle text-success"></i> tien</a>
             </div>
         </div>
         <!-- search form -->
@@ -41,7 +41,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-archive"></i>
+                    <i class="fa fa-id-card"></i>
                     <span>Kho giao diện</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -99,7 +99,36 @@
                     <li><a href="{{route('blogs.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Slider</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+              {{--<span class="label label-primary pull-right">2</span>--}}
+            </span>
+                </a>
+                <ul class="treeview-menu">
 
+                    <li><a href="{{route('slider.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('slider.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Slider Content</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+              {{--<span class="label label-primary pull-right">2</span>--}}
+            </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li><a href="{{route('slidercontent.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('slidercontent.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
 
             {{--<li>--}}
                 {{--<a href="pages/widgets.html">--}}

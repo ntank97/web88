@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Kho giao diện
+    Slider
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Kho giao diện
+                Slider
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Kho giao diện</li>
+                <li class="active">Slider</li>
             </ol>
         </section>
         <br>
@@ -50,13 +50,13 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('webstore.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        website
-                                        <span class="label label-primary pull-right">12</span></a></li>
-                                <li><a href="{{route('webstore.create')}}"><i class="fa fa-envelope-o"></i> Thêm website</a>
+
+                                <li><a href="{{route('slider.create')}}"><i class="fa fa-envelope-o"></i> Thêm Slider
+                                        </a></li>
+                                </a>
                                 </li>
-                                <li><a href="{{route('webstore.index')}}"><i class="fa fa-file-text-o"></i> Danh
-                                        sách</a></li>
+                                <li><a href="{{route('slider.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                        sách<span class="label label-primary pull-right">{{$slider_count}}</span></a></li>
 
                             </ul>
                         </div>
@@ -70,42 +70,39 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Sửa website</h3>
-                        <form role="form" method="POST" action="{{route('webstore.update',['id' => $web->id])}}"
+                        <h3 style="text-align: left; padding-left: 5px">Thêm Slider</h3>
+                        <form role="form" method="POST" action="{{route('slider.store')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
+                                {{--<div class="form-group">--}}
+                                {{--<label>Thể loại</label>--}}
+                                {{--<select class="form-control" name="cate_slider">--}}
+                                {{--@foreach($cate_slider as $cate)--}}
+                                {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                {{--@endforeach--}}
+                                {{--</select>--}}
+                                {{--</div>--}}
                                 <div class="form-group">
-                                    <label>Thể loại website</label>
-                                    <select class="form-control" name="cate_web">
-                                        @foreach($cate_web as $value)
-                                            <option value="{{$value->id}}">{{$value->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="exampleInputEmail1">Tên Slider (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên Slider" name="name"
+                                           value="{{ old('name') }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên website (*)</label>
-                                    <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
-                                           value="{{ $web->name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Hình ảnh </label>
+                                    <label for="exampleInputFile">Ảnh nền</label>
                                     <input type="file" id="image" name="image" onchange="showIMG()">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">
-                                        <img width="100px" height="150px" src="{{asset('')}}assets/img_webs/{{$web ->image}}">
+
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Đường dẫn (*)</label>
-                                    <input type="text" class="form-control" placeholder="goole.com" name="link"
-                                           value="{{$web->link }}">
-                                </div>
+
+                                {{--Tiêu điểm --}}
                                 <div class="form-group">
                                     <label>Hiển thị</label>
                                     <label class="radio-inline">
@@ -120,9 +117,7 @@
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>
-
                             </div>
-
                         </form>
                     </div>
                     <!-- /. box -->
@@ -132,32 +127,33 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
-    <script>
 
-        function showIMG() {
-            var fileInput = document.getElementById('image');
-            var filePath = fileInput.value; //lấy giá trị input theo id
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/; //các tập tin cho phép
-            //Kiểm tra định dạng
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                fileInput.value = '';
-                return false;
-            } else {
-                //Image preview
-                if (fileInput.files && fileInput.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                    };
-                    reader.readAsDataURL(fileInput.files[0]);
-                }
-            }
-        }
-
-    </script>
 
 @endsection
+<script>
+
+
+    function showIMG() {
+        var fileInput = document.getElementById('image');
+        var filePath = fileInput.value; //lấy giá trị input theo id
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+        //Kiểm tra định dạng
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
+
+</script>
 
