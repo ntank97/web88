@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Slider
+    Slider Content
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
 
             <section class="content-header">
                 <h1>
-                    Slider
+                    Slider Content
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Slider</li>
+                    <li class="active">Slider Content</li>
                 </ol>
             </section>
             <section class="content">
@@ -29,7 +29,7 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <a href="{{route('slider.create')}}" class="btn btn-success">Thêm</a>
+                                <a href="{{route('slidercontent.create')}}" class="btn btn-success">Thêm</a>
                             </div>
                             <div class="box-header">
 
@@ -50,28 +50,28 @@
                                     @foreach($slider as $value)
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->title }}</td>
-                                            <td><img width="100px" height="100px" src="{{asset('')}}assets/slider-index/{{$value->image}}">
+                                            <td><img width="100px" height="100px" src="{{asset('')}}assets/slider-dichvu/{{$value->image}}">
                                             </td>
                                             <th>{{$value->created_at}}</th>
 
                                             <td>
                                                 <div id="button{{$value->id}}">
                                                     <a class="btn btn-primary" id="edit"
-                                                       href="{{ url('admin/slider/edit/'.$value->id) }}"
+                                                       href="{{ url('admin/slider-content/edit/'.$value->id) }}"
                                                        onclick="">Sửa</a>
                                                     @if($value->active==1)
                                                         <a class="btn btn-info"
-                                                           href="{{ url('admin/slider/setactive/'.$value->id.'/0') }}"
+                                                           href="{{ url('admin/slider-content/setactive/'.$value->id.'/0') }}"
                                                            onclick="return confirm('Hành động sẽ ẩn Sản Phẩm này! bạn có muốn tiếp tục?')">Ẩn</a>
                                                     @else
                                                         <a class="btn btn-warning"
-                                                           href="{{ url('admin/slider/setactive/'.$value->id.'/1') }}"
+                                                           href="{{ url('admin/slider-content/setactive/'.$value->id.'/1') }}"
                                                            onclick="return confirm('Hành động sẽ hiển thị Sản Phẩm mục này! bạn có muốn tiếp tục?')">Hiển
                                                             thị</a>
 
                                                     @endif
                                                     <a class="btn btn-danger"
-                                                       href="{{ url('admin/slider/destroy/'.$value->id) }}"
+                                                       href="{{ url('admin/slider-content/destroy/'.$value->id) }}"
                                                        onclick="return confirm('Hành động sẽ xóa Slider này! bạn có muốn tiếp tục?')">Xóa</a>
                                                 </div>
 

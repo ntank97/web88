@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SliderController extends Controller
+class SliderContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $data['slider'] = DB::table('sliders')->orderByDesc('id')->get();
-        return view('admins.pages.sliders.index',$data);
+        $data['slider'] = DB::table('slider_content')->orderByDesc('id')->get();
+        return view('admins.pages.slider_content.index',$data);
         //
     }
 
@@ -27,7 +27,7 @@ class SliderController extends Controller
     public function create()
     {
         //
-        return view('admins.pages.sliders.add');
+        return view('admins.pages.slider_content.add');
     }
 
     /**
@@ -53,16 +53,16 @@ class SliderController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/slider-index/' . $image)) {
+            while (file_exists('assets/slider-dichvu/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/slider-index/', $image);
+            $file->move('assets/slider-dichvu/', $image);
             $file_name = $image;
 
         } else {
             $file_name = 'logo1.png';
         }
-        DB::table('sliders')->insert([
+        DB::table('slider_content')->insert([
             'title' => $request->name,
             'image' => $file_name,
             'active' => $request->active,
@@ -90,8 +90,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $data['slider'] = DB::table('sliders')->find($id);
-        return view('admins.pages.sliders.edit',$data);
+        $data['slider'] = DB::table('slider_content')->find($id);
+        return view('admins.pages.slider_content.edit',$data);
     }
 
     /**
@@ -103,7 +103,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $image_update = DB::table('sliders')->where('id', '=', $id)->pluck('image');
+        $image_update = DB::table('slider_content')->where('id', '=', $id)->pluck('image');
 
 
         $this->validate($request,
@@ -121,22 +121,22 @@ class SliderController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/slider-index/' . $image)) {
+            while (file_exists('assets/slider-dichvu/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/slider-index/', $image);
+            $file->move('assets/slider-dichvu/', $image);
             $file_name = $image;
-            if (file_exists('assets/slider-index/' . $image_update[0]) && $image_update[0] != '') {
-                unlink('assets/slider-index/' . $image_update[0]);
+            if (file_exists('assets/slider-dichvu/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/slider-dichvu/' . $image_update[0]);
             }
 
 
         } else {
-            $file_name = DB::table('sliders')->where('id', '=', $id)->pluck('image')->first();
+            $file_name = DB::table('slider_content')->where('id', '=', $id)->pluck('image')->first();
 
         }
 
-        DB::table('sliders')->where('id', '=', $id)->update([
+        DB::table('slider_content')->where('id', '=', $id)->update([
             'title' => $request->name,
             'image' => $file_name,
             'active' => $request->active,
@@ -144,7 +144,7 @@ class SliderController extends Controller
         ]);
 
 
-        return redirect()->route('slidercontent.index')->with('thongbao', 'Add Success');
+        return redirect()->route('slider.index')->with('thongbao', 'Add Success');
     }
 
     /**
@@ -155,17 +155,17 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        $image_update = DB::table('sliders')->where('id', '=', $id)->pluck('image');
-        if (file_exists('assets/slider-index/' . $image_update[0]) && $image_update[0] != '') {
-            unlink('assets/slider-index/' . $image_update[0]);
+        $image_update = DB::table('slider_content')->where('id', '=', $id)->pluck('image');
+        if (file_exists('assets/slider-dichvu/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/slider-dichvu/' . $image_update[0]);
         }
-        DB::table('sliders')->where('id', '=', $id)->delete();
+        DB::table('slider_content')->where('id', '=', $id)->delete();
 
         return redirect()->route('slider.index')->with('thongbao', 'Xóa thành công!');
     }
     public function setactive($id, $status)
     {
-        DB::table('sliders')->where('id', '=', $id)->update([
+        DB::table('slider_content')->where('id', '=', $id)->update([
             'active' => $status,
         ]);
         return redirect()->back()->with('thanhcong', 'Thành công');

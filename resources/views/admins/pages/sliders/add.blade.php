@@ -88,30 +88,7 @@
                                     <input type="text" class="form-control" placeholder="Nhập tên Slider" name="name"
                                            value="{{ old('name') }}">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề Slider (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
-                                           value="{{ old('title') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Mô tả (*)</label>
-                                    <textarea class="form-control" name="description"
-                                              placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tóm tắt Slider (*)</label>
-                                    <div class="form-group">
-                                    <textarea name="summary" class="form-control" cols="50" rows="10"
-                                              placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <div class="form-group">
-                                        <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                                  class="form-control">{{ old('contentt') }}</textarea>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh nền</label>
                                     <input type="file" id="image" name="image" onchange="showIMG()">
@@ -124,14 +101,7 @@
                                     </div>
                                 </div>
 
-                                {{-- tag --}}
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Tags</label>
-                                        <input data-role='tags-input' value="Talentwins" name="tags">
-                                    </div>
-                                </div>
-                                {{-- endtag --}}
+
                                 {{--Tiêu điểm --}}
                                 <div class="form-group">
                                     <label>Hiển thị</label>
