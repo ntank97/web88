@@ -114,6 +114,8 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::post('/add-cate', 'WebStoreController@storeCate')->name('webstore.storeCate');
         Route::get('/edit/{id}', 'WebStoreController@edit')->name('webstore.edit');
         Route::post('/edit/{id}', 'WebStoreController@update')->name('webstore.update');
+        Route::get('/edit-cate/{id}', 'WebStoreController@editCate')->name('webstore.editCate');
+        Route::post('/edit-cate/{id}', 'WebStoreController@updateCate')->name('webstore.updateCate');
         Route::get('/destroy/{id}', 'WebStoreController@destroy')->name('webstore.destroy');
         Route::get('/destroy-cate/{id}', 'WebStoreController@destroyCate')->name('webstore.destroyCate');
         Route::get('/show/{id}', 'WebStoreController@show')->name('webstore.show');

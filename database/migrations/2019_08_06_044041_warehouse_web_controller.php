@@ -192,6 +192,7 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('detail');
+            $table->string('slug');
             $table->tinyInteger('active')->default(0);
             $table->integer('view')->default(0);
 

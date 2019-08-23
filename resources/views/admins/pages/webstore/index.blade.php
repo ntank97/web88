@@ -54,9 +54,9 @@
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name}}</td>
                                             {{--<td>{{$value->summary}}</td>--}}
-                                            <td><img width="100px" src="{{asset('')}}assets/img_webs/{{$value->image}}">
+                                            <td><img width="100px" height="100px" src="{{asset('')}}assets/img_webs/{{$value->image}}">
                                             </td>
-                                            <td>{{$value->cate_web}}</td>
+                                            <td>{!! substr($value->cate_web,0,255) !!}</td>
                                             <td>{{$value->created_at}}</td>
 
                                             <td>

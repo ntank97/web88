@@ -34,6 +34,7 @@ class FrontendController extends Controller
 
     public function khoGiaoDien(Request $request)
     {
+
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
@@ -172,7 +173,8 @@ class FrontendController extends Controller
 
     public function thietKeWebsite(Request $request)
     {
-        $tkweb = DB::table('blogs')->where('id_blog', 2)->paginate(10);
+
+        $tkweb = DB::table('blogs')->where('cate_id', 2)->paginate(10);
         return view('pages.thietke-website', compact('tkweb'));
     }
 
