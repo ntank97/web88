@@ -156,6 +156,18 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('/setactive/{id}/{status}', 'OtherServiceController@setactive')->name('other_service.setactive');
         Route::get('/setactive-cate/{id}/{status}', 'OtherServiceController@setactiveCate')->name('other_service.setactiveCate');
     });
+//    Slider
+    Route::prefix('other-service')->group(function () {
+        Route::get('/list', 'SilderController@index')->name('slider.index');
+        Route::get('/add', 'SilderController@create')->name('slider.create');
+        Route::post('/add', 'SilderController@store')->name('slider.store');
+        Route::get('/edit/{id}', 'SilderController@edit')->name('slider.edit');
+        Route::post('/edit/{id}', 'SilderController@update')->name('slider.update');
+        Route::get('/destroy/{id}', 'SilderController@destroy')->name('slider.destroy');
+        Route::get('/show/{id}', 'SilderController@show')->name('slider.show');
+        Route::get('/detail/{id}', 'SilderController@detail')->name('slider.detail');
+        Route::get('/setactive/{id}/{status}', 'SilderController@setactive')->name('slider.setactive');
+    });
 });
 
 
