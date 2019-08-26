@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'HLC.,JSC',
-                'logo' => 'bisidoanvat.png',
+                'logo' => 'ischool.png',
                 'link' => 'http://hlc.com.vn/en/',
                 'active' => '1'
             ]
@@ -227,6 +227,7 @@ class DatabaseSeeder extends Seeder
                     Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
                     Các chức năng thường có trong một website:',
                 'active' => 1,
+                'footer_hot' =>1,
             ],
             [
                 'name' => 'BẢNG GIÁ THIẾT KẾ WEBSITE',
@@ -239,6 +240,7 @@ class DatabaseSeeder extends Seeder
                     Nắm bắt được xu hướng nên Thiết kế website nhanh 247 đã ra đời nhằm phục vụ nhu cầu xây dựng website cho mọi cá nhân và công ty. Website giới thiệu công ty, doanh nghiệp là thứ bắt buộc phải có nếu muốn bắt đầu tiếp thị thương hiệu, đơn vị bạn trên mạng toàn cầu. Đây là nơi cung cấp những thông tin tổng quan về đơn vị, công ty cũng như doanh nghiệp của bạn và những hoạt động, sản phẩm nổi bật. Tiếp thị và giới thiệu tới khách hàng, người dùng internet những sản phẩm, dịch vụ chiến lược của công ty, đơn vị.
                     Các chức năng thường có trong một website:',
                 'active' => 1,
+                'footer_hot' =>1,
             ],
         ]);
 
@@ -273,7 +275,7 @@ class DatabaseSeeder extends Seeder
                 'active' => 1,
                 'cate_id' =>1,
                 'admin_id'=>1,
-
+                'footer_hot' =>1,
             ],
             [
                 'name' => 'GIỚI THIỆU DỊCH VỤ ',
@@ -284,6 +286,7 @@ class DatabaseSeeder extends Seeder
                 'active' => 1,
                 'cate_id' =>2,
                 'admin_id'=>1,
+                'footer_hot' =>2,
             ],
             [
                 'name' => 'THIẾT KẾ WEBSITE',
@@ -294,6 +297,7 @@ class DatabaseSeeder extends Seeder
                 'active' => 1,
                 'cate_id' =>2,
                 'admin_id'=>1,
+                'footer_hot' =>1,
             ],
         ]);
 

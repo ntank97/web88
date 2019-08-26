@@ -80,12 +80,13 @@ class WarehouseWebController extends Migration
             $table->string('name')->unique();
             $table->string('slug');
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image');
             $table->text('summary');
             $table->text('content');
             $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('footer_hot')->default(0);
 //            $table->bigInteger('cate_id')->unsigned();
 //            $table->foreign('cate_id')
 //                ->references('id')
@@ -191,10 +192,9 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('detail');
-            $table->string('slug');
             $table->tinyInteger('active')->default(0);
             $table->integer('view')->default(0);
-
+            $table->tinyInteger('footer_hot')->default(0);
             $table->bigInteger('cate_id')->unsigned();
             $table->foreign('cate_id')
                 ->references('id')
@@ -231,6 +231,7 @@ class WarehouseWebController extends Migration
             $table->string('image');
             $table->text('summary');
             $table->text('content');
+            $table->tinyInteger('footer_hot')->default(0);
             $table->integer('view')->default(0);
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
