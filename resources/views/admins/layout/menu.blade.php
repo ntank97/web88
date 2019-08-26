@@ -7,8 +7,13 @@
                 <img src="{{asset('admins/dist/img/thao.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
+<<<<<<< HEAD
                 
                 <a href="#"><i class="fa fa-circle text-success"></i><p>{{Auth::user()->name}}</p></a>
+=======
+                <p>Alexander Pierce</p>
+                <a href=""><i class="fa fa-circle text-success"></i> tien</a>
+>>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
             </div>
         </div>
         <!-- search form -->
@@ -38,25 +43,10 @@
                     <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
+
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Layout Options</span>
-                    <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed
-                            Sidebar</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-archive"></i>
+                    <i class="fa fa-id-card"></i>
                     <span>Kho giao diện</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -80,7 +70,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>
+{{--                    <li><a href="{{route('service.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại </a></li>--}}
                     <li><a href="{{route('service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
                     <li><a href="{{route('service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
@@ -95,9 +85,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
-                    <li><a href="{{route('otherservice.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('otherservice.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('other_service.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('other_service.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -110,11 +99,42 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-
+                    <li><a href="{{route('blogs.createCate')}}"><i class="fa fa-plus-circle"></i> Thêm thể loại</a></li>
                     <li><a href="{{route('blogs.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
-                    <li><a href="{{route('blogs.list')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                    <li><a href="{{route('blogs.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Slider</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+              {{--<span class="label label-primary pull-right">2</span>--}}
+            </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li><a href="{{route('slider.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('slider.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Slider Content</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+              {{--<span class="label label-primary pull-right">2</span>--}}
+            </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li><a href="{{route('slidercontent.create')}}"><i class="fa fa-plus"></i> Thêm </a></li>
+                    <li><a href="{{route('slidercontent.index')}}"><i class="fa fa-list"></i> Danh sách</a></li>
+                </ul>
+            </li>
+
             {{--<li>--}}
                 {{--<a href="pages/widgets.html">--}}
                     {{--<i class="fa fa-th"></i> <span>Widgets</span>--}}

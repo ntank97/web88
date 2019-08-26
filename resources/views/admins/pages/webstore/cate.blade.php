@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tiêu điểm</label>
+                                    <label> Hiển thị</label>
                                     <label class="radio-inline">
                                         <input name="active" value="1" checked="" type="radio">Có
                                     </label>
@@ -141,7 +141,9 @@
                                                                  src="{{asset('')}}assets/img_icon/{{$value->icon}}">
                                                         </td>
                                                         <td>
-
+                                                            <a class="btn btn-primary" id="edit"
+                                                               href="{{ url('admin/web-store/edit-cate/'.$value->id) }}"
+                                                               onclick="">Sửa</a>
                                                             <a class="btn btn-danger"
                                                                href="{{ url('admin/web-store/destroy-cate/'.$value->id) }}"
                                                                onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>

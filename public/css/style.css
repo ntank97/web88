@@ -809,3 +809,8 @@ tbody  {
     font-weight: bold;
     font-family: inherit;
 }
+
+.td-tintuc {
+    padding: 10px;
+    border: 1px solid black;
+}

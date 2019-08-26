@@ -16,11 +16,7 @@ class ServiceController extends Controller
 
     public function index()
     {
-//        $data['service'] = DB::table('service')
-//            ->select('service.*', 'cate_service.name as cate_service')
-//            ->join('cate_service', 'service.cate_id', '=', 'cate_service.id')
-//            ->orderByDesc('id')
-//            ->get();
+
         $data['service'] = DB::table('service')->orderByDesc('id')->get();
         return view('admins.pages.service.index', $data);
     }
@@ -32,14 +28,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-//        $data['cate_service']  = DB::table('cate_service')->get();
         return view('admins.pages.service.add');
     }
-//    public function createCate()
-//    {
-//        $data['cate_service']  = DB::table('cate_service')->get();
-//        return view('admins.pages.service.cate',$data);
-//    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -49,6 +40,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required|min:3',
             'title' => 'required',
@@ -56,7 +48,6 @@ class ServiceController extends Controller
             'contentt' => 'required',
             'summary' => 'required',
             'tags' => 'required',
-//            'image' => 'required',
 
         ], [
             'name.required' => 'Tên dịch vụ không được xác định',
@@ -67,7 +58,6 @@ class ServiceController extends Controller
             'description.max' => 'Mô tả không được vượt quá 255 ký tự.',
             'summary.required' => 'Tóm tắt chưa được xác định',
             'contentt.required' => 'Nội dung không được xác định',
-//            'image.required' => 'Ảnh không được xác định',
             'tags.required' => 'Thể loại không được xác định',
 
         ]);
@@ -98,6 +88,7 @@ class ServiceController extends Controller
             'image' => $file_name,
 //            'cate_id' => $request->cate_service,
             'focus' => $request->focus,
+            'active'=>$request->active,
             'created_at' => now()
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
@@ -127,25 +118,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-//    public function storeCate(Request $request)
-//    {
-//
-//        $this->validate($request,
-//            [
-//
-//                'name' => 'required|min:3|unique:cate_service',
-//            ],
-//            [
-//
-//            ]);
-//        DB::table('cate_service')->insert([
-//            'name'=>$request->name,
-//            'slug'=>str_slug($request->name),
-//            'active'=>$request->active,
-//            'created_at'=>now(),
-//        ]);
-//        return redirect()->back()->with('thongbao', 'Thành công!');
-//    }
+
 
     /**
      * Display the specified resource.
@@ -186,6 +159,7 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $image_update = DB::table('service')->where('id', '=', $id)->pluck('image');
         DB::table('service_tags')->where('service_id', $id)->delete();
         $this->validate($request, [
@@ -239,9 +213,8 @@ class ServiceController extends Controller
             'description' => $request->description,
             'content' => $request->contentt,
             'image' => $file_name,
-//            'cate_id' => $request->cate_service,
-            'focus' => $request->focus,
-            'updated_at' => now()
+            'updated_at' => now(),
+            'active'=>$request->active,
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
 //Tách chuỗi
@@ -269,14 +242,15 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
+        $image_update = DB::table('service')->where('id', '=', $id)->pluck('image');
+
+        if (file_exists('assets/img_service/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_service/' . $image_update[0]);
+        }
         DB::table('service')->where('id','=',$id)->delete();
         return redirect()->route('service.index')->with('thongbao','Xóa thành công!');
     }
-//    public function destroyCate($id)
-//    {
-//        DB::table('cate_service')->where('id','=',$id)->delete();
-//        return redirect()->back()->with('thongbao','Xóa thành công!');
-//    }
+
 
     public function setactive($id, $status)
     {
@@ -286,11 +260,5 @@ class ServiceController extends Controller
         return redirect()->back()->with('thanhcong', 'Thành công');
     }
 
-//    public function setactiveCate($id, $status)
-//    {
-//        DB::table('cate_service')->where('id', '=', $id)->update([
-//            'active' => $status,
-//        ]);
-//        return redirect()->back()->with('thanhcong', 'Thành công');
-//    }
+
 }

@@ -34,26 +34,21 @@ class WebStoreController extends Controller
      */
     public function create()
     {
-       if( Gate::allows('add')) {
-           $data['cate_web'] = DB::table('cate_web')->get();
-           return view('admins.pages.webstore.add', $data);
-       }
-       else {
-           return view('admins.page.account.error');
-       }
+        if (Gate::allows('add')) {
+            $data['cate_web'] = DB::table('cate_web')->get();
+            return view('admins.pages.webstore.add', $data);
+        } else {
+            return view('admins.page.account.error');
+        }
     }
-
 
 
     public function createCate()
     {
-        if(Gate::allows('add'))
-        {
+        if (Gate::allows('add')) {
             $data['cate_web'] = DB::table('cate_web')->get();
             return view('admins.pages.webstore.cate', $data);
-        }
-        else
-        {
+        } else {
             return view('admins.page.account.error');
         }
 
@@ -67,6 +62,7 @@ class WebStoreController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $this->validate($request,
             [
@@ -84,10 +80,10 @@ class WebStoreController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_web/' . $image)) {
+            while (file_exists('assets/img_webs/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/img_web/', $image);
+            $file->move('assets/img_webs/', $image);
             $file_name = $image;
 
         } else {
@@ -210,13 +206,23 @@ class WebStoreController extends Controller
     public function edit($id)
     {
         $data['web'] = DB::table('web')->find($id);
-        if(Gate::allows('edit',$data))
-        {
+        if (Gate::allows('edit', $data)) {
             $data['cate_web'] = DB::table('cate_web')->get();
             return view('admins.pages.webstore.edit', $data);
+        } else {
+            return view('admins.page.account.error');
         }
-        else
-        {
+
+
+    }
+
+    public function editCate($id)
+    {
+        $data['cate_web'] = DB::table('cate_web')->find($id);
+        if (Gate::allows('edit', $data)) {
+
+            return view('admins.pages.webstore.editCate', $data);
+        } else {
             return view('admins.page.account.error');
         }
 
@@ -251,13 +257,63 @@ class WebStoreController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_web/' . $image)) {
+            while (file_exists('assets/img_webs/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/img_web/', $image);
+            $file->move('assets/img_webs/', $image);
             $file_name = $image;
-            if (file_exists('assets/img_web/' . $image_update[0]) && $image_update[0] != '') {
-                unlink('assets/img_web/' . $image_update[0]);
+            if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_webs/' . $image_update[0]);
+            }
+
+
+        } else {
+            $file_name = DB::table('web')->where('id', '=', $id)->pluck('image')->first();
+
+        }
+
+        DB::table('web')->where('id', '=', $id)->update([
+            'name' => $request->name,
+            'slug' => str_slug($request->name),
+            'image' => $file_name,
+            'link' => $request->link,
+            'cate_id' => $request->cate_web,
+            'active' => $request->active,
+            'created_at' => now(),
+        ]);
+
+
+        return redirect()->route('webstore.index')->with('thongbao', 'Add Success');
+    }
+
+    public function updateCate(Request $request, $id)
+    {
+        dd($request->all());
+        $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('image');
+
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        $this->validate($request,
+            [
+
+                'name' => 'required|min:3',
+                'link' => 'required|regex:' . $regex,
+            ],
+            [
+                'name.required' => 'Tên ít nhất 3 kí tự',
+            ]);
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_image_" . $name;
+            while (file_exists('assets/img_webs/' . $image)) {
+                $image = str_random(4) . "_image_" . $name;
+            }
+            $file->move('assets/img_webs/', $image);
+            $file_name = $image;
+            if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_webs/' . $image_update[0]);
             }
 
 
@@ -288,13 +344,25 @@ class WebStoreController extends Controller
      */
     public function destroy($id)
     {
+        $image_update = DB::table('web')->where('id', '=', $id)->pluck('image');
+        if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_webs/' . $image_update[0]);
+        }
         DB::table('web')->where('id', '=', $id)->delete();
+
         return redirect()->route('webstore.index')->with('thongbao', 'Xóa thành công!');
     }
 
     public function destroyCate($id)
     {
+        $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('icon');
+//        dd($image_update);
+        if (file_exists('assets/img_icon/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_icon/' . $image_update[0]);
+        }
+
         DB::table('cate_web')->where('id', '=', $id)->delete();
+
         return redirect()->back()->with('thongbao', 'Xóa thành công!');
     }
 

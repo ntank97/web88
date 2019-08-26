@@ -167,13 +167,13 @@
             <div class="row wow bounceInUp">
                 @if(isset($catewebs))
                     @foreach($catewebs as $cate)
-                <div class="col-md-3 col-sm-6" style="margin-bottom:15px;">
-                    <center>
-                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
-                        <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ $cate->icon }}" alt=""></a>
-                    <p><a href="">{{ $cate->name }}</a></p>
-                </center>
-                </div>
+                        <div class="col-md-3 col-sm-6" style="margin-bottom:15px;">
+                            <center>
+                                <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"></a>
+                                <a href="{{ route('get.list.product',[$cate->slug,$cate->id]) }}"><img src="{{ asset('assets/img_icon/'.$cate->icon ) }}" alt=""></a>
+                                <p><a href="">{{ $cate->name }}</a></p>
+                            </center>
+                        </div>
                     @endforeach
                 @endif
             </div>

@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Danh sách tin tức
+    Danh sách web
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
 
             <section class="content-header">
                 <h1>
-                    Danh Sách tin tức
+                    Danh Sách web
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Tin tức</li>
+                    <li class="active">web</li>
                 </ol>
             </section>
             <section class="content">
@@ -54,9 +54,9 @@
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name}}</td>
                                             {{--<td>{{$value->summary}}</td>--}}
-                                            <td><img width="100px" src="{{asset('')}}assets/img_web/{{$value->image}}">
+                                            <td><img width="100px" height="100px" src="{{asset('')}}assets/img_webs/{{$value->image}}">
                                             </td>
-                                            <td>{{$value->cate_web}}</td>
+                                            <td>{!! substr($value->cate_web,0,255) !!}</td>
                                             <td>{{$value->created_at}}</td>
 
                                             <td>
@@ -85,7 +85,7 @@
                                                     @endif
                                                     <a class="btn btn-danger"
                                                        href="{{ url('admin/web-store/destroy/'.$value->id) }}"
-                                                       onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                       onclick="return confirm('Hành động sẽ xóa web này! bạn có muốn tiếp tục?')">Xóa</a>
                                                 </div>
 
 

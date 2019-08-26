@@ -105,6 +105,17 @@
                                     <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
                                               class="form-control">{{ $blogs->detail }}</textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Ảnh nền</label>
+                                    <input type="file" id="image" name="image" onchange="showIMG()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                    <div id="viewImg">
+                                        <img width="100px" src="{{asset('')}}assets/img_blogs/{{$blogs ->image}}">
+                                    </div>
+                                </div>
                                 {{-- tag --}}
                                 <div class="col-sm-12">
                                     <div class="form-group">

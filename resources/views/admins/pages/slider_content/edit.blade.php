@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Dịch vụ khác
+    Slider Content
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Dịch vụ khác
+                Slider Content
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dịch vụ khác</li>
+                <li class="active">Slider Content</li>
             </ol>
         </section>
         <br>
@@ -50,15 +50,13 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('otherservice.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
-                                        website
-                                        <span class="label label-primary pull-right">{{$cate_other_service_count}}</span></a></li>
-                                <li><a href="{{route('otherservice.create')}}"><i class="fa fa-envelope-o"></i> Thêm website
-                                        <span class="label label-primary pull-right">{{$other_service_count}}</span></a></li>
+
+                                <li><a href="{{route('slidercontent.create')}}"><i class="fa fa-envelope-o"></i> Thêm Slider
+                                    </a></li>
                                 </a>
                                 </li>
-                                <li><a href="{{route('otherservice.index')}}"><i class="fa fa-file-text-o"></i> Danh
-                                        sách</a></li>
+                                <li><a href="{{route('slidercontent.index')}}"><i class="fa fa-file-text-o"></i> Danh
+                                        sách<span class="label label-primary pull-right">{{$slider_count}}</span></a></li>
 
                             </ul>
                         </div>
@@ -72,34 +70,41 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ khác</h3>
-                        <form role="form" method="POST" action="{{route('otherservice.store')}}"
+                        <h3 style="text-align: left; padding-left: 5px">Thêm Slider</h3>
+                        <form role="form" method="POST" action="{{route('slidercontent.update',['id'=>$slider->id])}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
+                                {{--<div class="form-group">--}}
+                                {{--<label>Thể loại</label>--}}
+                                {{--<select class="form-control" name="cate_slider">--}}
+                                {{--@foreach($cate_slider as $cate)--}}
+                                {{--<option value="{{$cate->id}}">{{$cate->name}}</option>--}}
+                                {{--@endforeach--}}
+                                {{--</select>--}}
+                                {{--</div>--}}
                                 <div class="form-group">
-                                    <label>Thể loại dịch vụ khác</label>
-                                    <select class="form-control" name="cate_service">
-                                        @foreach($cate_other_service as $value)
-                                            <option value="{{$value->id}}">{{$value->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="exampleInputEmail1">Tên Slider (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên Slider" name="name"
+                                           value="{{ $slider->title }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên dịch vụ khác (*)</label>
-                                    <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
-                                           value="{{ old('name') }}">
+                                    <label for="exampleInputFile">Ảnh nền</label>
+                                    <input type="file" id="image" name="image" onchange="showIMG()">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" class="form-control" rows="10" placeholder="Nhập nội dung">
-
-                                    </textarea>
+                                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                    <div id="viewImg">
+                                        <img width="100px" height="150px" src="{{asset('')}}assets/img_slider/{{$slider ->image}}">
+                                    </div>
                                 </div>
+
+
+                                {{--Tiêu điểm --}}
                                 <div class="form-group">
-                                    <label>Tiêu điểm</label>
+                                    <label>Hiển thị</label>
                                     <label class="radio-inline">
                                         <input name="active" value="1" checked="" type="radio">Có
                                     </label>
@@ -112,9 +117,7 @@
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>
-
                             </div>
-
                         </form>
                     </div>
                     <!-- /. box -->
@@ -124,32 +127,33 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
-    <script>
 
-        function showIMG() {
-            var fileInput = document.getElementById('image');
-            var filePath = fileInput.value; //lấy giá trị input theo id
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-            //Kiểm tra định dạng
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                fileInput.value = '';
-                return false;
-            } else {
-                //Image preview
-                if (fileInput.files && fileInput.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                    };
-                    reader.readAsDataURL(fileInput.files[0]);
-                }
-            }
-        }
-
-    </script>
 
 @endsection
+<script>
+
+
+    function showIMG() {
+        var fileInput = document.getElementById('image');
+        var filePath = fileInput.value; //lấy giá trị input theo id
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+        //Kiểm tra định dạng
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
+
+</script>
 

@@ -1,16 +1,16 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Blogs
+    Tin tức
 @endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Blogs
+                Tin tức
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Blogs</li>
+                <li class="active">Tin tức</li>
             </ol>
         </section>
         <br>
@@ -50,7 +50,11 @@
 
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="{{route('blogs.create')}}"><i class="fa fa-envelope-o"></i> Thêm Blogs
+                                <li><a href="{{route('blogs.createCate')}}"><i class="fa fa-inbox"></i> Thêm thể loại
+                                        tin tức
+                                        <span class="label label-primary pull-right">{{$cate_blogs_count}}</span></a>
+                                </li>
+                                <li><a href="{{route('blogs.create')}}"><i class="fa fa-envelope-o"></i> Thêm tin tức
                                         <span class="label label-primary pull-right">{{$blogs_count}}</span></a></li>
                                 </a>
                                 </li>
@@ -69,46 +73,68 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm Blogs</h3>
+                        <h3 style="text-align: left; padding-left: 5px">Thêm tin tức</h3>
                         <form role="form" method="POST" action="{{route('blogs.store')}}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
-
-
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề Blogs (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                                           value="{{ old('title') }}">
+                                    <label>Thể loại tin tức</label>
+                                    <select class="form-control" name="cate_blogs">
+                                        @foreach($cate_blogs as $value)
+                                            <option value="{{$value->id}}">{{$value->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <label for="exampleInputEmail1">Tóm tắt Blogs (*)</label>
                                 <div class="form-group">
-    
-                            <textarea class="form-control" name="summary" cols="50" rows="10"
-                                      placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    <label for="exampleInputEmail1">Tên tin tức (*)</label>
+                                    <input type="text" class="form-control" placeholder="Web bán hàng" name="name"
+                                           value="{{ old('name') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
+                                    <div class="form-group">
+                                    <textarea name="summary" class="form-control" cols="50" rows="10"
+                                              placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
-                                              class="form-control">{{ old('detail') }}</textarea>
-                                </div>
-                                {{-- tag --}}
-                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Tags</label>
-                                        <input data-role='tags-input' value="Talentwins" name="tags">
+                                        <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
+                                                  class="form-control">{{ old('contentt') }}</textarea>
                                     </div>
                                 </div>
-                                {{-- endtag --}}
-
-                            </div>
 
 
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Hình ảnh </label>
+                                    <input type="file" id="image" name="image" onchange="showIMG()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                    <div id="viewImg">
+
+                                    </div>
+                                </div>
 
 
+                                <div class="form-group">
+                                    <label>Hiển thị</label>
+                                    <label class="radio-inline">
+                                        <input name="active" value="1" checked="" type="radio">Có
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="active" value="0" type="radio">Không
+                                    </label>
+                                </div>
+                                {{--Hết tiêu điểm--}}
 
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                </div>
+
                             </div>
 
                         </form>
@@ -122,33 +148,30 @@
         <!-- /.content -->
 
     </div>
+    <script>
 
-
-@endsection
-<script>
-
-
-
-    function showIMG() {
-        var fileInput = document.getElementById('image');
-        var filePath = fileInput.value; //lấy giá trị input theo id
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-        //Kiểm tra định dạng
-        if (!allowedExtensions.exec(filePath)) {
-            alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-            fileInput.value = '';
-            return false;
-        } else {
-            //Image preview
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                };
-                reader.readAsDataURL(fileInput.files[0]);
+        function showIMG() {
+            var fileInput = document.getElementById('image');
+            var filePath = fileInput.value; //lấy giá trị input theo id
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+            //Kiểm tra định dạng
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+                fileInput.value = '';
+                return false;
+            } else {
+                //Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
+                    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
             }
         }
-    }
 
-</script>
+    </script>
+
+@endsection
 

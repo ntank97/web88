@@ -91,26 +91,33 @@
                                     <label for="exampleInputEmail1">Nội dung (*)</label>
                                     <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
                                               class="form-control">{{ old('detail') }}</textarea>
-                                </div>
-                                {{-- tag --}}
-                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Tags</label>
-                                        <input data-role='tags-input' value="Talentwins" name="tags">
+                                        <label for="exampleInputFile">Ảnh nền</label>
+                                        <input type="file" id="image" name="image" onchange="showIMG()">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                        <div id="viewImg">
+
+                                        </div>
+                                    </div>
+                                    {{-- tag --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Tags</label>
+                                            <input data-role='tags-input' value="Talentwins" name="tags">
+                                        </div>
+                                    </div>
+                                    {{-- endtag --}}
+
                                 </div>
-                                {{-- endtag --}}
 
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                </div>
                             </div>
-
-
-
-
-
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Thêm</button>
-                            </div>
-
                         </form>
                     </div>
                     <!-- /. box -->
@@ -126,7 +133,6 @@
 
 @endsection
 <script>
-
 
 
     function showIMG() {

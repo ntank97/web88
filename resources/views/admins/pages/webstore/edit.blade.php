@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">
-                                        <img width="100px" src="{{asset('')}}assets/img_web/{{$web ->image}}">
+                                        <img width="100px" height="150px" src="{{asset('')}}assets/img_webs/{{$web ->image}}">
                                     </div>
                                 </div>
 
@@ -107,7 +107,7 @@
                                            value="{{$web->link }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Tiêu điểm</label>
+                                    <label>Hiển thị</label>
                                     <label class="radio-inline">
                                         <input name="active" value="1" checked="" type="radio">Có
                                     </label>

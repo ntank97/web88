@@ -2,146 +2,251 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
-use Illuminate\Support\Facades\Auth;
-
-
-
-
-class BlogsController extends Controller
+class blogsController extends Controller
 {
-    public function list()
-    {
-        $data['blogs'] = DB::table('blogs')->get();
-        return view('admins.page.blogs.index_blog',$data);
-    }
-    public function edit($id)
-    {
-        $data['blogs']=DB::table('blogs')->find($id);
-        $data['blogs'] = DB::table('blogs')->find($id);
-        $tags = DB::table('blog_tags')->where('blogs_id', $id)->pluck('name');
-        $array = [];
-        foreach ($tags as $value) {
-            array_push($array, $value);
-        }
-        $data['str_tags'] = implode(";", $array);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-        if(Gate::allows('edit',DB::table('blogs')->find($id))){
-            return view('admins/page/blogs/edit_blogs',$data);
-        }
-        else{
-            return view('admins.page.account.error');
-        }
+
+    public function index()
+    {
+        $data['blogs'] = DB::table('blogs')
+            ->select('blogs.*', 'cate_blogs.name as cate_blogs')
+            ->join('cate_blogs', 'blogs.cate_id', '=', 'cate_blogs.id')
+            ->orderByDesc('id')
+            ->get();
+
+        return view('admins.pages.blogs.index', $data);
     }
 
-    public function update(Request $request,$id)
-    {
-       
-        $this->validate($request,
-        [
-            'name'=>'required',
-            'summary' => 'required|min:3',
-            'detail' => 'required',
-        ],
-        [
-            'summary.required' => 'Tên là trường bắt buộc',
-            'summary.min' => 'Ít nhất 3 ký tự',
-            'detail.required|min:3' => 'Link là trường bắt buộc',
-            'detail.min' => 'Ít nhất 3 ký tự',
-        ]
-        );
-
-        if ($request->active=='null') {
-           $active=0;
-        }
-        else{
-            $active=1;
-        }
-
-
-
-        DB::table('blogs')->where('id',$id)->update([
-            'name'=>$request->name,
-            'summary' => $request->summary,
-            'detail' => $request->detail,
-            'active' =>$active,
-
-        ]);
-
-        return redirect()->route('blogs.list');
-        
-    }
-    public function delete($id)
-    {
-        $blogs=DB::table('blogs')->find($id);
-        if(Gate::allows('delete',$blogs)){
-            DB::table('blogs')->where('id',$id)->delete();
-        }
-        else{
-            return view('admins.page.account.error');
-        }
-    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('admins.page.blogs.add_blogs');
+        if (Gate::allows('add')) {
+            $data['cate_blogs'] = DB::table('cate_blogs')->get();
+            return view('admins.pages.blogs.add', $data);
+        } else {
+            return view('admins.page.account.error');
+        }
     }
+
+
+    public function createCate()
+    {
+        if (Gate::allows('add')) {
+            $data['cate_blogs'] = DB::table('cate_blogs')->get();
+            return view('admins.pages.blogs.cate', $data);
+        } else {
+            return view('admins.page.account.error');
+        }
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required|min:3',
-            'contentt' => 'required',
-            'summary' => 'required',
-            'tags' => 'required',
-//            'image' => 'required',
+        $this->validate($request,
+            [
 
-        ], [
-            'name.required' => 'Tên không được xác định',
-            'name.min' => 'Tên không được ít hơn 3 kí tự',
-            'summary' => 'Tóm tắt chưa được xác định',
-            'contentt.required' => 'Nội dung không được xác định',
-//            'image.required' => 'Ảnh không được xác định',
-            'tags.required' => 'Thể loại không được xác định',
+                'name' => 'required|min:3',
 
-        ]);
+            ],
+            [
+                'name.required' => 'Tên ít nhất 3 kí tự',
+            ]);
 
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_image_" . $name;
+            while (file_exists('assets/img_blogs/' . $image)) {
+                $image = str_random(4) . "_image_" . $name;
+            }
+            $file->move('assets/img_blogs/', $image);
+            $file_name = $image;
+
+        } else {
+            $file_name = 'logo1.png';
+        }
         DB::table('blogs')->insert([
             'name' => $request->name,
-
-            'summary' => $request->summary,
-            'detail' => $request->contentt,
-            'admin_id'=>Auth::user()->id,
-            'view' => 0,
-            'active' => 1,
-            'created_at' => now()
+            'slug' => str_slug($request->name),
+            'image' => $file_name,
+            'summary'=>$request->summary,
+            'detail'=>$request->contentt,
+            'cate_id' => $request->cate_blogs,
+            'active' => $request->active,
+            'admin_id'=> Auth::user()->id,
+            'created_at' => now(),
         ]);
-        $blogs_id = DB::table('blogs')->where('name', $request->name)->orderBy('id', 'desc')->first();
+        return redirect()->back()->with('thongbao', 'Thành công!');
 
-//Tách chuỗi
-        $explode = explode(';', $request->tags);
+    }
 
-        foreach ($explode as $ex) {
-            if ($ex != "") {
-                DB::table('blog_tags')->insert([
-                    'name' => $ex,
-                    'blogs_id' => $blogs_id->id,
-                    'searchs' => 0,
-                    'created_at'=>now()
-                ]);
-            }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCate(Request $request)
+    {
+
+        $this->validate($request,
+            [
+
+                'name' => 'required|min:3|unique:cate_blogs',
+            ],
+            [
+
+            ]);
+
+
+        DB::table('cate_blogs')->insert([
+            'name' => $request->name,
+
+            'active' => $request->active,
+            'created_at' => now(),
+        ]);
+        return redirect()->back()->with('thongbao', 'Thành công!');
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data['blogs'] = DB::table('blogs')->find($id);
+        if (Gate::allows('edit', $data)) {
+            $data['cate_blogs'] = DB::table('cate_blogs')->get();
+            return view('admins.pages.blogs.edit', $data);
+        } else {
+            return view('admins.page.account.error');
         }
 
-        return redirect()->back()->with('thongbao', 'Add Success');
-    }
-    public function destroy($id)
-    {
-        DB::table('blogs')->where('id','=',$id)->delete();
-        return redirect()->route('blogs.list')->with('thongbao','Xóa thành công!');
+
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $image_update = DB::table('blogs')->where('id', '=', $id)->pluck('image');
+
+
+        $this->validate($request,
+            [
+
+                'name' => 'required|min:3',
+
+            ],
+            [
+                'name.required' => 'Tên ít nhất 3 kí tự',
+            ]);
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_image_" . $name;
+            while (file_exists('assets/img_blogs/' . $image)) {
+                $image = str_random(4) . "_image_" . $name;
+            }
+            $file->move('assets/img_blogs/', $image);
+            $file_name = $image;
+            if (file_exists('assets/img_blogs/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_blogs/' . $image_update[0]);
+            }
+
+
+        } else {
+            $file_name = DB::table('blogs')->where('id', '=', $id)->pluck('image')->first();
+
+        }
+
+        DB::table('blogs')->where('id', '=', $id)->update([
+            'name' => $request->name,
+            'slug'=>str_slug($request->name),
+            'image' => $file_name,
+            'summary'=>$request->summary,
+            'detail'=>$request->contentt,
+            'cate_id' => $request->cate_blogs,
+            'active' => $request->active,
+            'admin_id'=> Auth::user()->id,
+            'created_at' => now(),
+        ]);
+
+
+        return redirect()->route('blogs.index')->with('thongbao', 'Add Success');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $image_update = DB::table('blogs')->where('id', '=', $id)->pluck('image');
+        if (file_exists('assets/img_blogs/' . $image_update[0]) && $image_update[0] != '') {
+            unlink('assets/img_blogs/' . $image_update[0]);
+        }
+        DB::table('blogs')->where('id', '=', $id)->delete();
+
+        return redirect()->route('blogs.index')->with('thongbao', 'Xóa thành công!');
+    }
+
+    public function destroyCate($id)
+    {
+
+        DB::table('cate_blogs')->where('id', '=', $id)->delete();
+
+        return redirect()->back()->with('thongbao', 'Xóa thành công!');
+    }
 
     public function setactive($id, $status)
     {
@@ -151,6 +256,11 @@ class BlogsController extends Controller
         return redirect()->back()->with('thanhcong', 'Thành công');
     }
 
-
-
+    public function setactiveCate($id, $status)
+    {
+        DB::table('cate_blogs')->where('id', '=', $id)->update([
+            'active' => $status,
+        ]);
+        return redirect()->back()->with('thanhcong', 'Thành công');
+    }
 }
