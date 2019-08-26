@@ -17,7 +17,7 @@
                                         <div class=" col-md-8">
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $value->created_at }}
                                             <p><a class="big-title" href="javascript:void(0)">{{ $value->name }}</a></p>
-                                            <p>{{ $value->summary }}</p>
+                                            <p>{!! $value->summary !!}</p>
                                         </div>
                                     </div>
                                 @else
@@ -29,7 +29,7 @@
                                         <div class="media-body">
                                             <p><a href="javascript:void(0)">{{ $value->name }}</a></p>
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $value->created_at }}
-                                            <p>{{ $value->summary }}</p>
+                                            <p>{!! $value->summary !!}</p>
                                         </div>
                                     </div>
                                 @endif
