@@ -70,26 +70,15 @@
                             Dịch vụ
                         </p>
                         <ul class="footer__detail-service--text">
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Dịch vụ quản trị website</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Dịch vụ SEO từ khóa website giá rẻ</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Quảng cáo Google Adwords</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế web du lịch chuyên nghiệp</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế web tin tức, báo chí online</a>
-                            </li>
+
+                            @if(isset($serviHot))
+                                @foreach($serviHot as $value)
+                                    <li>
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <a href="{{ Route('get.list.service',[$value->slug]) }}">{{ $value->name }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -99,26 +88,14 @@
                             Hỗ trợ
                         </p>
                         <ul class="footer__detail-support--text">
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Liên hệ chúng tôi</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Điều kiện và chính sách</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Quy trình thiết kế website</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Câu hỏi thường gặp</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Hỗ trợ khách hàng</a>
-                            </li>
+                            @if(isset($otherHot))
+                                @foreach($otherHot as $hot)
+                                    <li>
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <a href="javascript:void(0)">{{ $hot->name }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -128,26 +105,15 @@
                             Thiết kế website
                         </p>
                         <ul class="footer__detail-design--text">
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế website chuyên nghiệp</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế website bất động sản</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế web nhà hàng khách sạn</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế web trọn gói chuyên nghiệp</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-angle-double-right"></i>
-                                <a href="javascript:void(0)">Thiết kế web bán hàng chuyên nghiệp</a>
-                            </li>
+                            @if(isset($newHot))
+                                @foreach($newHot as $value)
+                                    <li>
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <a href="javascript:void(0)">{{$value->name }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
+
                         </ul>
                     </div>
                 </div>
