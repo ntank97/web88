@@ -81,13 +81,9 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::post('edit/{id}','ClientController@update')->name('user.account.update');
             Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
         });
-<<<<<<< HEAD
-
-=======
         Route::group(['prefix' => 'pending'],function(){
             Route::get('index','PendingController@index')->name('pending.index');
         });
->>>>>>> fdf370506f22ac3100739fc8ab3d1f74cac80cd8
     });
     
     Route::prefix('web_users')->group(function(){
@@ -104,7 +100,6 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
         Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
     });
-<<<<<<< HEAD
 
     Route::prefix('contact')->group(function(){
         Route::get('list','ContactController@list')->name('contact.list');
@@ -124,8 +119,6 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
         Route::get('delete/{id}','SupportsController@delete')->name('supports.delete');
     });
 
-=======
->>>>>>> fdf370506f22ac3100739fc8ab3d1f74cac80cd8
     Route::prefix('blogs')->group(function(){
         Route::get('list','BlogsController@list')->name('blogs.list');
         Route::get('add','BlogsController@create')->name('blogs.create');
