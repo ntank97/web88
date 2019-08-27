@@ -108,6 +108,7 @@
                                     <input type="text" class="form-control" placeholder="goole.com" name="link"
                                            value="{{ old('link') }}">
                                 </div>
+                                {{--Hiển thị--}}
                                 <div class="form-group">
                                     <label>Hiển thị</label>
                                     <label class="radio-inline">
@@ -118,6 +119,8 @@
                                     </label>
                                 </div>
                                 {{--Hết tiêu điểm--}}
+
+
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>

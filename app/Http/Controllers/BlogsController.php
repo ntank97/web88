@@ -98,6 +98,7 @@ class blogsController extends Controller
             'cate_id' => $request->cate_blogs,
             'active' => $request->active,
             'admin_id'=> Auth::user()->id,
+            'footer_hot'=>$request->footer_hot,
             'created_at' => now(),
         ]);
         return redirect()->back()->with('thongbao', 'Thành công!');
@@ -216,6 +217,7 @@ class blogsController extends Controller
             'cate_id' => $request->cate_blogs,
             'active' => $request->active,
             'admin_id'=> Auth::user()->id,
+            'footer_hot'=>$request->footer_hot,
             'created_at' => now(),
         ]);
 
