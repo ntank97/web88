@@ -19,9 +19,9 @@ Route::get('khach-hang', 'FrontendController@khachHang')->name('khach.hang');
 Route::get('service/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
 Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
 Route::get('tin-tuc/{slug}', 'FrontendController@getListNews')->name('get.list.news');
-
-Route::get('seo', 'FrontendController@seo')->name('seo');
 Route::get('thiet-ke-website', 'FrontendController@thietKeWebsite')->name('thiet.ke.website');
+Route::get('seo', 'FrontendController@seo')->name('seo');
+
 Route::get('bang-gia-thiet-ke-website', 'FrontendController@bangGiaThietKeWebsite')->name('bang.gia.thiet.ke.website');
 Route::get('cham-soc-website', 'FrontendController@chamSocWebsite')->name('cham.soc.website');
 Route::get('dich-vu-thiet-ke-website', 'FrontendController@dichVuThietKeWebsite')->name('dich.vu.thiet.ke.website');

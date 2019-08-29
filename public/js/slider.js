@@ -42,7 +42,7 @@ $(".service__silder").slick({
     slidesToShow: 5,
     slidesToScroll: 1,
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
     autoplay: true,
     autoplaySpeed: 3000,
