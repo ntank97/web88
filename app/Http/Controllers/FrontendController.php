@@ -139,11 +139,18 @@ class FrontendController extends Controller
 
     public function getListService(Request $request)
     {
+
+        if(!$request->session()->has($request->slug))
+        {
+            DB::table('service')->where('slug',$request->slug)->increment('view',1);
+
+        }
         $url = $request->segment(2);
         $services = Service::where([
             'slug' => $url,
             'active' => Service::STATUS_PUBLIC
         ])->first();
+
         $viewData = [
             'services' => $services
         ];
@@ -152,6 +159,11 @@ class FrontendController extends Controller
 
     public function getListOtherService(Request $request)
     {
+        if(!$request->session()->has($request->slug))
+        {
+            DB::table('other_service')->where('slug',$request->slug)->increment('view',1);
+
+        }
         $url = $request->segment(2);
         $otherService = OtherService::where([
             'slug' => $url,
@@ -165,6 +177,11 @@ class FrontendController extends Controller
 
     public function getListNews(Request $request)
     {
+        if(!$request->session()->has($request->slug))
+        {
+            DB::table('new')->where('slug',$request->slug)->increment('view',1);
+
+        }
         $url = $request->segment(2);
         $listNews = Blogs::where([
             'slug' => $url,

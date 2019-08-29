@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use function foo\func;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -74,6 +75,11 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+        Gate::define('hide',function ($user){
+            if($user->level == 3) return false;
+            else return true;
+        });
+
 
     }
 }
