@@ -36,7 +36,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               
-              @can('view')
+             @can('view')
                 <li class="active"><a href="#activity" data-toggle="tab">Danh sách</a></li>
                 <li><a href="#timeline" data-toggle="tab">Thêm</a></li>
                 <li><a href="#client" data-toggle="tab">Danh sách client</a></li>
@@ -111,8 +111,9 @@
                         <div class="form-group">
                             <p>Cấp bậc</p>
                             <select name="level">
-                               <option value='2'>Cộng tác viên</option>
-                               <option value='3'>Người dùng</option>
+                                @foreach($roles['role'] as $value )
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -123,8 +124,8 @@
                         </div>
                         <div class="form-group">
                             <p>Nhập lại mật khẩu</p>
-                            <input name="password_confirm" class="form-control" id="confirmpass" type="password" placeholder="Confirm password" onchange="return confirmPasswword()">
-                            <p style="color:red">{{ $errors->first('password_confirm') }}</p>
+                            <input name="password_confirmation" class="form-control" id="confirmpass" type="password" placeholder="Confirm password" onchange="return confirmPasswword()">
+                            <p style="color:red">{{ $errors->first('password_confirmation') }}</p>
                             <div id="errorpass" style="color:red"></div>
                         </div>
 
@@ -140,7 +141,7 @@
 
               <div class="tab-pane" id="client">
                 <div class="box-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>Tên</th>
@@ -205,16 +206,9 @@
                 </div>
               </div>
               @endcan
-              <div 
-                    @cannot('view')
-                        class="active tab-pane" id="pending_web"
-                    @endcannot
-                    @can('view')
-                        class="tab-pane" id="pending_web"
-                    @endcan
-              >
-              <div class="box-body">
-                                <table id="example3" class="table table-bordered table-hover">
+              <div class="tab-pane" id="pending_web">
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
@@ -222,7 +216,7 @@
                                         <th>Image</th>
                                         <th>Link</th>
                                         <th>Pending</th>
-                                        <th>Hành Động</th>
+                                        <th>Hành Ð?ng</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -245,10 +239,15 @@
                                                         </select>
                                                     </div>
                                                 </th>
-                                                <td >
-                                                    <a class="btn btn-default" href="{{Route('webstore.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
-                                                    
-                                                    <a href="{{ Route('webstore.destroy',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
+                                                <td>
+                                                    <a class="btn btn-default"
+                                                       href="{{Route('webstore.edit',['id'=> $value->id]) }}"
+                                                       title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
+
+                                                    <a href="{{ Route('webstore.destroy',['id' => $value->id]) }}"
+                                                       class="btn btn-danger" title="Xóa {{ $value->name }}"
+                                                       onclick="return confirm('B?n mu?n xoá tài kho?n này ?')"><i
+                                                                class="fa fa-trash"></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -260,6 +259,7 @@
                             </div>
               
             </div>
+         
             <div class="tab-pane" id="pending_blog">
               <div class="box-body">
                                 <table id="example4" class="table table-bordered table-hover">
@@ -269,7 +269,7 @@
                                         <th>Tóm tắt</th>
                                         <th>Chi tiết</th>
                                         <th>Pending</th>
-                                        <th>Hành Động</th>
+                                        <th>Hành Ðộng</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -291,10 +291,15 @@
                                                         </select>
                                                     </div>
                                                 </th>
-                                                <td >
-                                                    <a class="btn btn-default" href="{{Route('blogs.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
-                                                    
-                                                    <a href="{{ Route('blogs.delete',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa " onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
+                                                <td>
+                                                    <a class="btn btn-default"
+                                                       href="{{Route('blogs.edit',['id'=> $value->id]) }}" title="Edit"><i
+                                                                class="fas fa-pencil-ruler"></i> Sửa</a>
+
+                                                    <a href="{{ Route('blogs.destroy',['id' => $value->id]) }}"
+                                                       class="btn btn-danger" title="Xóa "
+                                                       onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i
+                                                                class="fa fa-trash"></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -306,7 +311,7 @@
                             </div>
               
             </div>
-            <div class="tab-pane" id="pending_service">
+             <div class="tab-pane" id="pending_service">
               <div class="box-body">
                                 <table id="example5" class="table table-bordered table-hover">
                                     <thead>
@@ -314,9 +319,9 @@
                                         <th>STT</th>
                                         <th>Tên</th>
                                         <th>Image</th>
-                                        <th>Tóm tắt</th>
+                                        <th>Tóm t?t</th>
                                         <th>Pending</th>
-                                        <th>Hành Động</th>
+                                        <th>Hành Ð?ng</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -333,16 +338,16 @@
                                                         <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom"></i>
                                                         <span>Pending</span>
                                                         <select id="test" style="padding-top:5px;padding-right: 5px;" onchange="edit_services(this,{{ $value->id }})">
-                                                            <option selected disabled>--Chọn trạng thái--</option>
+                                                            <option selected disabled>--Ch?n tr?ng thái--</option>
                                                             <option value='1'>Active</option>
                                                             <option value='0'>Pending</option>
                                                         </select>
                                                     </div>
                                                 </th>
                                                 <td >
-                                                    <a class="btn btn-default" href="{{Route('user.account.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> Sửa</a>
+                                                    <a class="btn btn-default" href="{{Route('user.account.edit',['id'=> $value->id]) }}" title="Edit"><i class="fas fa-pencil-ruler"></i> S?a</a>
                                                     
-                                                    <a href="{{ Route('user.account.delete',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('Bạn muốn xoá tài khoản này ?')"><i class="fa fa-trash"></i> Xóa</a>
+                                                    <a href="{{ Route('user.account.delete',['id' => $value->id]) }}" class="btn btn-danger" title="Xóa {{ $value->name }}" onclick="return confirm('B?n mu?n xoá tài kho?n này ?')"><i class="fa fa-trash"></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -352,9 +357,6 @@
 
                                 </table>
                             </div>
-                            <div id="result">
-                            </div>
-              
             </div>
             <!-- /.tab-content -->
           </div>
@@ -368,8 +370,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <script>
+   <script>
     function edit_pending(obj,id){
 		var id_pending=obj.value;
         var id_web=id;

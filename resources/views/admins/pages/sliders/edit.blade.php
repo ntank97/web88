@@ -70,7 +70,7 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm Slider</h3>
+                        <h3 style="text-align: left; padding-left: 5px">Sửa Slider</h3>
                         <form role="form" method="POST" action="{{route('slider.update',['id'=>$slider->id])}}"
                               enctype="multipart/form-data">
                             @csrf
@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">
-                                        <img width="100px" height="150px" src="{{asset('')}}assets/img_slider/{{$slider ->image}}">
+                                        <img width="100px" height="150px" src="{{asset('')}}assets/slider-index/{{$slider ->image}}">
                                     </div>
                                 </div>
 

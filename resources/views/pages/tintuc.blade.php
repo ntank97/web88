@@ -10,12 +10,11 @@
                             @foreach($news as $key => $new)
                                 @if($key == 0)
                                     <div class="row">
-                                        <img class="col-md-4"
-                                             src="{{ asset('assets/img_blogs/'.$new->image) }}"
-                                             class="mr-3 mt-2" width="160" height="100">
+                                        <a href="{{ route('get.list.news',[$new->slug]) }}"><img class="col-md-4" src="{{ asset('assets/img_blogs/'.$new->image) }}"
+                                             class="mr-3 mt-2" width="160" height="100"></a>
                                         <div class=" col-md-8">
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
-                                            <p><a class="big-title" href="javascript:void(0)">{{ $new->name }}</a></p>
+                                            <p><a href="{{ route('get.list.news',[$new->slug]) }}" class="big-title" href="javascript:void(0)">{{ $new->name }}</a></p>
                                             <p>{!! substr($new->summary,0,100).'...' !!} </p>
                                         </div>
                                     </div>
@@ -23,10 +22,9 @@
                         <!-- </div> -->
                                     <hr>
                                 <div class="media p-12">
-                                    <img src="{{ asset('assets/img_blogs/'.$new->image) }}"
-                                         class="mr-4 mt-2" width="160" height="100">
+                                    <a style="flex: none;" href="{{ route('get.list.news',[$new->slug]) }}"><img src="{{ asset('assets/img_blogs/'.$new->image) }}" class="mr-4 mt-2" width="160" height="100"></a>
                                     <div class="media-body">
-                                        <p><a href="javascript:void(0)">{{ $new->name }}</a></p>
+                                        <p><a href="{{ route('get.list.news',[$new->slug]) }}">{{ $new->name }}</a></p>
                                         <i class="fa fa-calendar"> &nbsp </i>{{ $new->created_at }}
                                         <p>{!! substr($new->summary,0,100).'...' !!}</p>
                                 </div>

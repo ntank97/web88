@@ -30,7 +30,7 @@
     </div>
     <!--  -->
     <div class="content-main">
-        <div class="container">
+        <div class="container" style="margin-bottom: 30px;">
             <div class="time">
 <<<<<<< HEAD
                 <span><i class="far fa-calendar-alt"></i>{{ $otherService->created_at }}</span>
@@ -59,13 +59,11 @@
             <div class="service__silder">
                 @if(isset($sliders))
                     @foreach($sliders as $slider)
-                        <img src="{{ asset('image/slider-content/'.$slider->image )}}" alt="">
+                        <img src="{{ asset('assets/slider-dichvu/'.$slider->image )}}" alt="">
                     @endforeach
                 @endif
             </div>
         </div>
     </div>
-
-
 
 @endsection

@@ -56,7 +56,7 @@
                         <a class="nav-link text-light" href="{{ Route('khach.hang') }}">KHÁCH HÀNG</a>
                     </li>
                     <li class="nav-item  dropdown">
-                        <a href="#" class="nav-link text-light">THÊM <i class="fa fa-plus plus" aria-hidden="true"></i></a>
+                        <a class="nav-link text-light">THÊM <i class="fa fa-plus plus" aria-hidden="true"></i></a>
                         <div class="dropdown-content">
 <<<<<<< HEAD
 =======

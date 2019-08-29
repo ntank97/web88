@@ -87,7 +87,6 @@
                                 {{--</div>--}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
-<<<<<<< HEAD
                                     <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
@@ -97,30 +96,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả (*)</label>
                                     <textarea class="form-control" name="description" placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
-=======
-                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
-                                           value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
-                                           value="{{ old('title') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Mô tả (*)</label>
-                                    <textarea class="form-control" name="description"
-                                              placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
-                                </div>
-                                <div class="form-group">
-<<<<<<< HEAD
-                                    <textarea name = "summary" class="form-control" cols="50" rows="10" placeholder="Nhập tóm tắt nội dung">{{ old('summary') }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                <label for="exampleInputEmail1">Nội dung (*)</label>
-                                <div class="form-group">
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung" class="form-control">{{ old('contentt') }}</textarea>
-=======
                                     <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                     <div class="form-group">
                                     <textarea name="summary" class="form-control" cols="50" rows="10"
@@ -133,7 +110,6 @@
                                         <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
                                                   class="form-control">{{ old('contentt') }}</textarea>
                                     </div>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh nền</label>
@@ -166,7 +142,17 @@
                                     </label>
                                 </div>
                                 {{--Hết tiêu điểm--}}
-
+                                {{--Nổi bật--}}
+                                <div class="form-group">
+                                    <label>Nổi bật</label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="1" checked="" type="radio">Có
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="0" type="radio">Không
+                                    </label>
+                                </div>
+                                {{--Hết nối bật--}}
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>

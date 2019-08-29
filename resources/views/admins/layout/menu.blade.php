@@ -7,13 +7,8 @@
                 <img src="{{asset('admins/dist/img/thao.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-<<<<<<< HEAD
                 
                 <a href="#"><i class="fa fa-circle text-success"></i><p>{{Auth::user()->name}}</p></a>
-=======
-                <p>Alexander Pierce</p>
-                <a href=""><i class="fa fa-circle text-success"></i> tien</a>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
             </div>
         </div>
         <!-- search form -->

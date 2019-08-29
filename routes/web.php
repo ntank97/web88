@@ -9,19 +9,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/','HomeController@index')->name('home');
-Route::get('kho-giao-dien','FrontendController@khoGiaoDien')->name('kho.giao.dien');
-Route::get('kho-giao-dien/{slug}-{id}','FrontendController@getListProduct')->name('get.list.product');
-Route::get('dich-vu/{slug}','FrontendController@getListService')->name('get.list.service');
-Route::get('lien-he','FrontendController@lienHe')->name('lien.he');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('kho-giao-dien', 'FrontendController@khoGiaoDien')->name('kho.giao.dien');
+Route::get('kho-giao-dien/{slug}-{id}', 'FrontendController@getListProduct')->name('get.list.product');
+Route::get('dich-vu/{slug}', 'FrontendController@getListService')->name('get.list.service');
+Route::get('lien-he', 'FrontendController@lienHe')->name('lien.he');
 //Route::get('lien-he/{slug}-{id}','FrontendController@getListProduct');
-Route::get('khach-hang','FrontendController@khachHang')->name('khach.hang');
+Route::get('khach-hang', 'FrontendController@khachHang')->name('khach.hang');
 Route::get('service/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
 Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
-Route::get('tin-tuc/{slug}','FrontendController@getListNews')->name('get.list.news');
+Route::get('tin-tuc/{slug}', 'FrontendController@getListNews')->name('get.list.news');
+Route::get('thiet-ke-website', 'FrontendController@thietKeWebsite')->name('thiet.ke.website');
+Route::get('seo', 'FrontendController@seo')->name('seo');
 
-Route::get('seo','FrontendController@seo')->name('seo');
-Route::get('thiet-ke-website','FrontendController@thietKeWebsite')->name('thiet.ke.website');
 Route::get('bang-gia-thiet-ke-website', 'FrontendController@bangGiaThietKeWebsite')->name('bang.gia.thiet.ke.website');
 Route::get('cham-soc-website', 'FrontendController@chamSocWebsite')->name('cham.soc.website');
 Route::get('dich-vu-thiet-ke-website', 'FrontendController@dichVuThietKeWebsite')->name('dich.vu.thiet.ke.website');
@@ -41,11 +41,11 @@ Route::get('thiet-ke-website-theo-mau', 'FrontendController@thietKeWebsiteTheoMa
 Route::get('thiet-ke-web-tron-goi-gia-re', 'FrontendController@thietKeWebTronGoiGiaRe')->name('thiet.web.tron.goi.gia.re');
 Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
 Route::get('tuyen-dung', 'FrontendController@tuyenDung')->name('tuyen.dung');
-Route::get('thiet-ke-web-theo-yeu-cau','FrontendController@thietKeWebTheoYeuCau')->name('thiet.ke.web.theo.yeu.cau');
-Route::get('dich-vu-thiet-ke-web-gia-re','FrontendController@dichVuThietKeWebGiaRe')->name('dich.vu.thiet.ke.web.gia.re');
-Route::post('dang-ky','FrontendController@dangki')->name('khoi.tao.web');
+Route::get('thiet-ke-web-theo-yeu-cau', 'FrontendController@thietKeWebTheoYeuCau')->name('thiet.ke.web.theo.yeu.cau');
+Route::get('dich-vu-thiet-ke-web-gia-re', 'FrontendController@dichVuThietKeWebGiaRe')->name('dich.vu.thiet.ke.web.gia.re');
+Route::post('dang-ky', 'FrontendController@dangki')->name('khoi.tao.web');
 Auth::routes();
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin'], function () {
     /*
      * Admin đăng nhập
      */
@@ -54,15 +54,15 @@ Route::group(['prefix' => 'admin'],function(){
     /*
      * Admin đăng xuất
      */
-    Route::get('logout','Auth\LogoutController@logout')->name('admin.logout');
+    Route::get('logout', 'Auth\LogoutController@logout')->name('admin.logout');
 });
-Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
-    Route::get('/','AdminController@index')->name('admin.dashboard');
-    Route::get('/dashboard','AdminController@index');
+Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/dashboard', 'AdminController@index');
     /*
      * Tài khoản
      */
-    Route::prefix('account')->group(function (){
+    Route::prefix('account')->group(function () {
 
         Route::group(['prefix' => 'editor'],function(){
             Route::get('profile','AccountController@profile')->name('editor.account.profile');
@@ -75,15 +75,15 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
             Route::post('update_pending_blogs','WebStoreController@update_pending_blogs')->name('update_pending_blogs');
             Route::post('update_pending_services','WebStoreController@update_pending_services')->name('update_pending_services');
         });
-        Route::group(['prefix' => 'user'],function(){
-            Route::get('profile','ClientController@profile')->name('editor.account.index');
-            Route::post('add','ClientController@store')->name('user.account.store');
-            Route::get('edit/{id}','ClientController@edit')->name('user.account.edit');
-            Route::post('edit/{id}','ClientController@update')->name('user.account.update');
-            Route::get('delete/{id}','ClientController@delete')->name('user.account.delete');
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('profile', 'ClientController@profile')->name('editor.account.index');
+            Route::post('add', 'ClientController@store')->name('user.account.store');
+            Route::get('edit/{id}', 'ClientController@edit')->name('user.account.edit');
+            Route::post('edit/{id}', 'ClientController@update')->name('user.account.update');
+            Route::get('delete/{id}', 'ClientController@delete')->name('user.account.delete');
         });
-        Route::group(['prefix' => 'pending'],function(){
-            Route::get('index','PendingController@index')->name('pending.index');
+        Route::group(['prefix' => 'pending'], function () {
+            Route::get('index', 'PendingController@index')->name('pending.index');
         });
     });
     

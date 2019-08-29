@@ -72,14 +72,8 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-<<<<<<< HEAD
                         <h3 style="text-align: left; padding-left: 5px">Sửa dịch vụ</h3>
                         <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}" enctype="multipart/form-data">
-=======
-                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ</h3>
-                        <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}"
-                              enctype="multipart/form-data">
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
                             @csrf
                             <div class="box-body">
                                 {{--<div class="form-group">--}}
@@ -92,13 +86,6 @@
                                 {{--</div>--}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
-<<<<<<< HEAD
-                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name" value="{{ $service->name}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title" value="{{ $service->title}}">
-=======
                                     <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
                                            value="{{$service->name}}">
                                 </div>
@@ -111,7 +98,6 @@
                                     <label for="exampleInputEmail1">Mô tả (*)</label>
                                     <textarea class="form-control" name="description"
                                               placeholder="Nhập tóm tắt nội dung">{{ $service->description}}</textarea>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Miêu tả dịch vụ (*)</label>
@@ -120,14 +106,6 @@
 
                                 <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
-<<<<<<< HEAD
-
-                                    <textarea class="form-control" name="summary" cols="50" rows="10" placeholder="Nhập tóm tắt nội dung">{{ $service->summary }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung (*)</label>
-                                    <textarea name="contentt" rows="10" placeholder="Nhập nội dung" class="form-control">{{ $service->content }}</textarea>
-=======
                                     <textarea name="summary" class="form-control" cols="50" rows="10"
                                               placeholder="Nhập tóm tắt nội dung">{{ $service->summary }}</textarea>
                                 </div>
@@ -141,7 +119,6 @@
                                         <label for="exampleInputFile">Ảnh nền</label>
                                         <input type="file" id="image" name="image" onchange="showIMG()">
                                     </div>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
                                 </div>
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
@@ -170,14 +147,23 @@
                                 </div>
                                 {{--Hết tiêu điểm--}}
 
-<<<<<<< HEAD
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Sửa</button>
-=======
+
+
+                                {{--Nổi bật--}}
+                                <div class="form-group">
+                                    <label>Nổi bật</label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="1" checked="" type="radio">Có
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="0" type="radio">Không
+                                    </label>
+                                </div>
+                                {{--Hết nối bật--}}
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>
->>>>>>> 2617931d226679f7de185ff4b00843c67d7b875b
+
                             </div>
                         </form>
                     </div>
