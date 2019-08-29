@@ -150,7 +150,7 @@ class SliderController extends Controller
         ]);
 
 
-        return redirect()->route('slidercontent.index')->with('thongbao', 'Add Success');
+        return redirect()->route('slidercontent.index')->with('thongbao', 'Sửa thành công!');
     }
 
     /**
