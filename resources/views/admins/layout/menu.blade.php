@@ -4,11 +4,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('') }}/admins/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('admins/dist/img/thao.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href=""><i class="fa fa-circle text-success"></i> tien</a>
+                
+                <a href="#"><i class="fa fa-circle text-success"></i><p>{{Auth::user()->name}}</p></a>
             </div>
         </div>
         <!-- search form -->
@@ -270,15 +270,44 @@
             {{--<li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>--}}
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-table"></i> <span>Đối tác</span>
+                    <i class="fa fa-tty"></i> <span>Liên hệ</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{Route('partner.list')}}"><i class="fa fa-circle-o"></i> Danh sách đối tác</a></li>
-                    <li><a href="{{Route('partner.add')}}"><i class="fa fa-circle-o"></i> Thêm đối tác</a></li>
+                    <li><a href="{{Route('contact.list')}}"><i class="fa fa-list"></i> Danh sách liên hệ</a></li>
+                    <li><a href="{{Route('contact.add')}}"><i class="fa fa-plus"></i> Thêm liên hệ</a></li>
                 </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-road"></i> <span>Hỗ trợ</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('supports.list')}}"><i class="fa fa-list"></i> Danh sách hỗ trợ</a></li>
+                    <li><a href="{{Route('supports.add')}}"><i class="fa fa-plus"></i> Thêm hỗ trợ</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user-plus"></i> <span>Đối tác</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('partner.list')}}"><i class="fa fa-list"></i> Danh sách đối tác</a></li>
+                    <li><a href="{{Route('partner.add')}}"><i class="fa fa-plus"></i> Thêm đối tác</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ Route('web_users.contact') }}">
+                    <i class="fa fa-users"></i> <span>Liên hệ khách hàng</span>
+                </a>
             </li>
             <li>
                 <a href="{{ Route('editor.account.profile') }}">
