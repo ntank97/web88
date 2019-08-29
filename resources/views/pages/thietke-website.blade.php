@@ -16,7 +16,7 @@
                                              class="mr-3 mt-2" width="160" height="100">
                                         <div class=" col-md-8">
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $value->created_at }}
-                                            <p><a class="big-title" href="javascript:void(0)">{{ $value->name }}</a></p>
+                                            <p><a class="big-title" href="{{ route('get.list.news',[$value->slug]) }}">{{ $value->name }}</a></p>
                                             <p>{!! $value->summary !!}</p>
                                         </div>
                                     </div>
@@ -27,7 +27,7 @@
                                         <img src="{{ asset('assets/img_blogs/'.$value->image) }}"
                                              class="mr-4 mt-2" width="160" height="100">
                                         <div class="media-body">
-                                            <p><a href="javascript:void(0)">{{ $value->name }}</a></p>
+                                            <p><a href="{{ route('get.list.news',[$value->slug]) }}">{{ $value->name }}</a></p>
                                             <i class="fa fa-calendar"> &nbsp </i>{{ $value->created_at }}
                                             <p>{!! $value->summary !!}</p>
                                         </div>

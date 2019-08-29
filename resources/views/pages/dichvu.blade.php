@@ -19,7 +19,7 @@
     </div>
     <!--  -->
     <div class="content-main">
-        <div class="container">
+        <div class="container" style="margin-bottom: 30px;">
             <div class="time">
                 <span><i class="far fa-calendar-alt"></i>{{ $services->created_at }}</span>
                 <div class="fb-like" data-href="http://localhost:81/Haizzzzzzz/hostingchatluongcao.html" data-width=""
@@ -38,13 +38,11 @@
             <div class="service__silder">
                 @if(isset($sliders))
                     @foreach($sliders as $slider)
-                        <img src="{{ asset('image/slider-content/'.$slider->image )}}" alt="">
+                        <img src="{{ asset('assets/slider-dichvu/'.$slider->image )}}" alt="">
                     @endforeach
                 @endif
             </div>
         </div>
     </div>
-
-
 
 @endsection

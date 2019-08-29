@@ -144,8 +144,10 @@ class FrontendController extends Controller
             'slug' => $url,
             'active' => Service::STATUS_PUBLIC
         ])->first();
+        $sliders = DB::table('slider_content')->where('active', 1)->get();
         $viewData = [
-            'services' => $services
+            'services' => $services,
+            'sliders' => $sliders
         ];
         return view('pages.dichvu', $viewData);
     }
@@ -165,7 +167,7 @@ class FrontendController extends Controller
 
     public function getListNews(Request $request)
     {
-        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        $newsHots = Blogs::select('name','view','slug')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
         $url = $request->segment(2);
         $listNews = Blogs::where([
             'slug' => $url,
@@ -175,12 +177,12 @@ class FrontendController extends Controller
             'listNews' => $listNews,
             'newsHots' => $newsHots,
         ];
-        return view('pages.chamsocwebsite',$viewData);
+        return view('pages.chitiettin',$viewData);
     }
 
     public function tinTuc()
     {
-        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        $newsHots = Blogs::select('name','view','slug')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
         return view('pages.tintuc',compact('newsHots'));
     }
 
@@ -190,15 +192,10 @@ class FrontendController extends Controller
         return view('pages.khachhang', compact('partners'));
     }
 
-    public function gioiThieuDichVu()
-    {
-        return view('pages.gioithieudichvu');
-    }
-
     public function seo()
     {
         $seo = Blogs::where([['cate_id',1],['active',1]])->paginate(10);
-        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
+        $newsHot = Blogs::select('name','view','slug')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
         $viewData = [
             'seo' => $seo,
             'newsHot' => $newsHot,
@@ -209,7 +206,7 @@ class FrontendController extends Controller
     public function thietKeWebsite()
     {
         $tkweb = Blogs::where([['cate_id',2],['active',1]])->paginate(10);
-        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
+        $newsHot = Blogs::select('name','view','slug')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
         $viewData = [
             'tkweb' => $tkweb,
             'newsHot' => $newsHot,
@@ -298,20 +295,5 @@ class FrontendController extends Controller
         return view('pages.tuyendung');
     }
 
-    public function thietKeWebTheoYeuCau()
-    {
-        return view('pages.thietkewebtheoyeucau');
-    }
 
-    public function dichVuThietKeWebGiaRe()
-    {
-        $sliders = DB::table('slider_content')->where('active', 1)->get();
-
-        $service = DB::table('service')->where('active', 1)->get();
-        $viewData = [
-            'sliders' => $sliders,
-            'service' => $service,
-        ];
-        return view('pages.dichvu-thietkewebgiare', $viewData);
-    }
 }
