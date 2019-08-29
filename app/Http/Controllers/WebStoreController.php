@@ -34,23 +34,18 @@ class WebStoreController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('add')) {
-            $data['cate_web'] = DB::table('cate_web')->get();
-            return view('admins.pages.webstore.add', $data);
-        } else {
-            return view('admins.page.account.error');
-        }
+
+        $data['cate_web'] = DB::table('cate_web')->get();
+        return view('admins.pages.webstore.add', $data);
+
     }
 
 
     public function createCate()
     {
-        if (Gate::allows('add')) {
-            $data['cate_web'] = DB::table('cate_web')->get();
-            return view('admins.pages.webstore.cate', $data);
-        } else {
-            return view('admins.page.account.error');
-        }
+
+        $data['cate_web'] = DB::table('cate_web')->orderByDesc('id')->get();
+        return view('admins.pages.webstore.cate', $data);
 
     }
 
@@ -62,43 +57,47 @@ class WebStoreController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-        $this->validate($request,
-            [
+        if (Gate::allows('add')) {
+            $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+            $this->validate($request,
+                [
 
-                'name' => 'required|min:3',
-                'link' => 'required|regex:' . $regex,
-            ],
-            [
-                'name.required' => 'Tên ít nhất 3 kí tự',
-            ]);
+                    'name' => 'required|min:3',
+                    'link' => 'required|regex:' . $regex,
+                ],
+                [
+                    'name.required' => 'Tên ít nhất 3 kí tự',
+                ]);
 
-        if ($request->hasFile('image')) {
+            if ($request->hasFile('image')) {
 
-            $file = $request->file('image');
+                $file = $request->file('image');
 
-            $name = $file->getClientOriginalName();
-            $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_webs/' . $image)) {
+                $name = $file->getClientOriginalName();
                 $image = str_random(4) . "_image_" . $name;
-            }
-            $file->move('assets/img_webs/', $image);
-            $file_name = $image;
+                while (file_exists('assets/img_webs/' . $image)) {
+                    $image = str_random(4) . "_image_" . $name;
+                }
+                $file->move('assets/img_webs/', $image);
+                $file_name = $image;
 
+            } else {
+                $file_name = 'logo1.png';
+            }
+            DB::table('web')->insert([
+                'name' => $request->name,
+                'slug' => str_slug($request->name),
+                'image' => $file_name,
+                'link' => $request->link,
+                'cate_id' => $request->cate_web,
+                'active' => $request->active,
+                'created_at' => now(),
+            ]);
+            return redirect()->back()->with('thongbao', 'Thành công!');
         } else {
-            $file_name = 'logo1.png';
+            return view('admins.page.account.error');
         }
-        DB::table('web')->insert([
-            'name' => $request->name,
-            'slug' => str_slug($request->name),
-            'image' => $file_name,
-            'link' => $request->link,
-            'cate_id' => $request->cate_web,
-            'active' => $request->active,
-            'created_at' => now(),
-        ]);
-        return redirect()->back()->with('thongbao', 'Thành công!');
+
 
     }
 
@@ -111,39 +110,41 @@ class WebStoreController extends Controller
      */
     public function storeCate(Request $request)
     {
+        if (Gate::allows('add')) {
+            $this->validate($request,
+                [
 
-        $this->validate($request,
-            [
+                    'name' => 'required|min:3|unique:cate_web',
+                ],
+                [
 
-                'name' => 'required|min:3|unique:cate_web',
-            ],
-            [
+                ]);
+            if ($request->hasFile('image')) {
 
-            ]);
-        if ($request->hasFile('image')) {
+                $file = $request->file('image');
 
-            $file = $request->file('image');
+                $name = $file->getClientOriginalName();
+                $image = str_random(4) . "_image_icon" . $name;
+                while (file_exists('assets/img_icon/' . $image)) {
+                    $image = str_random(4) . "_image_" . $name;
+                }
+                $file->move('assets/img_icon/', $image);
+                $file_name = $image;
 
-            $name = $file->getClientOriginalName();
-            $image = str_random(4) . "_image_icon" . $name;
-            while (file_exists('assets/img_icon/' . $image)) {
-                $image = str_random(4) . "_image_" . $name;
+            } else {
+                $file_name = 'logo1.png';
             }
-            $file->move('assets/img_icon/', $image);
-            $file_name = $image;
 
-        } else {
-            $file_name = 'logo1.png';
-        }
+            DB::table('cate_web')->insert([
+                'name' => $request->name,
+                'slug' => str_slug($request->name),
+                'icon' => $file_name,
+                'active' => $request->active,
+                'created_at' => now(),
+            ]);
+            return redirect()->back()->with('thongbao', 'Thành công!');
+        } else return view('admins.page.account.error');
 
-        DB::table('cate_web')->insert([
-            'name' => $request->name,
-            'slug' => str_slug($request->name),
-            'icon' => $file_name,
-            'active' => $request->active,
-            'created_at' => now(),
-        ]);
-        return redirect()->back()->with('thongbao', 'Thành công!');
 
     }
 
@@ -166,10 +167,15 @@ class WebStoreController extends Controller
      */
     public function edit($id)
     {
-        $data['web'] = DB::table('web')->find($id);
-        if (Gate::allows('edit', $data)) {
-            $data['cate_web'] = DB::table('cate_web')->get();
-            return view('admins.pages.webstore.edit', $data);
+        $web = DB::table('web')->where('id',$id)->get();
+        if (Gate::allows('add',$web)) {
+            $data['web'] = DB::table('web')->find($id);
+            if (Gate::allows('edit', $data)) {
+                $data['cate_web'] = DB::table('cate_web')->get();
+                return view('admins.pages.webstore.edit', $data);
+            } else {
+                return view('admins.page.account.error');
+            }
         } else {
             return view('admins.page.account.error');
         }
@@ -179,10 +185,17 @@ class WebStoreController extends Controller
 
     public function editCate($id)
     {
-        $data['cate_web'] = DB::table('cate_web')->find($id);
-        if (Gate::allows('edit', $data)) {
 
-            return view('admins.pages.webstore.editCate', $data);
+        if (Gate::allows('add')) {
+            $data['cate'] = DB::table('cate_web')->find($id);
+            $data['cate_web'] = DB::table('cate_web')->get();
+            if (Gate::allows('edit', $data)) {
+
+                return view('admins.pages.webstore.editCate', $data);
+            } else {
+                return view('admins.page.account.error');
+            }
+
         } else {
             return view('admins.page.account.error');
         }
@@ -249,52 +262,48 @@ class WebStoreController extends Controller
 
     public function updateCate(Request $request, $id)
     {
-        dd($request->all());
-        $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('image');
 
-        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        $icon_update = DB::table('cate_web')->where('id', '=', $id)->pluck('icon');
+
         $this->validate($request,
             [
 
                 'name' => 'required|min:3',
-                'link' => 'required|regex:' . $regex,
             ],
             [
                 'name.required' => 'Tên ít nhất 3 kí tự',
             ]);
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('icon')) {
 
-            $file = $request->file('image');
+            $file = $request->file('icon');
 
             $name = $file->getClientOriginalName();
-            $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_webs/' . $image)) {
-                $image = str_random(4) . "_image_" . $name;
+            $icon = str_random(4) . "_icon_" . $name;
+            while (file_exists('assets/img_icon/' . $icon)) {
+                $icon = str_random(4) . "_icon_" . $name;
             }
-            $file->move('assets/img_webs/', $image);
-            $file_name = $image;
-            if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
-                unlink('assets/img_webs/' . $image_update[0]);
+            $file->move('assets/img_icon/', $icon);
+            $file_name = $icon;
+            if (file_exists('assets/img_icon/' . $icon_update[0]) && $icon_update[0] != '') {
+                unlink('assets/img_icon/' . $icon_update[0]);
             }
 
 
         } else {
-            $file_name = DB::table('web')->where('id', '=', $id)->pluck('image')->first();
+            $file_name = DB::table('cate_web')->where('id', '=', $id)->pluck('icon')->first();
 
         }
 
-        DB::table('web')->where('id', '=', $id)->update([
+        DB::table('cate_web')->where('id',$id)->update([
             'name' => $request->name,
             'slug' => str_slug($request->name),
-            'image' => $file_name,
-            'link' => $request->link,
-            'cate_id' => $request->cate_web,
+            'icon' => $file_name,
             'active' => $request->active,
             'created_at' => now(),
         ]);
 
 
-        return redirect()->route('webstore.index')->with('thongbao', 'Add Success');
+        return redirect()->route('webstore.storeCate')->with('thongbao', 'Add Success');
     }
 
     /**
@@ -305,41 +314,62 @@ class WebStoreController extends Controller
      */
     public function destroy($id)
     {
-        $image_update = DB::table('web')->where('id', '=', $id)->pluck('image');
-        if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
-            unlink('assets/img_webs/' . $image_update[0]);
-        }
-        DB::table('web')->where('id', '=', $id)->delete();
+        $web = DB::table('web')->find($id);
 
-        return redirect()->route('webstore.index')->with('thongbao', 'Xóa thành công!');
+        if(Gate::allows('delete',$web))
+        {
+            $image_update = DB::table('web')->where('id', '=', $id)->pluck('image');
+            if (file_exists('assets/img_webs/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_webs/' . $image_update[0]);
+            }
+            DB::table('web')->where('id', '=', $id)->delete();
+
+            return redirect()->route('webstore.index')->with('thongbao', 'Xóa thành công!');
+        }
+        else return view('admins.page.account.error');
+
     }
 
     public function destroyCate($id)
     {
-        $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('icon');
-//        dd($image_update);
-        if (file_exists('assets/img_icon/' . $image_update[0]) && $image_update[0] != '') {
-            unlink('assets/img_icon/' . $image_update[0]);
+        if (Gate::allows('delete')) {
+            $image_update = DB::table('cate_web')->where('id', '=', $id)->pluck('icon');
+            if (file_exists('assets/img_icon/' . $image_update[0]) && $image_update[0] != '') {
+                unlink('assets/img_icon/' . $image_update[0]);
+            }
+
+            DB::table('cate_web')->where('id', '=', $id)->delete();
+
+            return redirect()->back()->with('thongbao', 'Xóa thành công!');
+
+        } else {
+            return view('admins.page.account.error');
         }
 
-        DB::table('cate_web')->where('id', '=', $id)->delete();
-
-        return redirect()->back()->with('thongbao', 'Xóa thành công!');
     }
 
     public function setactive($id, $status)
     {
-        DB::table('web')->where('id', '=', $id)->update([
-            'active' => $status,
-        ]);
-        return redirect()->back()->with('thanhcong', 'Thành công');
+        if (Gate::allows('hide'))
+        {
+            DB::table('web')->where('id', '=', $id)->update([
+                'active' => $status,
+            ]);
+        }
+        else return view('admins.page.account.error');
+
     }
 
     public function setactiveCate($id, $status)
     {
-        DB::table('cate_web')->where('id', '=', $id)->update([
-            'active' => $status,
-        ]);
-        return redirect()->back()->with('thanhcong', 'Thành công');
+        if (Gate::allows('hide')) {
+            DB::table('cate_web')->where('id', '=', $id)->update([
+                'active' => $status,
+            ]);
+            return redirect()->back()->with('thanhcong', 'Thành công');
+        } else {
+            return view('admins.page.account.error');
+        }
+
     }
 }
