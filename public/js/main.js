@@ -1,16 +1,11 @@
 $(function() {
-    $(".slide-text--title").textyle({
+    $(".slide-text--desc").textyle({
         duration: 500,
         delay: 200,
-        easing: 'linear',
-        callback: function() {
-            $(this).css({
-                transform: 'translateY(0px) rotateY(360deg)'
-            });
-        }
+        easing: 'linear'
     });
     $(".slide-text--desc").textyle();
-    $(".slide-text--desc2").textyle();
+    // $(".slide-text--desc2").textyle();
 });
 
 // Back to top

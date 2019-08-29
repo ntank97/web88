@@ -8,7 +8,7 @@
                 @foreach($sliders as $key => $slider)
             <li>
                 <a href="javascript:void(0)">
-                    <img src="{{ asset('assets/slider-index/'.$slider->image ) }}" alt="">
+                    <img width="1349" height="625" src="{{ asset('assets/slider-index/'.$slider->image )}}" alt="">
                 </a>
                 <div class="slide-text">
                     {{--<h3 class="slide-text--title">Talent Wins</h3>--}}

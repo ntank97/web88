@@ -126,9 +126,7 @@ button {
     height: 100%;
 }
 
-.slide-text .slide-text--title,
-.slide-text .slide-text--desc,
-.slide-text .slide-text--desc2 {
+.slide-text .slide-text--desc{
     z-index: 999;
 }
 
@@ -168,22 +166,22 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width: 100%;
     user-select: none;
+    width: 52%;
 }
 
-.slide-text .slide-text--title {
-    color: #fff;
-    display: block; 
-    font-size: 6rem;
-    font-family: 'Lobster', cursive;
-    letter-spacing: 1rem;
-    padding-bottom: 1rem;
-}
+/*.slide-text .slide-text--title {*/
+    /*color: #fff;*/
+    /*display: block; */
+    /*font-size: 6rem;*/
+    /*font-family: 'Lobster', cursive;*/
+    /*letter-spacing: 1rem;*/
+    /*padding-bottom: 1rem;*/
+/*}*/
 
-.slide-text--title-2 {
-    font-size: 4rem;
-}
+/*.slide-text--title-2 {*/
+    /*font-size: 4rem;*/
+/*}*/
 
 .slide-text .slide-text--desc {
     color: #fff;
@@ -192,22 +190,16 @@ button {
     letter-spacing: 0.5rem;
 }
 
-.slide-text .slide-text--desc2 {
-    color: #fff;
-    display: block;
-    font-size: 4rem;
-    letter-spacing: 0.5rem;
-}
 
-.slide-text .slide-text--title span {
-    display: inline-block;
-    position: relative;
-    opacity: 0;
-    transition: 0.5s;
-    transform: translateY(100px);
-    font-family: 'Lobster', cursive;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-}
+/*.slide-text .slide-text--title span {*/
+    /*display: inline-block;*/
+    /*position: relative;*/
+    /*opacity: 0;*/
+    /*transition: 0.5s;*/
+    /*transform: translateY(100px);*/
+    /*font-family: 'Lobster', cursive;*/
+    /*text-shadow: 1px 1px 3px rgba(0,0,0,0.7);*/
+/*}*/
 
 .slide-text .slide-text--desc span {
     display: inline-block;
@@ -218,14 +210,6 @@ button {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-.slide-text .slide-text--desc2 span {
-    display: inline-block;
-    position: relative;
-    opacity: 0;
-    transition: 0.5s;   
-    transition-delay: 5s;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
 
 .sb-slider .talent {
     font-family: 'Quicksand', sans-serif;
