@@ -87,6 +87,7 @@ class OtherServiceController extends Controller
             'content' => $request->contentt,
             'image' => $file_name,
             'active'=>$request->active,
+            'footer_hot'=>$request->footer_hot,
             'created_at' => now()
         ]);
         $other_service_id = DB::table('other_service')->where('name', $request->name)->orderBy('id', 'desc')->first();
@@ -211,6 +212,7 @@ class OtherServiceController extends Controller
             'description' => $request->description,
             'content' => $request->contentt,
             'image' => $file_name,
+            'footer_hot'=>$request->footer_hot,
             'updated_at' => now(),
             'active'=>$request->active,
         ]);

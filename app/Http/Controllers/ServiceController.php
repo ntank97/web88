@@ -87,7 +87,8 @@ class ServiceController extends Controller
             'content' => $request->contentt,
             'image' => $file_name,
             'active'=>$request->active,
-            'created_at' => now()
+            'created_at' => now(),
+            'footer_hot'=>$request->footer_hot,
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
 //Tách chuỗi
@@ -212,6 +213,7 @@ class ServiceController extends Controller
             'content' => $request->contentt,
             'image' => $file_name,
             'updated_at' => now(),
+            'footer_hot'=>$request->footer_hot,
             'active'=>$request->active,
         ]);
         $service_id = DB::table('service')->where('name', $request->name)->orderBy('id', 'desc')->first();
