@@ -31,6 +31,17 @@
             @endif
         </div>
 
+                     <div class="form-group">
+                            <label for="exampleInputEmail1">Tóm tắt tin tức (*)</label>
+                            <textarea class="form-control" name="summary" cols="50" rows="10"
+                                      placeholder="Nhập tóm tắt nội dung">{{ $blogs->summary }}</textarea>
+                            <p style="color:red">{{ $errors->first('summary') }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nội dung (*)</label>
+                            <textarea  name="detail" rows="10" placeholder="Nhập nội dung"
+                                      class="form-control">{{ $blogs->detail }}</textarea>
+                             <p style="color:red">{{ $errors->first('detail') }}</p>
 
         <!-- Main content -->
         <section class="content">
@@ -62,6 +73,8 @@
 
                         <!-- /.box-body -->
                     </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Thêm</button>
                     <!-- /. box -->
                     {{-- End mục luc --}}
 

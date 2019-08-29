@@ -87,18 +87,15 @@
                                 {{--</div>--}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name"
-                                           value="{{ old('name') }}">
+                                    <input type="text" class="form-control" placeholder="Nhập tên dịch vụ" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề dịch vụ (*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title"
-                                           value="{{ old('title') }}">
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title" value="{{ old('title') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả (*)</label>
-                                    <textarea class="form-control" name="description"
-                                              placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" name="description" placeholder="Nhập tóm tắt nội dung">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>

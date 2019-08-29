@@ -85,7 +85,7 @@ class PartnerController extends Controller
             $file_name=$img_old;
         }
 
-        DB::table('partner')->update([
+        DB::table('partner')->where('id',$id)->update([
             'name' => $request->name,
             'link' => $request->link,
             'logo' => $file_name,

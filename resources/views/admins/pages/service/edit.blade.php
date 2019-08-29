@@ -72,9 +72,8 @@
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
-                        <h3 style="text-align: left; padding-left: 5px">Thêm dịch vụ</h3>
-                        <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}"
-                              enctype="multipart/form-data">
+                        <h3 style="text-align: left; padding-left: 5px">Sửa dịch vụ</h3>
+                        <form role="form" method="POST" action="{{route('service.update',['id'=>$service->id])}}" enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 {{--<div class="form-group">--}}
@@ -100,6 +99,11 @@
                                     <textarea class="form-control" name="description"
                                               placeholder="Nhập tóm tắt nội dung">{{ $service->description}}</textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Miêu tả dịch vụ (*)</label>
+                                    <input type="text" class="form-control" placeholder="Nhập miêu tả" name="description" value="{{ $service->description }}">
+                                </div>
+
                                 <label for="exampleInputEmail1">Tóm tắt dịch vụ (*)</label>
                                 <div class="form-group">
                                     <textarea name="summary" class="form-control" cols="50" rows="10"
@@ -142,6 +146,9 @@
                                     </label>
                                 </div>
                                 {{--Hết tiêu điểm--}}
+
+
+
                                 {{--Nổi bật--}}
                                 <div class="form-group">
                                     <label>Nổi bật</label>
@@ -156,6 +163,7 @@
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>
                                 </div>
+
                             </div>
                         </form>
                     </div>

@@ -47,16 +47,16 @@ class AccountController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         $this->validate($request,
             [
                 'name' => 'required',
                 'phone' => 'required|numeric',
                 'email' => 'required|email',
                 'password' => 'required|min:6',
-
-            ],
-            [
+                'password_confirm' => 'required|same:password'
+               ],
+               [
                 'name.required' => 'Tên admin là trường bắt buộc',
                 'phone.required' => 'Số điện thoại là trường bắt buộc',
                 'phone.numeric' => 'Viết sai số điện thoại',
@@ -64,9 +64,10 @@ class AccountController extends Controller
                 'email.email' => 'Email không đúng định dạng',
                 'password.required' => 'Mật khẩu là trường bắt buộc',
                 'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
-            ]);
-        $email = DB::table('admin')->pluck('email');
-        $phone = DB::table('admin')->pluck('phone');
+                'password_confirm.same' => "Hai mật khẩu phải giống nhau"
+               ]);
+        $email=DB::table('admin')->pluck('email');
+        $phone=DB::table('admin')->pluck('phone');
         foreach ($email as $value) {
             if ($value == $request->input('email')) {
                 Session::flash('error', 'Tài khoản này đã tồn tại!');
@@ -79,7 +80,7 @@ class AccountController extends Controller
                 return redirect('admin/account/editor/profile')->withInput();
             }
         }
-
+       
         DB::table('admin')->insert([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -108,8 +109,9 @@ class AccountController extends Controller
                 'phone' => 'required|numeric',
                 'email' => 'required|email',
                 'password' => 'required|min:6',
-            ],
-            [
+                'password_confirm' => 'required|same:password'
+               ],
+               [
                 'name.required' => 'Tên admin là trường bắt buộc',
                 'phone.required' => 'Số điện thoại là trường bắt buộc',
                 'phone.numeric' => 'Viết sai số điện thoại',
@@ -117,15 +119,16 @@ class AccountController extends Controller
                 'email.email' => 'Email không đúng định dạng',
                 'password.required' => 'Mật khẩu là trường bắt buộc',
                 'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
-            ]);
+                'password_confirm.same' => "Hai mật khẩu phải giống nhau"
+               ]);
+               
 
-
-        // kiểm tra email và phone mới có phải email cũ không
-        $email_old = DB::table('admin')->find($id)->email;
-        $phone_old = DB::table('admin')->find($id)->phone;
-        //nếu là email cũ thì kiểm tra phone có phải phone cũ không
-        //nếu là phone cũ thì update
-        //nếu là phone mới thì lấy bản ghi các số trong admin để đối chiếu tránh trùng tài khoản
+         // kiểm tra email và phone mới có phải email cũ không
+        $email_old=DB::table('admin')->find($id)->email;
+        $phone_old=DB::table('admin')->find($id)->phone;
+         //nếu là email cũ thì kiểm tra phone có phải phone cũ không 
+             //nếu là phone cũ thì update
+             //nếu là phone mới thì lấy bản ghi các số trong admin để đối chiếu tránh trùng tài khoản
         //trường hợp còn lại làm tương tự 
         if ($email_old == $request->input("email")) {
             if ($phone_old == $request->input("phone")) {
