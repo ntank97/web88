@@ -165,6 +165,7 @@ class FrontendController extends Controller
 
     public function getListNews(Request $request)
     {
+        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
         $url = $request->segment(2);
         $listNews = Blogs::where([
             'slug' => $url,
@@ -172,8 +173,9 @@ class FrontendController extends Controller
         ])->first();
         $viewData = [
             'listNews' => $listNews,
+            'newsHots' => $newsHots,
         ];
-//        return view('pages.')
+        return view('pages.chamsocwebsite',$viewData);
     }
 
     public function tinTuc()

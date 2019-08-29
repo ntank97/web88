@@ -12,8 +12,4 @@ class Blogs extends Model
     const STATUS_PUBLIC = 1;
     const STATUS_PRAVITE = 0;
 
-    public function getStatus()
-    {
-        return array_get($this->status,$this->active,'[N\A]');
-    }
 }

@@ -104,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInLeft">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="fas fa-book fa-3x"></i>
 
                     </a>
@@ -113,7 +113,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInDown">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="far fa-list-alt fa-3x"></i>
 
                     </a>
@@ -122,7 +122,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInDown">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="fas fa-pencil-alt fa-3x"></i>
 
                     </a>
