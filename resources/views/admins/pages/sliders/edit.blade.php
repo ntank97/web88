@@ -115,7 +115,7 @@
                                 {{--Hết tiêu điểm--}}
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                    <button type="submit" class="btn btn-primary">Sửa</button>
                                 </div>
                             </div>
                         </form>

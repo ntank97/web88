@@ -142,6 +142,17 @@
                                     </label>
                                 </div>
                                 {{--Hết tiêu điểm--}}
+                                {{--Nổi bật--}}
+                                <div class="form-group">
+                                    <label>Nổi bật</label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="1" checked="" type="radio">Có
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="footer_hot" value="0" type="radio">Không
+                                    </label>
+                                </div>
+                                {{--Hết nối bật--}}
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>

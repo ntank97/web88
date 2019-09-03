@@ -162,7 +162,7 @@ class SliderController extends Controller
     public function destroy($id)
     {
 
-        $slider = DB::table('slider')->find($id);
+        $slider = DB::table('sliders')->find($id);
         if(Gate::allows('delete',$slider))
         {
             $image_update = DB::table('sliders')->where('id', '=', $id)->pluck('image');

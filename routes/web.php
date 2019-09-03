@@ -88,7 +88,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
     });
     
     Route::prefix('web_users')->group(function(){
+
         Route::get('list','WebUsersController@list')->name('web_users.contact');
+        Route::post('add','WebUsersController@add')->name('web_users.add');
         Route::post('edit_pending','WebUsersController@edit_pending')->name('edit_pending');
         Route::get('detail/{web_id}/{users_id}','WebUsersController@detail')->name('detail');
     });
@@ -175,7 +177,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 //        Route::post('/add-cate', 'OtherServiceController@storeCate')->name('other_service.storeCate');
         Route::get('/edit/{id}', 'OtherServiceController@edit')->name('other_service.edit');
         Route::post('/edit/{id}', 'OtherServiceController@update')->name('other_service.update');
-        Route::get('/destroy/{id}', 'Otherweb_usersServiceController@destroy')->name('other_service.destroy');
+        Route::get('/destroy/{id}', 'OtherServiceController@destroy')->name('other_service.destroy');
         Route::get('/destroy-cate/{id}', 'OtherServiceController@destroyCate')->name('other_service.destroyCate');
         Route::get('/show/{id}', 'OtherServiceController@show')->name('other_service.show');
         Route::get('/detail/{id}', 'OtherServiceController@detail')->name('other_service.detail');

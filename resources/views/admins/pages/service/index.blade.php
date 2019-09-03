@@ -42,7 +42,7 @@
                                         <th>Tên</th>
                                         <th>Tiêu đề</th>
                                         <th>Mô tả</th>
-                                        <th>Tóm tắt </th>
+                                        {{--<th>Tóm tắt </th>--}}
                                         <th>Ảnh</th>
                                         {{--<th>Thể loại</th>--}}
                                         <th>Lượt xem</th>
@@ -57,7 +57,7 @@
                                             <td>{{$value->name }}</td>
                                             <td>{{$value->title }}</td>
                                             <td>{{$value->description }}</td>
-                                            <td>{{$value->summary }}</td>
+                                            {{--<td>{{$value->summary }}</td>--}}
                                             <td><img width="100px" src="{{asset('')}}assets/img_service/{{$value->image}}">
                                             </td>
                                             {{--<td>{{$value->cate_service}}</td>--}}

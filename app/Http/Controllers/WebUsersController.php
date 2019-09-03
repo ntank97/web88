@@ -7,14 +7,15 @@ use DB;
 
 class WebUsersController extends Controller
 {
+
     public function list()
     {
         $web_users['web_users']=DB::table('web_users')
                 ->join('web','web.id','=','web_users.web_id')
                 ->join('users','users.id','=','web_users.users_id')
                 ->select('users.name as name_users','web.name as name_web','users.*','web_users.*')
-                ->whereIn('status',[0,1,3])
                 ->get();
+//        dd($web_users);
         return view('admins.page.web_users.list',$web_users);
     }
 
