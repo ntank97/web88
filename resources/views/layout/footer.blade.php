@@ -143,7 +143,7 @@
 
 <!-- form dang ki -->
 <div id="id01" class="modal">
-    <form id="dk_form" class="modal-content animate" action="{{ Route('khoi.tao.web') }}" method="POST">
+    <form id="dk_form" class="modal-content animate" action="{{ Route('khoi.tao.web')}}" method="POST">
         @csrf
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <div class="container pt-4" style="padding-bottom: 2rem;">
@@ -171,6 +171,7 @@
                     <div class="text-center"><img src="{{ asset('image/contact.jpg')}}" alt=""></div>
                 </div>
                 <div class="col-md-8">
+
                     <form id="dk_form" method="POST" >
                         @csrf
                         <div class="form-group">

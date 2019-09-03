@@ -42,7 +42,7 @@ class OtherServiceController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:other_service,name',
             'title' => 'required',
             'description' => 'required|min:3|max:255',
             'contentt' => 'required',

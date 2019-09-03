@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
                                     <div id="viewImg">
-                                        <img width="100px" height="150px" src="{{asset('')}}assets/img_slider/{{$slider ->image}}">
+                                        <img width="100px" height="150px" src="{{asset('')}}assets/slider-dichvu/{{$slider ->image}}">
                                     </div>
                                 </div>
 
@@ -126,7 +126,7 @@
                                 {{--Hết nối bật--}}
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                    <button type="submit" class="btn btn-primary">Sửa</button>
                                 </div>
                             </div>
                         </form>

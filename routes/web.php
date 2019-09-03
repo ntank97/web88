@@ -88,7 +88,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
     });
     
     Route::prefix('web_users')->group(function(){
+
         Route::get('list','WebUsersController@list')->name('web_users.contact');
+        Route::post('add','WebUsersController@add')->name('web_users.add');
         Route::post('edit_pending','WebUsersController@edit_pending')->name('edit_pending');
         Route::get('detail/{web_id}/{users_id}','WebUsersController@detail')->name('detail');
     });

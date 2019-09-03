@@ -68,6 +68,7 @@ class FrontendController extends Controller
     }
     public function dangki(Request $request)
     {
+
         $this->validate($request, [
             'w_name' => 'required|min:3',
             'w_email' => 'required|unique:users,email',
@@ -91,7 +92,7 @@ class FrontendController extends Controller
                 'created_at' => now(),
             ]
         );
-        echo $id;
+//        echo $id;
         if (isset($request->w_id)) {
             DB::table('web_users')->insert([
                 'title' => $request->w_title,
@@ -100,6 +101,7 @@ class FrontendController extends Controller
                 'users_id' => $id,
                 'created_at' => now(),
             ]);
+//            dd(1);
             return redirect()->route('kho.giao.dien')->with('thongbao', 'Khởi tạo website thành công.');
         }
         return redirect()->route('lien.he')->with('thongbao', 'Tạo liên hệ thành công.');

@@ -87,7 +87,7 @@ class ServiceController extends Controller
             'content' => $request->contentt,
             'image' => $file_name,
 //            'cate_id' => $request->cate_service,
-            'focus' => $request->focus,
+//            'focus' => $request->focus,
             'active'=>$request->active,
             'created_at' => now(),
             'footer_hot'=>$request->footer_hot,
