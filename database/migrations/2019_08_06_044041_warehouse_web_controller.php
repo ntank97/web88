@@ -58,16 +58,15 @@ class WarehouseWebController extends Migration
                 ->references('id')
                 ->on('web')
                 ->onDelete('cascade');
+            $table->tinyInteger('status')->default(0);
+            
             $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->timestamps();
         });
-        /**
-         * Dịch vụ - Thiết kế - Seo
-         */
-        /**
-         * Dịch vụ - Thiết kế - Seo
-         */
+    /**
+     * Dịch vụ - Thiết kế - Seo
+     */
 //        Schema::create('cate_service', function (Blueprint $table) {
 //            $table->bigIncrements('id');
 //            $table->string('name');

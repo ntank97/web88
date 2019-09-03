@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Blogs;
 use App\CateWeb;
 use App\OtherService;
@@ -12,43 +10,31 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
-
 class FrontendController extends Controller
 {
     public function __construct()
     {
         $cateweb = CateWeb::all();
         View::Share('cateweb', $cateweb);
-
         $supports = DB::table('supports')->get();
         View::Share('supports', $supports);
-
         $contact = DB::table('contact')->first();
         View::Share('contact', $contact);
-
         $servis = Service::where('active', Service::STATUS_PUBLIC)->get();
         View::Share('servis', $servis);
-
         $serviHot = Service::where([['footer_hot',1],['active',Service::STATUS_PUBLIC]])->limit(5)->get();
         View::Share('serviHot', $serviHot);
-
         $otherservi = OtherService::where('active', OtherService::STATUS_PUBLIC)->get();
         View::Share('otherservi',$otherservi);
-
         $otherHot = OtherService::where([['footer_hot',1],['active',OtherService::STATUS_PUBLIC]])->limit(5)->get();
         View::Share('otherHot',$otherHot);
-
         $news = Blogs::where('active', Blogs::STATUS_PUBLIC)->get();
         View::Share('news',$news);
-
         $newHot = Blogs::where([['footer_hot',1],['active',Blogs::STATUS_PUBLIC]])->limit(5)->get();
         View::Share('newHot',$newHot);
-
     }
-
     public function khoGiaoDien(Request $request)
     {
-
         $webs = Web::where([
             'active' => Web::STATUS_PUBLIC
         ]);
@@ -61,7 +47,6 @@ class FrontendController extends Controller
 //        dd($viewData);
         return view('pages.khogiaodien', $viewData);
     }
-
     public function getListProduct(Request $request)
     {
         $url = $request->segment(2);
@@ -81,7 +66,6 @@ class FrontendController extends Controller
         }
         return redirect('/');
     }
-
     public function dangki(Request $request)
     {
         $this->validate($request, [
@@ -119,9 +103,7 @@ class FrontendController extends Controller
             return redirect()->route('kho.giao.dien')->with('thongbao', 'Khởi tạo website thành công.');
         }
         return redirect()->route('lien.he')->with('thongbao', 'Tạo liên hệ thành công.');
-
     }
-
     public function lienHe(Request $request)
     {
         $webs = Web::where([
@@ -136,33 +118,29 @@ class FrontendController extends Controller
 //        dd($viewData);
         return view('pages.lienhe', $viewData);
     }
-
     public function getListService(Request $request)
     {
-
         if(!$request->session()->has($request->slug))
         {
             DB::table('service')->where('slug',$request->slug)->increment('view',1);
-
         }
         $url = $request->segment(2);
         $services = Service::where([
             'slug' => $url,
             'active' => Service::STATUS_PUBLIC
         ])->first();
-
+        $sliders = DB::table('slider_content')->where('active', 1)->get();
         $viewData = [
-            'services' => $services
+            'services' => $services,
+            'sliders' => $sliders
         ];
         return view('pages.dichvu', $viewData);
     }
-
     public function getListOtherService(Request $request)
     {
         if(!$request->session()->has($request->slug))
         {
             DB::table('other_service')->where('slug',$request->slug)->increment('view',1);
-
         }
         $url = $request->segment(2);
         $otherService = OtherService::where([
@@ -174,14 +152,13 @@ class FrontendController extends Controller
         ];
         return view('pages.dichvukhac', $viewData);
     }
-
     public function getListNews(Request $request)
     {
-        if(!$request->session()->has($request->slug))
-        {
-            DB::table('new')->where('slug',$request->slug)->increment('view',1);
-
-        }
+        $newsHots = Blogs::select('name','view','slug')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        // if(!$request->session()->has($request->slug))
+        // {
+        //     DB::table('new')->where('slug',$request->slug)->increment('view',1);
+        // }
         $url = $request->segment(2);
         $listNews = Blogs::where([
             'slug' => $url,
@@ -189,144 +166,102 @@ class FrontendController extends Controller
         ])->first();
         $viewData = [
             'listNews' => $listNews,
+            'newsHots' => $newsHots,
         ];
-//        return view('pages.')
+        return view('pages.chitiettin',$viewData);
     }
-
     public function tinTuc()
     {
-        $newsHots = Blogs::select('name','view')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
+        $newsHots = Blogs::select('name','view','slug')->orderBy('view','DESC')->where('active',1)->limit(10)->get();
         return view('pages.tintuc',compact('newsHots'));
     }
-
     public function khachHang()
     {
         $partners = Partner::all();
         return view('pages.khachhang', compact('partners'));
     }
-
-    public function gioiThieuDichVu()
-    {
-        return view('pages.gioithieudichvu');
-    }
-
     public function seo()
     {
         $seo = Blogs::where([['cate_id',1],['active',1]])->paginate(10);
-        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
+        $newsHot = Blogs::select('name','view','slug')->orderBy('view','DESC')->where([['cate_id',1],['active',1]])->limit(12)->get();
         $viewData = [
             'seo' => $seo,
             'newsHot' => $newsHot,
         ];
         return view('pages.seo',$viewData);
     }
-
     public function thietKeWebsite()
     {
         $tkweb = Blogs::where([['cate_id',2],['active',1]])->paginate(10);
-        $newsHot = Blogs::select('name','view')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
+        $newsHot = Blogs::select('name','view','slug')->orderBy('view','DESC')->where([['cate_id',2],['active',1]])->limit(12)->get();
         $viewData = [
             'tkweb' => $tkweb,
             'newsHot' => $newsHot,
         ];
         return view('pages.thietke-website',$viewData);
     }
-
     public function bangGiaThietKeWebsite()
     {
         return view('pages.banggiathietkewebsite');
     }
-
     public function chamSocWebsite()
     {
         return view('pages.chamsocwebsite');
     }
-
     public function dichVuThietKeWebsite()
     {
         return view('pages.dichvu-thietkewebgiare');
     }
-
     public function dichVuSeoWebsite()
     {
         return view('pages.dichvuseowebsite');
     }
-
     public function dichVuVietBaiChuanSeo()
     {
         return view('pages.dichvuvietbaichuanseo');
     }
-
     public function dieuKienVaChinhSach()
     {
         return view('pages.dieukienvachinhsach');
     }
-
     public function domaiGiaRe()
     {
         return view('pages.domaingiare');
     }
-
     public function hinhThucThanhToan()
     {
         return view('pages.hinhthucthanhtoan');
     }
-
     public function hostingChatLuongCao()
     {
         return view('pages.hostingchatluongcao');
     }
-
     public function hoTroKhachHang()
     {
         return view('pages.hotrokhachhang');
     }
-
-
     public function quyTrinhThietKeWebsite()
     {
         return view('pages.quuytrinhthietkewebsite');
     }
-
     public function thietKeWebChuanMobile()
     {
         return view('pages.thietkewebchuanmoblie');
     }
-
     public function thietKeWebChuanSeoChuyenNghiep()
     {
         return view('pages.thietkewebchuanseochuyennghiep');
     }
-
     public function thietKeWebsiteTheoMau()
     {
         return view('pages.thietkewebsitetheomau');
     }
-
     public function thietKeWebTronGoiGiaRe()
     {
         return view('pages.thietkewebtrongoigiare');
     }
-
     public function tuyenDung()
     {
         return view('pages.tuyendung');
-    }
-
-    public function thietKeWebTheoYeuCau()
-    {
-        return view('pages.thietkewebtheoyeucau');
-    }
-
-    public function dichVuThietKeWebGiaRe()
-    {
-        $sliders = DB::table('slider_content')->where('active', 1)->get();
-
-        $service = DB::table('service')->where('active', 1)->get();
-        $viewData = [
-            'sliders' => $sliders,
-            'service' => $service,
-        ];
-        return view('pages.dichvu-thietkewebgiare', $viewData);
     }
 }

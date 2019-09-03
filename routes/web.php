@@ -19,9 +19,9 @@ Route::get('khach-hang', 'FrontendController@khachHang')->name('khach.hang');
 Route::get('service/{slug}', 'FrontendController@getListOtherService')->name('get.list.other.service');
 Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
 Route::get('tin-tuc/{slug}', 'FrontendController@getListNews')->name('get.list.news');
-
-Route::get('seo', 'FrontendController@seo')->name('seo');
 Route::get('thiet-ke-website', 'FrontendController@thietKeWebsite')->name('thiet.ke.website');
+Route::get('seo', 'FrontendController@seo')->name('seo');
+
 Route::get('bang-gia-thiet-ke-website', 'FrontendController@bangGiaThietKeWebsite')->name('bang.gia.thiet.ke.website');
 Route::get('cham-soc-website', 'FrontendController@chamSocWebsite')->name('cham.soc.website');
 Route::get('dich-vu-thiet-ke-website', 'FrontendController@dichVuThietKeWebsite')->name('dich.vu.thiet.ke.website');
@@ -39,7 +39,7 @@ Route::get('thiet-ke-web-chuan-seo-chuyen-nghiep', 'FrontendController@thietKeWe
 Route::get('thiet-ke-website', 'FrontendController@thietKeWebsite')->name('thiet.ke.website');
 Route::get('thiet-ke-website-theo-mau', 'FrontendController@thietKeWebsiteTheoMau')->name('thiet.ke.website.theo.mau');
 Route::get('thiet-ke-web-tron-goi-gia-re', 'FrontendController@thietKeWebTronGoiGiaRe')->name('thiet.web.tron.goi.gia.re');
-
+Route::get('tin-tuc', 'FrontendController@tinTuc')->name('tin.tuc');
 Route::get('tuyen-dung', 'FrontendController@tuyenDung')->name('tuyen.dung');
 Route::get('thiet-ke-web-theo-yeu-cau', 'FrontendController@thietKeWebTheoYeuCau')->name('thiet.ke.web.theo.yeu.cau');
 Route::get('dich-vu-thiet-ke-web-gia-re', 'FrontendController@dichVuThietKeWebGiaRe')->name('dich.vu.thiet.ke.web.gia.re');
@@ -64,12 +64,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
      */
     Route::prefix('account')->group(function () {
 
-        Route::group(['prefix' => 'editor'], function () {
-            Route::get('profile', 'AccountController@profile')->name('editor.account.profile');
-            Route::post('add', 'AccountController@store')->name('editor.account.store');
-            Route::get('edit/{id}', 'AccountController@edit')->name('editor.account.edit');
-            Route::post('update/{id}', 'AccountController@update')->name('editor.account.update');
-            Route::get('delete/{id}', 'AccountController@delete')->name('editor.account.delete');
+        Route::group(['prefix' => 'editor'],function(){
+            Route::get('profile','AccountController@profile')->name('editor.account.profile');
+            Route::post('add','AccountController@store')->name('editor.account.store');
+            Route::get('edit/{id}','AccountController@edit')->name('editor.account.edit');
+            Route::post('update/{id}','AccountController@update')->name('editor.account.update');
+            Route::get('delete/{id}','AccountController@delete')->name('editor.account.delete');
+
+            Route::post('update_pending','WebStoreController@update_pending')->name('update_pending');
+            Route::post('update_pending_blogs','WebStoreController@update_pending_blogs')->name('update_pending_blogs');
+            Route::post('update_pending_services','WebStoreController@update_pending_services')->name('update_pending_services');
         });
         Route::group(['prefix' => 'user'], function () {
             Route::get('profile', 'ClientController@profile')->name('editor.account.index');
@@ -82,15 +86,39 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
             Route::get('index', 'PendingController@index')->name('pending.index');
         });
     });
-    Route::prefix('partner')->group(function () {
-        Route::get('list', 'PartnerController@list')->name('partner.list');
-        Route::get('add', 'PartnerController@add')->name('partner.add');
-        Route::post('add', 'PartnerController@store')->name('partner.add');
-        Route::get('edit/{id}', 'PartnerController@edit')->name('partner.edit');
-        Route::post('edit/{id}', 'PartnerController@update')->name('partner.edit');
-        Route::get('delete/{id}', 'PartnerController@delete')->name('partner.delete');
+    
+    Route::prefix('web_users')->group(function(){
+        Route::get('list','WebUsersController@list')->name('web_users.contact');
+        Route::post('edit_pending','WebUsersController@edit_pending')->name('edit_pending');
+        Route::get('detail/{web_id}/{users_id}','WebUsersController@detail')->name('detail');
     });
 
+    Route::prefix('partner')->group(function(){
+        Route::get('list','PartnerController@list')->name('partner.list');
+        Route::get('add','PartnerController@add')->name('partner.add');
+        Route::post('add','PartnerController@store')->name('partner.add');
+        Route::get('edit/{id}','PartnerController@edit')->name('partner.edit');
+        Route::post('edit/{id}','PartnerController@update')->name('partner.edit');
+        Route::get('delete/{id}','PartnerController@delete')->name('partner.delete');
+    });
+
+    Route::prefix('contact')->group(function(){
+        Route::get('list','ContactController@list')->name('contact.list');
+        Route::get('add','ContactController@add')->name('contact.add');
+        Route::post('add','ContactController@store')->name('contact.add');
+        Route::get('edit/{id}','ContactController@edit')->name('contact.edit');
+        Route::post('edit/{id}','ContactController@update')->name('contact.edit');
+        Route::get('delete/{id}','ContactController@delete')->name('contact.delete');
+    });
+
+    Route::prefix('supports')->group(function(){
+        Route::get('list','SupportsController@list')->name('supports.list');
+        Route::get('add','SupportsController@add')->name('supports.add');
+        Route::post('add','SupportsController@store')->name('supports.add');
+        Route::get('edit/{id}','SupportsController@edit')->name('supports.edit');
+        Route::post('edit/{id}','SupportsController@update')->name('supports.edit');
+        Route::get('delete/{id}','SupportsController@delete')->name('supports.delete');
+    });
     Route::prefix('blogs')->group(function () {
         Route::get('/list', 'BlogsController@index')->name('blogs.index');
         Route::get('/add', 'BlogsController@create')->name('blogs.create');
@@ -115,8 +143,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
         Route::post('/add-cate', 'WebStoreController@storeCate')->name('webstore.storeCate');
         Route::get('/edit/{id}', 'WebStoreController@edit')->name('webstore.edit');
         Route::post('/edit/{id}', 'WebStoreController@update')->name('webstore.update');
-        Route::get('/edit-cate/{id}', 'WebStoreController@editCate')->name('webstore.editCate');
-        Route::post('/edit-cate/{id}', 'WebStoreController@updateCate')->name('webstore.updateCate');
         Route::get('/destroy/{id}', 'WebStoreController@destroy')->name('webstore.destroy');
         Route::get('/destroy-cate/{id}', 'WebStoreController@destroyCate')->name('webstore.destroyCate');
         Route::get('/show/{id}', 'WebStoreController@show')->name('webstore.show');
@@ -129,8 +155,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
         Route::get('/list', 'ServiceController@index')->name('service.index');
         Route::get('/add', 'ServiceController@create')->name('service.create');
         Route::post('/add', 'ServiceController@store')->name('service.store');
-//        Route::get('/add-cate', 'ServiceController@createCate')->name('service.createCate');
-//        Route::post('/add-cate', 'ServiceController@storeCate')->name('service.storeCate');
+        Route::get('/add-cate', 'ServiceController@createCate')->name('service.createCate');
+        Route::post('/add-cate', 'ServiceController@storeCate')->name('service.storeCate');
         Route::get('/edit/{id}', 'ServiceController@edit')->name('service.edit');
         Route::post('/edit/{id}', 'ServiceController@update')->name('service.update');
         Route::get('/destroy/{id}', 'ServiceController@destroy')->name('service.destroy');

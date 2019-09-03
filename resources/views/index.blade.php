@@ -8,7 +8,7 @@
                 @foreach($sliders as $key => $slider)
             <li>
                 <a href="javascript:void(0)">
-                    <img src="{{ asset('assets/slider-index/'.$slider->image ) }}" alt="">
+                    <img width="1349" height="625" src="{{ asset('assets/slider-index/'.$slider->image )}}" alt="">
                 </a>
                 <div class="slide-text">
                     {{--<h3 class="slide-text--title">Talent Wins</h3>--}}
@@ -104,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInLeft">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="fas fa-book fa-3x"></i>
 
                     </a>
@@ -113,7 +113,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInDown">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="far fa-list-alt fa-3x"></i>
 
                     </a>
@@ -122,7 +122,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInDown">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="fas fa-pencil-alt fa-3x"></i>
 
                     </a>
@@ -131,7 +131,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 services__block-stt wow bounceInRight">
-                    <a href="http://thietkewebnhanh247.com/kho-giao-dien/">
+                    <a href="javascript:void(0)">
                         <i class="fas fa-globe-americas fa-3x"></i>
                     </a>
                     <p class="services__block-text">
@@ -153,7 +153,7 @@
                         <i class="far fa-hand-point-right"></i>
                         Xem thêm
                     </a>
-                    <a href="javascript:void(0)" class="btn btn-success">
+                    <a href="{{ route('kho.giao.dien') }}" class="btn btn-success">
                         <i class="far fa-heart"></i>
                         Trải nghiệm ngay
                     </a>
@@ -185,7 +185,7 @@
             <div class="row">
                 @if(isset($webs))
                     @foreach($webs as $web)
-                <div class="col-12 col-sm-6 box col-md-4 woocommerce__list wow bounceInLeft woocommerce__list-img" style="background-image:url({{ asset('image/'.$web->image )}})">
+                <div class="col-12 col-sm-6 box col-md-4 woocommerce__list wow bounceInLeft woocommerce__list-img" style="background-image:url({{ asset('assets/img_webs/'.$web->image )}})">
                     <div style="padding-top: 400px;">
                     <center>
                         <p>{{ $web->name }}</p>

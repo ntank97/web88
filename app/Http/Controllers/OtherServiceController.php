@@ -77,7 +77,6 @@ class OtherServiceController extends Controller
         } else {
             $file_name = 'logo1.png';
         }
-
         DB::table('other_service')->insert([
             'name' => $request->name,
             'slug' => str_slug($request->name),
@@ -158,7 +157,7 @@ class OtherServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+//        dd($request->all());
         $image_update = DB::table('other_service')->where('id', '=', $id)->pluck('image');
         DB::table('other_service_tags')->where('other_service_id', $id)->delete();
         $this->validate($request, [
@@ -219,7 +218,7 @@ class OtherServiceController extends Controller
         $other_service_id = DB::table('other_service')->where('name', $request->name)->orderBy('id', 'desc')->first();
 //Tách chuỗi
         $explode = explode(';', $request->tags);
-
+//        dd($explode);
         foreach ($explode as $ex) {
             if ($ex != "") {
                 DB::table('other_service_tags')->insert([
