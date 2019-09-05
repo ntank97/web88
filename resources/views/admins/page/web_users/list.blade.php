@@ -72,13 +72,12 @@
                                             @endif
                                                 
                                             </td>
-                                            <td ><a href="{{url('admin/web_users/detail'.'/'.$value->web_id.'/'.$value->users_id)}}"><button class="btn btn-primary">Xem</button></a></td>
+                                            <td ><a href="{{url('admin/web_users/detail'.'/'.$value6->web_id.'/'.$value->users_id)}}"><button class="btn btn-primary">Xem</button></a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
-
-
                                 </table>
+
                             </div>
                         </div>
                     </div>

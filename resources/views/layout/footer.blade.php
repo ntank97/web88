@@ -143,7 +143,22 @@
 
 <!-- form dang ki -->
 <div id="id01" class="modal">
+
     <form id="dk_form" class="modal-content animate" action="{{ Route('khoi.tao.web')}}" method="POST">
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                    {{$err}}<br>
+                @endforeach
+
+            </div>
+
+        @endif
+        @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{session('thongbao')}}
+            </div>
+        @endif
         @csrf
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <div class="container pt-4" style="padding-bottom: 2rem;">
